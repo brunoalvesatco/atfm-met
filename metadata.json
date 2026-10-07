@@ -1,0 +1,8 @@
+{
+  "name": "GADHOC ATFM-MET",
+  "description": "Credenciamento e informações do Grupo Ad Hoc ATFM-MET (GEPEA / SG3) - DECEA / CINDACTA I",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
