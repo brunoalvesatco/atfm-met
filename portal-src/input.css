@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --space: #02070e; --glass: #081a28d1; --glass-2: #0c263ae6; --panel-bg: #071623e0;
+    --edge: #40d6e038; --edge-hi: #40d6e08c; --fg: #e2f5ff; --dim: #87a8bb;
+    --cyan: #3fe0d0; --blue: #43a9ff; --deep: #1d4f8b; --amber: #ffb440; --err: #ff6b7d;
+    --chamfer: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
+    --chamfer-sm: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  }
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-slate-50 text-slate-900 antialiased font-sans transition-colors duration-200 dark:bg-aero-950 dark:text-slate-100; }
+  body ::selection, body::selection { @apply bg-cyan-500 text-slate-950; }
+  :focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer utilities {
+  .chamfer { clip-path: var(--chamfer); }
+  .chamfer-sm { clip-path: var(--chamfer-sm); }
+  .hud-glow-cyan { text-shadow: 0 0 12px rgba(63, 224, 208, 0.6); }
+  .hud-glow-amber { text-shadow: 0 0 12px rgba(255, 180, 64, 0.5); }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
