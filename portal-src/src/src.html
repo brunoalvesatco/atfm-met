@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GADHOC ATFM-MET - Hub de Informações</title>
+<meta name="description" content="Hub de informações do GADHOC ATFM-MET (GEPEA/SG3): integração entre o Gerenciamento de Fluxo de Tráfego Aéreo e a Meteorologia Aeronáutica. Produtos, painel de ações, cronogramas, documentos e credenciamento.">
+<meta property="og:title" content="GADHOC ATFM-MET - Hub de Informações">
+<meta property="og:description" content="Produtos, ações, cronogramas e documentos do GADHOC ATFM-MET (GEPEA/SG3).">
+<meta name="theme-color" content="#02070e">
+<link rel="icon" type="image/png" href="{{FAV}}">
+<script>
+(function(){var d=true;try{d=localStorage.getItem('atfm_theme')!=='light';}catch(e){}if(d)document.documentElement.classList.add('dark');})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Saira:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>{{CSS}}</style>
+</head>
+<body class="bg-slate-50 dark:bg-aero-950 text-slate-900 dark:text-slate-100 min-h-screen font-sans antialiased">
+<div class="min-h-screen flex flex-col bg-slate-50 dark:bg-aero-950 text-slate-900 dark:text-slate-100 transition-colors">
+
+  <!-- ===================== CABEÇALHO ===================== -->
+  <div class="sticky top-0 z-40 shadow-xs">
+    <header class="border-b border-slate-200 dark:border-[rgba(64,214,224,0.22)] bg-white/95 dark:bg-[rgba(7,22,35,0.92)] backdrop-blur-md transition-colors shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.55)]">
+      <div class="hidden md:flex items-center justify-between px-4 lg:px-8 py-1.5 bg-slate-100/90 dark:bg-[#02070e] border-b border-slate-200/80 dark:border-[rgba(64,214,224,0.18)] text-[11.5px] font-mono text-slate-600 dark:text-[#87a8bb]">
+        <div class="flex items-center gap-3 min-w-0">
+          <span class="flex items-center gap-2 text-cyan-600 dark:text-[#3fe0d0] font-semibold tracking-wider whitespace-nowrap">
+            <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span></span>
+            GEPEA / SG3
+          </span>
+          <span class="text-slate-300 dark:text-cyan-900">|</span>
+          <span class="text-slate-600 dark:text-slate-300 tracking-wide font-medium whitespace-nowrap">Grupo de Estudos sobre Planejamento do Espaço Aéreo</span>
+          <span class="hidden lg:inline text-slate-300 dark:text-cyan-900">|</span>
+          <span class="hidden lg:inline text-slate-500 dark:text-[#87a8bb] font-hud tracking-wider whitespace-nowrap">SBGR / SBSP / SBKP / TMA-SP / FIR-BS / FIR-CW / FIR-RE</span>
+        </div>
+        <div class="flex items-center gap-4 whitespace-nowrap">
+          <div class="flex items-center gap-2.5">
+            {{ic:clock:"w-3.5 h-3.5 text-cyan-600 dark:text-[#3fe0d0]"}}
+            <span>UTC: <strong id="clkUtc" class="text-cyan-700 dark:text-[#3fe0d0] font-bold dark:hud-glow-cyan">--:--:--Z</strong></span>
+            <span class="text-slate-300 dark:text-cyan-900">•</span>
+            <span>BSB: <strong id="clkBsb" class="text-amber-700 dark:text-[#ffb440] font-bold dark:hud-glow-amber">--:--:-- BRT</strong></span>
+          </div>
+          <span class="text-slate-300 dark:text-cyan-900">|</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400">STATUS: <strong class="text-emerald-600 dark:text-emerald-400">OPERACIONAL</strong></span>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+        <a href="#hub" data-go="hub" class="flex items-center gap-2.5 sm:gap-3.5 min-w-0" aria-label="GADHOC ATFM-MET – início">
+          <div class="relative shrink-0">
+            <img id="logoL" src="{{LOGO_L}}" alt="" class="block dark:hidden w-11 sm:w-[72px] object-contain drop-shadow-[0_0_12px_rgba(63,224,208,0.25)]">
+            <img id="logoD" src="{{LOGO_D}}" alt="" class="hidden dark:block w-11 sm:w-[72px] object-contain drop-shadow-[0_0_12px_rgba(63,224,208,0.25)]">
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-2 flex-wrap mb-0.5">
+              <span class="text-xs font-mono font-bold tracking-wider text-cyan-600 dark:text-[#3fe0d0] hidden sm:inline uppercase">GADHOC ATFM-MET</span>
+            </div>
+            <h1 class="text-[15px] sm:text-xl font-display font-bold text-slate-900 dark:text-[#e2f5ff] tracking-tight truncate leading-tight"><span class="sm:hidden">GADHOC ATFM-MET</span><span class="hidden sm:inline">Grupo Adhoc Fluxo de Tráfego Aéreo e Meteorologia</span></h1>
+            <div class="flex items-center gap-2 text-xs min-w-0 overflow-hidden">
+              <span class="font-mono text-cyan-600 dark:text-cyan-400 font-semibold tracking-wide truncate">HUB INTEGRADO DE INFORMAÇÕES</span>
+              <span class="hidden sm:inline text-slate-400 dark:text-slate-500">•</span>
+              <span class="hidden lg:inline text-slate-500 dark:text-[#87a8bb] font-sans truncate">DECEA • CGNA • CIMAER • ICEA • EMPRESAS AÉREAS</span>
+            </div>
+          </div>
+        </a>
+        <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <a href="presenca.html" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-display font-semibold rounded text-slate-700 dark:text-[#e2f5ff] bg-slate-100 dark:bg-[rgba(8,26,40,0.85)] hover:bg-slate-200 dark:hover:bg-[rgba(63,224,208,0.15)] border border-slate-200 dark:border-[rgba(64,214,224,0.35)] dark:hover:border-cyan-400 transition-all shadow-sm hover:shadow-glow-sm" aria-label="Confirmar presença na próxima reunião">
+            {{ic:badge-check:"w-4 h-4 text-emerald-600 dark:text-emerald-400"}}<span class="hidden sm:inline uppercase tracking-wider text-[11px]">Confirmar Presença</span>
+          </a>
+          <button type="button" data-modal="qr" class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-display font-semibold rounded text-slate-700 dark:text-[#e2f5ff] bg-slate-100 dark:bg-[rgba(8,26,40,0.85)] hover:bg-slate-200 dark:hover:bg-[rgba(63,224,208,0.15)] border border-slate-200 dark:border-[rgba(64,214,224,0.35)] dark:hover:border-cyan-400 transition-all shadow-sm hover:shadow-glow-sm" aria-label="QR Code da reunião">
+            {{ic:qr-code:"w-4 h-4 text-cyan-600 dark:text-[#3fe0d0]"}}<span class="hidden lg:inline uppercase tracking-wider text-[11px]">QR Code Reunião</span>
+          </button>
+          <button type="button" data-modal="missao" class="hidden sm:flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-display font-semibold rounded text-slate-700 dark:text-[#e2f5ff] bg-slate-100 dark:bg-[rgba(8,26,40,0.85)] hover:bg-slate-200 dark:hover:bg-[rgba(63,224,208,0.15)] border border-slate-200 dark:border-[rgba(64,214,224,0.35)] dark:hover:border-cyan-400 transition-all shadow-sm hover:shadow-glow-sm" aria-label="Missão e ajuda">
+            {{ic:info:"w-4 h-4 text-amber-500 dark:text-[#ffb440]"}}<span class="hidden lg:inline uppercase tracking-wider text-[11px]">Missão · Ajuda</span>
+          </button>
+          <button type="button" id="themeBtn" class="p-1.5 sm:p-2 rounded text-slate-600 dark:text-[#e2f5ff] bg-slate-100 dark:bg-[rgba(8,26,40,0.85)] hover:bg-slate-200 dark:hover:bg-[rgba(63,224,208,0.15)] border border-slate-200 dark:border-[rgba(64,214,224,0.35)] dark:hover:border-cyan-400 transition-colors shadow-sm" aria-label="Alternar tema claro/escuro">
+            {{ic:moon:"w-4 h-4 text-slate-700 dark:hidden"}}{{ic:sun:"w-4 h-4 hidden dark:block text-[#ffb440]"}}
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav class="border-b border-slate-200 dark:border-[rgba(64,214,224,0.22)] bg-slate-50/95 dark:bg-[rgba(2,7,14,0.94)] backdrop-blur-md transition-all shadow-sm" aria-label="Módulos do portal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div id="tabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-2.5 select-none overscroll-x-contain"></div>
+      </div>
+    </nav>
+  </div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 transition-all">
+
+    <!-- ===================== HUB ===================== -->
+    <section id="v-hub" class="view space-y-8 animate-fade-in py-2">
+      <div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-blue-50/90 via-white to-sky-50/90 dark:from-[rgba(7,22,35,0.95)] dark:via-[rgba(11,34,54,0.9)] dark:to-[rgba(7,22,35,0.95)] border border-slate-200/90 dark:border-[rgba(64,214,224,0.3)] p-6 sm:p-8 shadow-sm dark:shadow-hud-panel">
+        <div class="absolute -right-12 -top-12 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-12 -bottom-12 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-2 max-w-3xl">
+            <div class="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-700 dark:text-[#3fe0d0]"><span>Plataforma Centralizada de Inteligência ATFM &amp; Meteorologia</span></div>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-[#e2f5ff] tracking-tight">Módulos Operacionais do GADHOC ATFM-MET</h2>
+            <p class="text-sm text-slate-600 dark:text-[#87a8bb] leading-relaxed">Selecione abaixo o módulo desejado para acompanhar os produtos e ferramentas em desenvolvimento, o fórum com <span id="hubOpen">24</span> ações em aberto, a agenda das reuniões de 2024 a 2027, o repositório de informes e agendas oficiais e o credenciamento da próxima reunião.</p>
+          </div>
+          <div class="grid grid-cols-2 md:flex md:items-center gap-3 shrink-0">
+            <div class="px-4 py-2.5 rounded-lg bg-white dark:bg-[rgba(2,7,14,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] font-mono text-center shadow-xs">
+              <span class="text-[10px] text-slate-500 dark:text-[#87a8bb] block uppercase tracking-wider">Próxima Reunião</span>
+              <span id="hubNext" class="text-sm font-bold text-cyan-700 dark:text-[#3fe0d0] dark:hud-glow-cyan">ATFM-MET/10 · 29 MAR 27</span>
+            </div>
+            <div class="px-4 py-2.5 rounded-lg bg-white dark:bg-[rgba(2,7,14,0.85)] border border-slate-200 dark:border-[rgba(255,180,64,0.3)] font-mono text-center shadow-xs">
+              <span class="text-[10px] text-slate-500 dark:text-[#87a8bb] block uppercase tracking-wider">Em atividade desde</span>
+              <span class="text-sm font-bold text-amber-700 dark:text-[#ffb440] dark:hud-glow-amber">MAIO · 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="hubCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ===================== PRODUTOS ===================== -->
+    <section id="v-produtos" class="view hidden space-y-6 animate-fade-in py-2">
+      <div class="p-6 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.28)] shadow-sm dark:shadow-hud-panel">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-2"><span class="font-mono text-xs font-bold px-2.5 py-0.5 rounded bg-blue-50 dark:bg-cyan-950/70 text-blue-700 dark:text-[#3fe0d0] border border-blue-200 dark:border-cyan-400/40 uppercase tracking-wider">Módulo 1 • Produtos &amp; Ferramentas</span></div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-[#e2f5ff] tracking-tight">Produtos &amp; Ferramentas ATFM-MET</h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-[#87a8bb] mt-1 max-w-3xl font-sans">O que o grupo está desenvolvendo, validando ou estudando para levar a meteorologia à decisão ATFM. Status conforme o informe do GADHOC ATFM-MET/9 (outubro de 2026).</p>
+          </div>
+          <div class="flex items-center gap-2.5 shrink-0">
+            <div class="px-4 py-2 rounded-lg bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] font-mono text-center shadow-xs"><span class="text-[10px] text-slate-500 dark:text-[#87a8bb] block uppercase tracking-wider">Produtos</span><span id="kProd" class="text-sm font-bold text-blue-700 dark:text-[#3fe0d0]">8 ATIVOS</span></div>
+            <div class="px-4 py-2 rounded-lg bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-200 dark:border-[rgba(255,180,64,0.3)] font-mono text-center shadow-xs"><span class="text-[10px] text-slate-500 dark:text-[#87a8bb] block uppercase tracking-wider">Novas frentes</span><span id="kStudy" class="text-sm font-bold text-amber-700 dark:text-[#ffb440]">6 EM ESTUDO</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 rounded-2xl border transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">{{ic:sliders-horizontal:"w-4 h-4 text-blue-600 dark:text-blue-400"}}<span class="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">Situação dos produtos</span></div>
+          <span id="prodHint" class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Exibindo todos os produtos</span>
+        </div>
+        <div id="prodChips" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+      </div>
+      <div id="prodGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-display font-bold text-sm shadow-glow-cyan chamfer-sm">{{ic:sparkles:"w-4 h-4"}}Novas frentes de estudo</span>
+        <span class="flex-1 h-px bg-slate-200 dark:bg-[rgba(64,214,224,0.2)]"></span>
+        <span class="font-mono text-xs font-bold text-cyan-600 dark:text-[#3fe0d0] uppercase tracking-wider">Abertas na ATFM-MET/9</span>
+      </div>
+      <div id="studyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+      <div class="flex items-center gap-3 pt-2">
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-display font-bold text-sm chamfer-sm">{{ic:history:"w-4 h-4"}}Histórico</span>
+        <span class="flex-1 h-px bg-slate-200 dark:bg-[rgba(64,214,224,0.2)]"></span>
+        <span class="font-mono text-xs font-bold text-amber-600 dark:text-[#ffb440] uppercase tracking-wider">De onde o grupo partiu</span>
+      </div>
+      <div class="relative overflow-hidden rounded-xl border p-5 sm:p-6 bg-white border-slate-200 shadow-sm dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)]">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <div class="w-12 h-12 shrink-0 rounded-lg border flex items-center justify-center bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-800/60 dark:border-slate-700 dark:text-slate-400">{{ic:ban:"w-6 h-6"}}</div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap"><h3 class="text-lg font-display font-bold text-slate-900 dark:text-[#e2f5ff]">SWAP – Plano de Desvios em Condições Meteorológicas Severas</h3><span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded border uppercase tracking-wider bg-slate-100 text-slate-600 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600">Encerrado</span></div>
+            <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-2 leading-relaxed">Em vigor desde 15/12/2019, o SWAP nunca chegou a ser efetivamente utilizado: as formações na TMA-SP são mais dinâmicas do que o processo admitia e o rerroteamento podia acrescentar até 100 NM aos voos. No GADHOC ATFM-MET/3 (outubro de 2024) o grupo elaborou o relatório de justificativa para o cancelamento e passou a trabalhar com capacidade dinâmica e permeabilidade do espaço aéreo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AÇÕES ===================== -->
+    <section id="v-acoes" class="view hidden space-y-5 animate-fade-in py-2">
+      <div class="p-6 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.28)] shadow-sm dark:shadow-hud-panel">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-2"><span class="font-mono text-xs font-bold px-2.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-400/40 uppercase tracking-wider flex items-center gap-1.5">Fórum de Acompanhamento • Deliberações Oficiais</span></div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-[#e2f5ff] tracking-tight">Painel Oficial de Ações</h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-[#87a8bb] mt-1 max-w-3xl font-sans">Ações em aberto após o GADHOC ATFM-MET/9, com responsável, prazo e reunião de origem conforme o informe aprovado, e o que foi concluído ou cancelado na última reunião.</p>
+          </div>
+          <div class="flex items-center gap-2.5 shrink-0">
+            <div class="px-4 py-2 rounded-lg bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] font-mono text-center shadow-xs"><span class="text-[10px] text-slate-500 dark:text-[#87a8bb] block uppercase tracking-wider">Ações em aberto</span><span id="kOpen" class="text-sm font-bold text-indigo-700 dark:text-[#3fe0d0]">24 REGISTRADAS</span></div>
+            <div class="px-4 py-2 rounded-lg bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-200 dark:border-[rgba(255,180,64,0.3)] font-mono text-center shadow-xs"><span class="text-[10px] text-slate-500 dark:text-[#87a8bb] block uppercase tracking-wider">Concluídas na /9</span><span class="text-sm font-bold text-emerald-700 dark:text-emerald-400">15 (+2 CANC.)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3">
+        <div id="actMode" class="flex items-center w-full sm:w-auto rounded-xl p-1 border bg-white border-slate-200 dark:bg-[rgba(2,7,14,0.95)] dark:border-[rgba(64,214,224,0.25)]"></div>
+        <div class="flex items-center gap-2 justify-end">
+          <a href="#docs" data-go="docs" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all">{{ic:file-text:"w-4 h-4"}}Informe da ATFM-MET/9</a>
+        </div>
+      </div>
+
+      <div id="actKpis" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
+
+      <div id="actOpenWrap" class="space-y-5">
+        <div class="p-4 rounded-2xl border transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-1.5">{{ic:sliders-horizontal:"w-4 h-4 text-blue-600 dark:text-blue-400"}}<span class="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">Prazos das ações</span></div>
+            <span id="prazoHint" class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Exibindo todos os prazos</span>
+          </div>
+          <div id="prazoChips" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1"></div>
+        </div>
+
+        <div class="p-4 rounded-2xl border transition-colors space-y-3 bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
+          <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+            <div class="relative flex-1">
+              {{ic:search:"w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"}}
+              <input id="actQ" type="search" placeholder="Buscar por código, ação, detalhamento ou responsável…" aria-label="Buscar ações" class="w-full pl-9 pr-8 py-2 rounded-xl text-xs font-semibold border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white dark:placeholder-slate-500">
+            </div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <div class="flex items-center gap-1.5"><span class="text-[10px] font-black uppercase text-slate-600 dark:text-slate-400">Responsável:</span>
+                <select id="actResp" class="text-xs font-bold rounded-xl px-2.5 py-1.5 border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-700 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-200"></select></div>
+              <div class="flex items-center gap-1.5"><span class="text-[10px] font-black uppercase text-slate-600 dark:text-slate-400">Origem:</span>
+                <select id="actOrig" class="text-xs font-bold rounded-xl px-2.5 py-1.5 border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-700 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-200"></select></div>
+              <button id="actClear" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700 dark:hover:bg-slate-750">{{ic:rotate-ccw:"w-3.5 h-3.5 shrink-0"}}<span>Limpar Filtros</span></button>
+              <div id="actView" class="flex items-center rounded-xl p-0.5 border bg-slate-100 border-slate-200 dark:bg-slate-950 dark:border-slate-800"></div>
+            </div>
+          </div>
+          <div id="actQuick" class="flex items-center gap-1 overflow-x-auto no-scrollbar pt-2 border-t border-slate-200 dark:border-slate-800 text-[11px]"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl border bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"><h4 class="text-center text-[11px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200 mb-3">Distribuição por prazo</h4><div id="chartPrazo"></div></div>
+          <div class="p-4 rounded-2xl border bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"><h4 class="text-center text-[11px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200 mb-3">Distribuição por responsável</h4><div id="chartResp"></div></div>
+        </div>
+
+        <div class="border rounded-2xl overflow-hidden transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
+          <div class="px-4 sm:px-6 py-3.5 border-b flex justify-between items-center gap-3 border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/60">
+            <div class="flex items-center gap-2.5"><h3 class="font-black text-sm text-slate-950 dark:text-white">Ações em Aberto</h3><span id="actCount" class="px-2 py-0.5 rounded-full text-[10px] font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 border border-blue-200 dark:border-blue-900">24 ações</span></div>
+            <span class="hidden sm:inline text-[11px] font-medium text-slate-500 dark:text-slate-400">Conforme o informe do GADHOC ATFM-MET/9</span>
+          </div>
+          <div id="actTableWrap" class="overflow-x-auto">
+            <table class="w-full text-xs text-left">
+              <thead><tr class="font-black uppercase tracking-wider border-b select-none text-[10px] bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-950 dark:text-slate-300 dark:border-slate-800">
+                <th class="w-[110px] px-3 py-2.5 text-center">Origem</th>
+                <th class="w-[70px] px-2 py-2.5 text-center">Ação</th>
+                <th class="px-3 py-2.5">Ação / Detalhamento</th>
+                <th class="w-[150px] px-2 py-2.5">Responsável</th>
+                <th class="w-[120px] px-2 py-2.5 text-center">Prazo</th>
+              </tr></thead>
+              <tbody id="actRows" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+            </table>
+          </div>
+          <div id="actCards" class="hidden p-4 grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+          <div id="actEmpty" class="hidden p-8 text-center text-xs font-semibold text-slate-500 dark:text-slate-400">Nenhuma ação encontrada com esses filtros.</div>
+        </div>
+      </div>
+
+      <div id="actDoneWrap" class="hidden border rounded-2xl overflow-hidden transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
+        <div class="px-4 sm:px-6 py-3.5 border-b flex justify-between items-center gap-3 border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/60">
+          <div class="flex items-center gap-2.5"><h3 class="font-black text-sm text-slate-950 dark:text-white">Concluídas e Canceladas na ATFM-MET/9</h3><span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900">17 ações</span></div>
+          <span class="hidden sm:inline text-[11px] font-medium text-slate-500 dark:text-slate-400">19 a 23 de outubro de 2026 · CINDACTA I</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left">
+            <thead><tr class="font-black uppercase tracking-wider border-b select-none text-[10px] bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-950 dark:text-slate-300 dark:border-slate-800">
+              <th class="w-[70px] px-2 py-2.5 text-center">Ação</th><th class="px-3 py-2.5">Ação / Resultado</th><th class="w-[130px] px-2 py-2.5 text-center">Status</th>
+            </tr></thead>
+            <tbody id="doneRows" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CRONOGRAMAS ===================== -->
+    <section id="v-cronogramas" class="view hidden space-y-5 animate-fade-in py-2">
+      <div class="p-6 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.28)] shadow-sm dark:shadow-hud-panel">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-2"><span class="font-mono text-xs font-bold px-2.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-400/40 uppercase tracking-wider">Módulo de Gestão &amp; Cronogramas</span></div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-[#e2f5ff] tracking-tight">Cronogramas &amp; Planejamento Operacional</h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-[#87a8bb] mt-1 max-w-3xl font-sans">Calendário das reuniões do GADHOC ATFM-MET, de maio de 2024 ao planejamento de 2027 aprovado na 9ª reunião, com as reuniões de desenvolvimento junto à ATD e a visita técnica aos CCO das empresas aéreas.</p>
+          </div>
+          <div id="cronMode" class="flex items-center w-full lg:w-auto rounded-xl p-1 border shrink-0 bg-white border-slate-200 dark:bg-[rgba(2,7,14,0.95)] dark:border-[rgba(64,214,224,0.25)]"></div>
+        </div>
+      </div>
+      <div id="cronKpis" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+      <div class="p-4 rounded-2xl border transition-colors space-y-3 bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
+        <div class="relative">
+          {{ic:search:"w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"}}
+          <input id="cronQ" type="search" placeholder="Pesquisar por edição, código, cidade, sede anfitriã ou assunto…" aria-label="Pesquisar reuniões" class="w-full pl-9 pr-8 py-2 rounded-xl text-xs font-semibold border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white dark:placeholder-slate-500">
+        </div>
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px]">
+          <div id="cronYears" class="flex items-center gap-1 flex-wrap"></div>
+          <div id="cronStatus" class="flex items-center gap-1 flex-wrap"></div>
+        </div>
+      </div>
+      <div id="cronList" class="space-y-8"></div>
+    </section>
+
+    <!-- ===================== DOCUMENTOS ===================== -->
+    <section id="v-docs" class="view hidden space-y-5 animate-fade-in py-2">
+      <div class="p-6 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.28)] shadow-sm dark:shadow-hud-panel">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 mb-2"><span class="font-mono text-xs font-bold px-2.5 py-0.5 rounded bg-amber-50 dark:bg-amber-950/70 text-amber-700 dark:text-[#ffb440] border border-amber-200 dark:border-amber-400/40 uppercase tracking-wider">Módulo 4 • Gestão Documental &amp; Google Drive</span></div>
+            <h2 class="text-xl sm:text-2xl font-display font-bold text-slate-900 dark:text-[#e2f5ff] tracking-tight">Repositório de Documentos Oficiais</h2>
+            <p class="text-xs sm:text-sm text-slate-600 dark:text-[#87a8bb] mt-1 max-w-3xl font-sans">Informes e agendas oficiais de cada reunião, com pré-visualização e acesso direto ao Google Drive (somente leitura).</p>
+          </div>
+          <div class="flex items-center gap-2.5 shrink-0">
+            <div class="px-4 py-2 rounded-lg bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] font-mono text-center shadow-xs"><span class="text-[10px] text-slate-500 dark:text-[#87a8bb] block uppercase tracking-wider">Arquivos</span><span id="kDocs" class="text-sm font-bold text-sky-700 dark:text-[#3fe0d0]">18 DOCS</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <aside class="lg:col-span-1 space-y-2">
+          <div class="flex items-center justify-between px-1 mb-1"><span class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400">{{ic:folder:"w-3.5 h-3.5"}}Pastas</span><span id="docsTotal" class="font-mono text-[10px] text-slate-500 dark:text-slate-400">18 docs</span></div>
+          <div id="docCats" class="flex lg:flex-col gap-2 overflow-x-auto no-scrollbar"></div>
+          <p class="hidden lg:block text-[11px] leading-relaxed text-slate-500 dark:text-slate-400 pt-3 px-1">Listas de presença, ofícios e apresentações não são publicados aqui porque trazem dados pessoais e de contato dos participantes. Para solicitá-los, fale com a relatoria do grupo.</p>
+        </aside>
+        <div class="lg:col-span-3 space-y-3">
+          <div class="p-4 rounded-xl border flex flex-wrap items-center justify-between gap-3 bg-white border-slate-200 shadow-sm dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.28)]">
+            <div><div class="flex items-center gap-2"><h3 id="docCatTitle" class="font-display font-bold text-slate-900 dark:text-[#e2f5ff]">Todas as categorias</h3><span id="docCatCount" class="px-2 py-0.5 rounded-full text-[10px] font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 border border-blue-200 dark:border-blue-900">18 arquivos</span></div><p id="docCatDesc" class="text-xs text-slate-500 dark:text-[#87a8bb] mt-0.5">Informes e agendas de todas as reuniões.</p></div>
+            <div class="relative w-full sm:w-64">{{ic:search:"w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"}}<input id="docQ" type="search" placeholder="Filtrar documentos…" aria-label="Filtrar documentos" class="w-full pl-9 pr-3 py-2 rounded-xl text-xs font-semibold border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white dark:placeholder-slate-500"></div>
+          </div>
+          <div id="docList" class="space-y-3"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="mt-20 border-t border-slate-200 dark:border-[rgba(64,214,224,0.22)] bg-white dark:bg-[rgba(2,7,14,0.98)] transition-colors text-slate-600 dark:text-[#87a8bb]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-8">
+        <div class="md:col-span-2 lg:col-span-4 space-y-3">
+          <div class="flex items-center gap-3">
+            <img data-logo="logoL" alt="" class="block dark:hidden h-10 w-auto object-contain drop-shadow-[0_0_10px_rgba(63,224,208,0.3)]">
+            <img data-logo="logoD" alt="" class="hidden dark:block h-10 w-auto object-contain drop-shadow-[0_0_10px_rgba(63,224,208,0.3)]">
+            <span class="font-display font-bold text-slate-900 dark:text-[#e2f5ff] text-sm tracking-wide uppercase">GEPEA/SG3 • GADHOC ATFM-MET</span>
+          </div>
+          <ul class="space-y-1.5 text-xs text-slate-500 dark:text-[#87a8bb] font-sans">
+            <li>Grupo de Estudos sobre Planejamento do Espaço Aéreo</li>
+            <li>Grupo Adhoc Fluxo de Tráfego Aéreo e Meteorologia</li>
+          </ul>
+          <div class="pt-2 text-[11px] font-mono text-cyan-600 dark:text-[#3fe0d0]">DECEA • CGNA • CIMAER • ICEA • EMPRESAS AÉREAS</div>
+        </div>
+        <div class="md:col-span-1 lg:col-span-5">
+          <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-slate-900 dark:text-[#e2f5ff] mb-3">Instituições · Entidades Integradas</h4>
+          <ul class="space-y-1.5 text-xs text-slate-500 dark:text-[#87a8bb] font-sans">
+            <li>DECEA - Departamento de Controle do Espaço Aéreo</li>
+            <li>CGNA - Centro de Gerenciamento da Navegação Aérea</li>
+            <li>CIMAER - Centro Integrado de Meteorologia Aeronáutica</li>
+            <li>ICEA - Instituto de Controle do Espaço Aéreo</li>
+            <li>CINDACTA I, II e III · CRCEA-SE · DTCEA-GL</li>
+            <li>ATD/DECEA · SDOP · CISCEA</li>
+            <li>Empresas aéreas, ABEAR e IATA</li>
+          </ul>
+        </div>
+        <div class="md:col-span-1 lg:col-span-3">
+          <h4 class="text-xs font-mono font-bold uppercase tracking-widest text-slate-900 dark:text-[#e2f5ff] mb-3">Normas · Referências Técnicas</h4>
+          <ul class="space-y-1.5 text-slate-500 dark:text-[#87a8bb] font-mono text-[11.5px]">
+            <li>ICAO Doc 9971 (Collaborative ATFM)</li>
+            <li>ICA 100-22 (Gerenciamento de Fluxo)</li>
+            <li>MCA 100-19 (Conceito de Espaço Aéreo)</li>
+            <li>DCA 351-7 (Diretriz do COMAER)</li>
+            <li>AIP Brasil</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-slate-200 dark:border-[rgba(64,214,224,0.18)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+        <span>GADHOC ATFM-MET © 2026 — Plataforma GEPEA / SG3</span>
+        <span class="text-cyan-600 dark:text-[#3fe0d0]">STATUS OPERACIONAL: ATIVO</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================== MODAIS ===================== -->
+<div id="m-qr" class="modal hidden fixed inset-0 z-50 bg-slate-900/60 dark:bg-[rgba(2,7,14,0.8)] backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+  <div class="w-full max-w-md rounded-xl border bg-white border-slate-200 shadow-2xl dark:bg-[rgba(7,22,35,0.97)] dark:border-[rgba(64,214,224,0.3)] animate-fade-in">
+    <div class="px-5 py-4 border-b border-slate-200 dark:border-[rgba(64,214,224,0.18)] flex items-start justify-between gap-3">
+      <div><h3 id="qrTitle" class="font-display font-bold text-lg leading-snug text-slate-900 dark:text-[#e2f5ff]">Compartilhamento Rápido em Reuniões Técnicas</h3><p class="text-xs text-slate-500 dark:text-[#87a8bb] mt-1">Apresente ou projete este código QR para acesso imediato de todos os participantes.</p></div>
+      <button type="button" data-close class="p-1 rounded text-slate-400 hover:text-slate-700 dark:hover:text-white" aria-label="Fechar">{{ic:x:"w-5 h-5"}}</button>
+    </div>
+    <div class="p-5 space-y-4">
+      <div id="qrMode" class="flex items-center rounded-xl p-1 border bg-slate-100 border-slate-200 dark:bg-[rgba(2,7,14,0.95)] dark:border-[rgba(64,214,224,0.25)]"></div>
+      <div class="flex justify-center"><div class="p-4 bg-white rounded-xl border-2 border-cyan-300 shadow-glow-cyan"><div id="qrBox" class="w-48 h-48 [&>svg]:w-full [&>svg]:h-full"></div></div></div>
+      <div class="text-center space-y-2">
+        <span class="inline-block font-mono text-[10px] font-bold px-2.5 py-1 rounded bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-400/40 uppercase tracking-wider">GEPEA/SG3 • GADHOC ATFM-MET</span>
+        <p id="qrHint" class="text-xs text-slate-600 dark:text-[#87a8bb]">Aponte a câmera do celular para abrir o credenciamento.</p>
+      </div>
+      <div class="flex items-center justify-between gap-2 px-3 py-2 rounded-lg font-mono text-xs bg-slate-50 border border-slate-200 dark:bg-[rgba(2,7,14,0.85)] dark:border-[rgba(64,214,224,0.22)] text-slate-700 dark:text-[#e2f5ff]">
+        <span id="qrUrl" class="truncate">https://atfmmet.com.br/presenca.html</span>
+        <button id="qrCopy" type="button" class="inline-flex items-center gap-1 px-2 py-1 rounded font-sans font-bold text-[11px] bg-white border border-slate-200 text-slate-700 hover:border-blue-400 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff]">{{ic:copy:"w-3.5 h-3.5"}}<span>Copiar</span></button>
+      </div>
+      <a id="qrDl" download="QRCode_credenciamento_atfmmet.png" href="#" class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold text-sm shadow-md shadow-blue-500/20 transition-all">{{ic:download:"w-4 h-4"}}Baixar Imagem QR (PNG)</a>
+    </div>
+  </div>
+</div>
+
+<div id="m-missao" class="modal hidden fixed inset-0 z-50 bg-slate-900/60 dark:bg-[rgba(2,7,14,0.8)] backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="misTitle">
+  <div class="w-full max-w-4xl max-h-[90vh] flex flex-col rounded-xl border bg-white border-slate-200 shadow-2xl dark:bg-[rgba(7,22,35,0.97)] dark:border-[rgba(64,214,224,0.3)] animate-fade-in">
+    <div class="px-5 sm:px-6 py-4 border-b border-slate-200 dark:border-[rgba(64,214,224,0.18)] flex items-start justify-between gap-3">
+      <div><h3 id="misTitle" class="font-display font-bold text-lg text-slate-900 dark:text-[#e2f5ff]">GADHOC ATFM-MET / GEPEA — Missão &amp; Guia do Portal</h3><p class="text-xs text-slate-500 dark:text-[#87a8bb] mt-1">Finalidade do grupo, frentes de trabalho, manual de uso do portal e organizações participantes.</p></div>
+      <button type="button" data-close class="p-1 rounded text-slate-400 hover:text-slate-700 dark:hover:text-white" aria-label="Fechar">{{ic:x:"w-5 h-5"}}</button>
+    </div>
+    <div class="px-5 sm:px-6 pt-4"><div id="misTabs" class="flex flex-col sm:flex-row gap-1 p-1 rounded-lg border bg-slate-100 border-slate-200 dark:bg-[rgba(2,7,14,0.85)] dark:border-[rgba(64,214,224,0.22)]"></div></div>
+    <div class="px-5 sm:px-6 py-5 overflow-y-auto">
+      <div data-mis="0" class="space-y-5">
+        <div class="relative overflow-hidden rounded-xl border p-5 bg-gradient-to-r from-blue-50/90 via-white to-sky-50/90 border-slate-200 dark:from-[rgba(7,22,35,0.95)] dark:via-[rgba(11,34,54,0.9)] dark:to-[rgba(7,22,35,0.95)] dark:border-[rgba(64,214,224,0.3)]">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <span class="font-mono text-[11px] font-bold px-2.5 py-1 rounded bg-blue-600 text-white uppercase tracking-wider">GADHOC ATFM-MET / GEPEA — Missão</span>
+            <span class="flex items-center gap-1.5 font-mono text-[11px] text-slate-500 dark:text-[#87a8bb]">{{ic:calendar:"w-3.5 h-3.5 text-blue-600 dark:text-[#3fe0d0]"}}1ª reunião: <b class="text-blue-700 dark:text-[#3fe0d0]">20 a 24 de maio de 2024</b></span>
+          </div>
+          <p class="text-sm leading-relaxed text-slate-800 dark:text-[#e2f5ff] font-medium">Grupo criado no Subgrupo 3 (ATFM) do GEPEA para integrar, de forma colaborativa, o Gerenciamento de Fluxo de Tráfego Aéreo e a Meteorologia Aeronáutica. Em tempo severo, a capacidade de um setor ATC deixa de ser um número fixo: o grupo trabalha para que o gerente de fluxo saiba, com antecedência e com parâmetros objetivos, quando aplicar, aumentar, reduzir ou cancelar uma medida ATFM.</p>
+          <div class="mt-4">
+            <div class="font-mono text-[10px] font-bold uppercase tracking-wider text-blue-700 dark:text-[#3fe0d0] mb-2">Frentes de trabalho</div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="text-[11px] font-mono px-2 py-1 rounded border bg-white border-blue-200 text-blue-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-cyan-400/40 dark:text-[#3fe0d0]">Capacidade dinâmica</span>
+              <span class="text-[11px] font-mono px-2 py-1 rounded border bg-white border-blue-200 text-blue-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-cyan-400/40 dark:text-[#3fe0d0]">Permeabilidade do espaço aéreo</span>
+              <span class="text-[11px] font-mono px-2 py-1 rounded border bg-white border-blue-200 text-blue-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-cyan-400/40 dark:text-[#3fe0d0]">Chegadas por cadência</span>
+              <span class="text-[11px] font-mono px-2 py-1 rounded border bg-white border-blue-200 text-blue-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-cyan-400/40 dark:text-[#3fe0d0]">Nowcasting</span>
+              <span class="text-[11px] font-mono px-2 py-1 rounded border bg-white border-blue-200 text-blue-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-cyan-400/40 dark:text-[#3fe0d0]">Preditor de cabeceira</span>
+              <span class="text-[11px] font-mono px-2 py-1 rounded border bg-white border-blue-200 text-blue-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-cyan-400/40 dark:text-[#3fe0d0]">Integração SISMET</span>
+              <span class="text-[11px] font-mono px-2 py-1 rounded border bg-white border-blue-200 text-blue-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-cyan-400/40 dark:text-[#3fe0d0]">CIOP:Tático</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-3"><span class="flex items-center gap-2 font-display font-bold text-sm uppercase tracking-wider text-slate-900 dark:text-[#e2f5ff]">{{ic:target:"w-4 h-4 text-blue-600 dark:text-[#3fe0d0]"}}Desafios que o grupo enfrenta (A a F)</span><span class="hidden sm:inline font-mono text-[10px] text-slate-500 dark:text-[#87a8bb]">Registrados nos informes</span></div>
+          <div id="misProblems" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        </div>
+      </div>
+      <div data-mis="1" class="hidden space-y-3"><div id="misGuide" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div></div>
+      <div data-mis="2" class="hidden space-y-5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="rounded-xl border p-4 bg-slate-50 border-slate-200 dark:bg-[rgba(2,7,14,0.6)] dark:border-[rgba(64,214,224,0.22)]"><div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb]">Fórum</div><div class="font-display font-bold text-slate-900 dark:text-[#e2f5ff] mt-1">GEPEA</div><p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-1">Grupo de Estudos sobre Planejamento do Espaço Aéreo, com os subgrupos SG1 (Espaço Aéreo), SG2 (PANS-OPS) e SG3 (ATFM).</p></div>
+          <div class="rounded-xl border p-4 bg-slate-50 border-slate-200 dark:bg-[rgba(2,7,14,0.6)] dark:border-[rgba(64,214,224,0.22)]"><div class="font-mono text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb]">Subgrupo</div><div class="font-display font-bold text-slate-900 dark:text-[#e2f5ff] mt-1">SG3 · ATFM</div><p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-1">Reúne os grupos ad hoc de gerenciamento de fluxo, entre eles o GADHOC Aeroportos e o GADHOC ATFM-MET.</p></div>
+          <div class="rounded-xl border p-4 bg-blue-50 border-blue-200 dark:bg-cyan-950/30 dark:border-cyan-400/40"><div class="font-mono text-[10px] font-bold uppercase tracking-wider text-blue-700 dark:text-[#3fe0d0]">Grupo ad hoc</div><div class="font-display font-bold text-slate-900 dark:text-[#e2f5ff] mt-1">GADHOC ATFM-MET</div><p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-1">Relatoria no CGNA. Reuniões itinerantes nos CINDACTA e no ICEA, com reuniões de desenvolvimento junto à ATD.</p></div>
+        </div>
+        <div>
+          <div class="font-display font-bold text-sm uppercase tracking-wider text-slate-900 dark:text-[#e2f5ff] mb-2">Organizações participantes</div>
+          <div id="misOrgs" class="flex flex-wrap gap-1.5"></div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a href="https://analisepre.vercel.app/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff]">{{ic:external-link:"w-3.5 h-3.5"}}Hub do GEPEA</a>
+          <a href="https://www.gadhocaeroportos.com.br/" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff]">{{ic:external-link:"w-3.5 h-3.5"}}Portal do GADHOC Aeroportos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="m-preview" class="modal hidden fixed inset-0 z-50 bg-slate-900/60 dark:bg-[rgba(2,7,14,0.8)] backdrop-blur-sm items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="pvTitle">
+  <div class="w-full max-w-5xl h-[88vh] flex flex-col rounded-xl border overflow-hidden bg-white border-slate-200 shadow-2xl dark:bg-[rgba(7,22,35,0.97)] dark:border-[rgba(64,214,224,0.3)] animate-fade-in">
+    <div class="px-4 py-3 border-b border-slate-200 dark:border-[rgba(64,214,224,0.18)] flex items-center justify-between gap-3">
+      <h3 id="pvTitle" class="font-display font-bold text-sm sm:text-base text-slate-900 dark:text-[#e2f5ff] truncate">Pré-visualização</h3>
+      <div class="flex items-center gap-2 shrink-0">
+        <a id="pvOpen" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm">Abrir Drive{{ic:external-link:"w-3.5 h-3.5"}}</a>
+        <button type="button" data-close class="p-1 rounded text-slate-400 hover:text-slate-700 dark:hover:text-white" aria-label="Fechar">{{ic:x:"w-5 h-5"}}</button>
+      </div>
+    </div>
+    <iframe id="pvFrame" title="Pré-visualização do documento" class="flex-1 w-full bg-slate-100 dark:bg-slate-900" src="about:blank" allow="autoplay"></iframe>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DADOS
+   ============================================================ */
+const IC = {{ICONS}};
+const QR = {{QRDATA}};
+const DRIVE = id => "https://drive.google.com/file/d/" + id + "/view";
+const PREVIEW = id => "https://drive.google.com/file/d/" + id + "/preview";
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ic = (n, cls) => `<svg class="${cls || "w-4 h-4"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[n] || ""}</svg>`;
+const MES = ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+const MESX = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+const D = s => new Date(s + "T12:00:00-03:00");
+const HOJE = new Date();
+
+/* Temas de cor (mesmos tons do portal GADHOC Aeroportos) */
+const TH = {
+  blue:   {bar:"from-cyan-400 to-blue-500", box:"bg-blue-50 border-blue-200 text-blue-600 dark:bg-cyan-500/10 dark:border-cyan-400/40 dark:text-[#3fe0d0] dark:shadow-glow-sm", badge:"bg-blue-50 text-blue-700 border-blue-200 dark:bg-cyan-950/70 dark:text-[#3fe0d0] dark:border-cyan-400/40", sub:"text-blue-700 dark:text-cyan-400", hov:"group-hover:text-blue-600 dark:group-hover:text-[#3fe0d0]", ft:"text-blue-600 dark:text-[#3fe0d0]", dot:"bg-blue-500 dark:bg-[#3fe0d0]"},
+  indigo: {bar:"from-indigo-500 to-purple-500", box:"bg-indigo-50 border-indigo-200 text-indigo-600 dark:bg-indigo-500/10 dark:border-indigo-400/40 dark:text-indigo-400", badge:"bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-300 dark:border-indigo-400/40", sub:"text-indigo-700 dark:text-indigo-400", hov:"group-hover:text-indigo-600 dark:group-hover:text-indigo-300", ft:"text-indigo-600 dark:text-indigo-400", dot:"bg-indigo-500 dark:bg-indigo-400"},
+  emerald:{bar:"from-emerald-400 to-teal-500", box:"bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-400/40 dark:text-emerald-400", badge:"bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-400/40", sub:"text-emerald-700 dark:text-emerald-400", hov:"group-hover:text-emerald-600 dark:group-hover:text-emerald-300", ft:"text-emerald-600 dark:text-emerald-400", dot:"bg-emerald-500 dark:bg-emerald-400"},
+  amber:  {bar:"from-amber-400 to-orange-500", box:"bg-amber-50 border-amber-200 text-amber-600 dark:bg-amber-500/10 dark:border-amber-400/40 dark:text-[#ffb440]", badge:"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/70 dark:text-[#ffb440] dark:border-amber-400/40", sub:"text-amber-700 dark:text-[#ffb440]", hov:"group-hover:text-amber-600 dark:group-hover:text-[#ffb440]", ft:"text-amber-600 dark:text-[#ffb440]", dot:"bg-amber-500 dark:bg-[#ffb440]"},
+  sky:    {bar:"from-sky-400 to-cyan-500", box:"bg-sky-50 border-sky-200 text-sky-600 dark:bg-sky-500/10 dark:border-sky-400/40 dark:text-sky-400", badge:"bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/70 dark:text-[#3fe0d0] dark:border-sky-400/40", sub:"text-sky-700 dark:text-cyan-400", hov:"group-hover:text-sky-600 dark:group-hover:text-[#3fe0d0]", ft:"text-sky-600 dark:text-[#3fe0d0]", dot:"bg-sky-500 dark:bg-sky-400"},
+  teal:   {bar:"from-teal-400 via-cyan-400 to-amber-400", box:"bg-teal-50 border-teal-200 text-teal-600 dark:bg-teal-500/10 dark:border-teal-400/40 dark:text-teal-400", badge:"bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/70 dark:text-teal-300 dark:border-teal-400/40", sub:"text-teal-700 dark:text-teal-400", hov:"group-hover:text-teal-600 dark:group-hover:text-teal-300", ft:"text-teal-600 dark:text-teal-300", dot:"bg-teal-500 dark:bg-teal-400"},
+  cyanem: {bar:"from-emerald-400 via-cyan-400 to-blue-500", box:"bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-400/40 dark:text-emerald-400", badge:"bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-400/40", sub:"text-emerald-700 dark:text-emerald-400", hov:"group-hover:text-emerald-600 dark:group-hover:text-emerald-300", ft:"text-emerald-600 dark:text-emerald-400", dot:"bg-emerald-500 dark:bg-emerald-400"}
+};
+
+/* Reuniões do GADHOC ATFM-MET (informes oficiais + planejamento 2027 aprovado na /9) */
+const MEETINGS = [
+  {n:1,  ini:"2024-05-20", fim:"2024-05-24", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Análise da implementação das rotas SWAP; o grupo propôs suspendê-lo e iniciar um novo estudo adequado ao espaço aéreo brasileiro.", res:"16 conclusões", inf:"1qK15d7jxOcxKQo2ofm9huMvaKlMnWqzh", ag:"1o8k2pROzI7ghoT4-bGSrUPDcv7iP2YNP"},
+  {n:2,  ini:"2024-07-29", fim:"2024-08-02", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Visão dos pilotos de Azul e GOL sobre o radar de bordo, apresentação do SISMET (antigo WEBRADAR 2) e início do estudo de permeabilidade.", res:"19 ações", inf:"1J2Fl2dtUewSbU5dLVzHZ-gUCB35oRWSq", ag:"1_RClUO9VivOMocAilotiEbBeKAot9nH9"},
+  {n:3,  ini:"2024-10-21", fim:"2024-10-25", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Relatório de justificativa para o cancelamento do SWAP e proposta de capacidade dinâmica com base na permeabilidade do espaço aéreo.", res:"9 ações"},
+  {n:4,  ini:"2025-03-11", fim:"2025-03-14", sede:"CINDACTA III", cidade:"Recife - PE", resumo:"Elaboração do Formulário de Proposta de Projeto (FPP) da ferramenta de inteligência artificial para ATFM sob meteorologia adversa.", res:"4 ações", inf:"1HjrJ7mt8F2h6kuAR-v25ZHW7kG9yod2S", ag:"1ByNDg8NAKV5JvMQNBUjT-88uI1v_8sb6"},
+  {n:5,  ini:"2025-05-13", fim:"2025-05-15", sede:"CINDACTA II", cidade:"Curitiba - PR", resumo:"FPP aprovada pela Divisão de Pesquisa do ICEA e definição da aplicação que quantifica medidas MIT por cenário meteorológico e demanda.", res:"8 ações", inf:"1vS6DBI2XUvoveMQIZTGUd10vC6TXUL2a", ag:"1xqI59Pl2qap5j3Mg04cIft_jzVfAE7Bu"},
+  {n:6,  ini:"2025-08-04", fim:"2025-08-08", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Primeira semana de desenvolvimento da ferramenta com a ATD: dados do GEOSERVER, clusters de aproximação de SBGR e lista de requisitos.", res:"8 ações", inf:"1gR56Zax9nCJ3fDsW0ZmA04KuS7r_FQ1e", ag:"1cGI-Jmq2jPRGX0mhIQlFI2H8jaZRGnit"},
+  {n:7,  ini:"2026-03-16", fim:"2026-03-20", sede:"CINDACTA III", cidade:"Recife - PE", resumo:"Participação de Azul, GOL, LATAM, ABEAR e IATA, com dados de pontualidade, medidas ATFM e combustível extra nas chegadas a Guarulhos.", res:"15 ações", inf:"14hmwQzK_ODZ8wQMEh5CFf4psUhqxkVnn", ag:"18dHme8VcJQLbuNb7jZ3Dzd230U7mv5T-"},
+  {n:8,  ini:"2026-06-29", fim:"2026-07-03", sede:"CINDACTA II", cidade:"Curitiba - PR", resumo:"Tracker e CIOP:Tático, conceito de cadência e TBFM, simulação das chegadas a SBGR pelo CRCEA-SE e planejamento do Workshop.", res:"17 ações", inf:"1mAFOsjEaCICOnneZFQw61FpOuL2jprYV", ag:"14chkOGmHx6MKhF6AA8QuV-ER-d8M9k4o"},
+  {ws:true, ini:"2026-09-15", fim:"2026-09-17", sede:"CRCEA-SE", cidade:"São Paulo - SP", resumo:"Três dias com ANAC, empresas aéreas, administrador aeroportuário, CRCEA-SE, CGNA, ICA, CIMAER, ICEA, SDOP e ATECH/USP: do dado meteorológico à decisão ATFM.", res:"5 eixos temáticos", ag:"1eUxNST1Y_03O9lcs3weRCuH767FD2gJC"},
+  {n:9,  ini:"2026-10-19", fim:"2026-10-23", sede:"CINDACTA I", cidade:"Brasília - DF", resumo:"Análise das apresentações do Workshop, protótipo de chegadas por cadência (106 s em SBGR), CIOP:Tático e aprovação do cronograma de 2027.", res:"14 novas · 15 concluídas · 2 canceladas", inf:"1sdi42AGEjv8JRnAihGw4TS3ki1z9KFnZ", ag:"1Ti_JUHFIVmb7xrO21pkcUmF9udfoZWxy"},
+  {n:10, ini:"2027-03-29", fim:"2027-04-02", sede:"CINDACTA III", cidade:"Recife - PE", resumo:"Pontualidade e impacto das medidas ATFM, causas de atraso (IATA × SIATFM), resultados da visita aos CCO e evolução da ferramenta ATFM-MET.", res:"Agenda prévia aprovada", ag:"1-bFFwdR1OdbfHiUcepLlBJREPeTVtPhR", agLabel:"Agenda prévia",
+   end:"Av. Centenário Alberto Santos Dumont, s/n – Jardim Jordão, Recife - PE", mapa:"https://www.google.com/maps/search/?api=1&query=CINDACTA%20III%2C%20Av.%20Centen%C3%A1rio%20Alberto%20Santos%20Dumont%2C%20Jardim%20Jord%C3%A3o%2C%20Recife%20-%20PE"},
+  {n:11, ini:"2027-06-21", fim:"2027-06-25", sede:"CINDACTA II", cidade:"Curitiba - PR", resumo:"Reunião prevista no planejamento de 2027 aprovado no GADHOC ATFM-MET/9.", res:"Planejada"},
+  {n:12, ini:"2027-09-20", fim:"2027-09-24", sede:"CINDACTA I", cidade:"Brasília - DF", resumo:"Reunião prevista no planejamento de 2027 aprovado no GADHOC ATFM-MET/9.", res:"Planejada"}
+];
+const DEVS = [
+  {t:"Reunião de desenvolvimento", tag:"ATD · ICEA", ini:"2026-11-30", fim:"2026-12-04", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Validação de uma versão beta do CIOP:Tático com representantes do APP-SP e tela comum com as medidas em vigor."},
+  {t:"Visita técnica aos CCO", tag:"GOL · Azul · LATAM", ini:"2027-02-22", fim:"2027-02-26", sede:"CCO das empresas aéreas", cidade:"São Paulo - SP", resumo:"Um CCO por dia: dados de voo, gerenciamento de voos e atrasos e uso das informações meteorológicas pelas empresas.", visita:true},
+  {t:"Reunião de desenvolvimento 1/4", tag:"ATD · ICEA", ini:"2027-03-01", fim:"2027-03-05", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Desenvolvimento da ferramenta ATFM-MET junto à ATD."},
+  {t:"Reunião de desenvolvimento 2/4", tag:"ATD · ICEA", ini:"2027-05-10", fim:"2027-05-14", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Desenvolvimento da ferramenta ATFM-MET junto à ATD."},
+  {t:"Reunião de desenvolvimento 3/4", tag:"ATD · ICEA", ini:"2027-08-02", fim:"2027-08-06", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Desenvolvimento da ferramenta ATFM-MET junto à ATD."},
+  {t:"Reunião de desenvolvimento 4/4", tag:"ATD · ICEA", ini:"2027-10-04", fim:"2027-10-08", sede:"ICEA", cidade:"São José dos Campos - SP", resumo:"Desenvolvimento da ferramenta ATFM-MET junto à ATD."}
+];
+
+const PRODUCTS = [
+  {n:"CIOP:Tático", o:"ATD / SDOP", st:"Em validação", th:"emerald", icon:"monitor-cog",
+   d:"Plataforma de apoio ao gerenciamento operacional que será a interface entre a ferramenta ATFM-MET e os órgãos operacionais. A SEGCEA a adotou como livro de registro de ocorrências.",
+   li:["Módulo de equipe integrado ao SGPO","Tracker: tráfego com dados radar e filtros por aeródromo, fixo, movimento e nível","Livro montado automaticamente e assinado pelo supervisor via GovBR","Captura de cenário, Vigia (alertas por limites) e Playbooks","Ocorrências compartilhadas entre órgãos, com chat entre ATC, MET e plano de voo"],
+   f:[["Beta","validação com o APP-SP em 30 NOV–04 DEZ 2026"]], src:"Informe ATFM-MET/9 · Assuntos 2 e 3"},
+  {n:"Gerenciamento de chegadas por cadência", o:"ATD · CRCEA-SE", st:"Protótipo", th:"blue", icon:"timer",
+   d:"Traduz a capacidade horária de chegadas da TMA em um intervalo mínimo entre aeronaves (cadência) e mostra, em tempo real, quem está adiantado ou atrasado nesse ritmo, sugerindo o ajuste necessário. Usa dados reais.",
+   li:["Fase zero: sugerir ao CGNA a medida por ponto de alimentação da TMA-SP","Checkpoints definidos pelo órgão convertem a cadência em milhas (MIT)","Tela comum a CGNA, APP-SP e ACC Brasília e Recife"],
+   f:[["106 s","cadência de referência em SBGR"],["60 min","janela de cálculo inicial"]], src:"Concepção na ATFM-MET/8 · demonstrado na /9"},
+  {n:"Visualizador ATFM-MET (Tracker)", o:"ATD", st:"Em uso", th:"sky", icon:"radar",
+   d:"Visualização em camadas dos dados coletados: aeródromos, radar meteorológico, descargas atmosféricas, tempo severo e aeronaves em tempo real. É o módulo Tracker do CIOP:Tático.",
+   li:["Correlação aeronave × plano de voo em evolução","Camada de METAR por aeródromo prevista (ação 09-10)","Integração da tela do SISMET em estudo (ação 09-03)"],
+   f:[["~80%","dos tráfegos correlacionados a planos de voo"]], src:"Informes ATFM-MET/8 e /9"},
+  {n:"Preditor de mudança de cabeceira – SBSP", o:"ICEA (PPD)", st:"Em validação", th:"teal", icon:"wind",
+   d:"Modelo de inteligência artificial que usa dados da EMS e do TATIC FLOW para prever a cabeceira em uso em Congonhas, em intervalos de 15 minutos. Apoia a decisão humana, sem substituí-la.",
+   li:["Reconfigurações de pista respondem por cerca de 20% das esperas","Dashboard para o salão operacional e o APP-SP em coordenação (ação 09-12)","Depende dos dados da EMS de SBGR e SBKP para expandir"],
+   f:[["3 h","de antecedência"],["~95%","acurácia em 2 h"],[">98%","acurácia em 30 min"]], src:"Workshop ATFM-MET · Informe /9"},
+  {n:"Permeabilidade do espaço aéreo", o:"ICEA · Divisão de Pesquisa", st:"Pesquisa", th:"indigo", icon:"scan-line",
+   d:"Estima quanto do espaço aéreo das chegadas à TMA-SP continua utilizável sob tempo severo. A clusterização (DBSCAN) da síntese radar define as áreas de interesse, que são cruzadas com a refletividade do radar meteorológico.",
+   li:["Permeabilidade (%) = espaço aéreo disponível ÷ espaço aéreo total × 100","Base da capacidade dinâmica do setor","Só chegadas: as saídas podem ser geridas com a aeronave no solo"],
+   f:[["80%","de permeabilidade = 20% de degradação"]], src:"Informes ATFM-MET/3, /5 e /9"},
+  {n:"Nowcasting ICEA + Google", o:"ICEA · DECEA", st:"Pesquisa", th:"indigo", icon:"cloud-lightning",
+   d:"Parceria iniciada em agosto de 2025: o DECEA fornece dados de radar meteorológico e recebe apoio no desenvolvimento de um modelo de previsão de curtíssimo prazo com aprendizado profundo (radar, satélite e descargas).",
+   li:["Próxima etapa: cruzar com a permeabilidade e estimar a capacidade remanescente","O grupo pediu dados de validação, acurácia e uma fase de testes","Integração com a ATD em levantamento (ação 09-01)"],
+   f:[["2 h","de horizonte de previsão"]], src:"Workshop ATFM-MET · Informe /9"},
+  {n:"Integração SISMET", o:"CIMAER · SDOP", st:"Em andamento", th:"amber", icon:"database",
+   d:"O SISMET (evolução do WEBRADAR) reúne as informações meteorológicas em um só sistema e as disponibiliza via API para os sistemas ATM. O grupo trabalha para levar esses produtos ao ATFM.",
+   li:["Credencial da API do SISMET para a ATD (ação 09-08)","EMS em tempo real: hoje só SBSP; SBGR e SBKP são prioridade","Automação das cartas SIGWX e alertas ao previsor"],
+   f:[["1 de 3","EMS da TMA-SP disponível em tempo real"]], src:"Ações 07-01, 08-05 e 09-08"},
+  {n:"Projeto de IA para ATFM sob meteorologia adversa", o:"ICEA · FPP001/SDOP/2025", st:"Em desenvolvimento", th:"blue", icon:"brain-circuit",
+   d:"Proposta de projeto elaborada pelo grupo para uma ferramenta de IA que integre dados meteorológicos, estrutura do espaço aéreo, demanda e capacidade e recomende medidas como rerroteamento, ajuste de horários e sequenciamento.",
+   li:["Módulo I – Meteorologia","Módulo II – Ferramenta de inteligência artificial","Módulo III – Validação e integração"],
+   f:[["540 dias","de jul/2025 a dez/2026 (previsto)"]], src:"FPP elaborada na ATFM-MET/4"}
+];
+const STUDIES = [
+  ["09-06","Boletim de impacto meteorológico","Boletim gerado a partir de radar e satélite que indica a possível restrição da permeabilidade dos setores, numa aba do sistema ATFM-MET.","cloud-rain"],
+  ["09-09","Previsão convectiva nos moldes do TCF","Áreas de alta confiança de trovoadas para 4, 6 e 8 horas à frente, como o TFM Convective Forecast da FAA, começando pela TMA-SP.","cloud-lightning"],
+  ["09-07","Alerta de desvios por ponto de alimentação","Alerta quando o percentual de aeronaves desviando em um ponto de alimentação passar de um limite definido.","triangle-alert"],
+  ["09-10","Camada de METAR no mapa","Condições dos aeródromos (vento, visibilidade, RVR, teto) como camada que se ativa no mapa da ferramenta.","map"],
+  ["09-11","Climatologia de impacto ATFM (BNDMET)","Frequência, por mês e hora, de condições restritivas nos principais aeródromos, cruzada com demanda e medidas ATFM.","history"],
+  ["09-05","Monitoramento de localidades","Tela da Seção de Previsão de Aeródromo do CMI integrada à ferramenta, com limiares compatíveis com os mínimos operacionais.","eye"]
+];
+
+/* Ações em aberto após o GADHOC ATFM-MET/9 — títulos, responsáveis e prazos do informe aprovado */
+const ACTIONS = [
+  ["06-02","CONFECCIONAR OFÍCIO SOLICITANDO MÁQUINAS PARA OS REGIONAIS","Ofício solicitando máquinas (i5 10ª geração ou Ryzen 5, 16 GB, tela 4K de 32\", SSD) para uso pleno do DASA. Pode ter seguido junto com outros ofícios do grupo; conclusão a confirmar.","Relatores do GADHOC ATFM-MET","VERIFICAR"],
+  ["07-01","CHECAR ANDAMENTO DA DISPONIBILIZAÇÃO DE DADOS DA EMS EM TEMPO REAL","Dados da EMS em tempo real de SBGR e SBKP. Até o momento, só os dados da EMS de SBSP estão disponíveis.","Relatores do GADHOC ATFM-MET","/10"],
+  ["07-02","CONFECCIONAR OFÍCIO SOLICITANDO REPRESENTANTES DO TIME DE DESENVOLVIMENTO DO ICEA","Representantes do setor de pesquisa de meteorologia. O ICEA sinalizou que prefere receber o grupo em suas instalações.","Relatores do GADHOC ATFM-MET","/10"],
+  ["07-09","SOLICITAR A PARTICIPAÇÃO DE MAIS INTEGRANTES DOS REGIONAIS E DO CIMAER NO GADHOC ATFM-MET","Ofício ao CIMAER e aos Regionais solicitando mais integrantes para o grupo.","Relatores do GADHOC ATFM-MET","/10"],
+  ["07-14","CONFECCIONAR OFÍCIO PARA A ANAC","Representante para consulta sobre ajustes na regulamentação da pontualidade dos voos. Participação prevista para a primeira reunião de 2027.","Relatores do GADHOC ATFM-MET","/10"],
+  ["07-15","TRATAR NA PRÓXIMA REUNIÃO ITEM DE DEMANDA DO DECEA","Análise das causas de atraso no SISCEAB buscando a consolidação do padrão IATA com o SIATFM.","Relatores do GADHOC ATFM-MET","/10"],
+  ["08-05","SOLICITAR AO CIMAER O STATUS DA INTEGRAÇÃO DOS DADOS DAS EMS E A DISPONIBILIZAÇÃO, VIA API, DOS DADOS BRUTOS DE SBKP E SBGR PARA O SISMET","Integração conduzida pelo SDOP; o CIMAER deve informar quais EMS já podem ser consumidas via SISMET.","Cap Daniel Santos (CIMAER)","/10"],
+  ["08-06","MARCAR REUNIÃO ENTRE A RELATORIA DO ATFM-MET, SDOP, DPLN-3 E ATD","Com o responsável pelo contrato do SAGITARIO com a ATECH.","Relatores do GADHOC ATFM-MET","/11"],
+  ["08-07","AGENDAR REUNIÃO ENTRE A RELATORIA ATFM-MET, A SEÇÃO DE PROJETOS E A ATD PARA TRATAR DA INTEGRAÇÃO DE DADOS DOS PLANOS DE VOO AO SIGMA","Viabilidade de integrar ao SIGMA os dados de planos de voo dos sistemas das companhias aéreas.","Relatores do GADHOC ATFM-MET","/11"],
+  ["08-17","ESTUDO SOBRE CLASSIFICAÇÃO E ANÁLISE DAS CAUSAS DE ATRASO DO PADRÃO IATA PARA POSSÍVEL PADRONIZAÇÃO COM O SIATFM","Estudo dos Regionais sobre classificação e análise das causas de atraso.","Regionais","/11"],
+  ["09-01","CHECAR COMO SERÁ A INTEGRAÇÃO DOS RESULTADOS OBTIDOS DO TRABALHO DE NOWCASTING DESENVOLVIDO PELO ICEA COM A ATD","Procedimentos e sistemas envolvidos (modelos WRF e dados de nowcasting).","ATD","/10"],
+  ["09-02","CONFECCIONAR OFÍCIO PARA A ANAC CONVIDANDO-A PARA A PRÓXIMA REUNIÃO DO GADHOC ATFM-MET","Convite com data, local e pauta prevista.","Relator do GADHOC ATFM-MET","/10"],
+  ["09-03","CRIAR UMA INTERFACE PARA INCORPORAR OS PRODUTOS ATFM-MET","Verificar a possibilidade de integrar a tela do SISMET ao sistema ATFM-MET.","ATD","/11"],
+  ["09-04","CONFECCIONAR OFÍCIO AO SDOP/DPLN3 CONSULTANDO SOBRE A MODERNIZAÇÃO DOS RADARES METEOROLÓGICOS ESSENCIAIS AO ATFM-MET","Prioridade aos radares de Gama, São Roque, Pico do Couto, Três Marias e Santa Teresa.","Relator do GADHOC ATFM-MET","/11"],
+  ["09-05","VERIFICAR COMO DISPONIBILIZAR NA FERRAMENTA ATFM-MET UMA TELA DE MONITORAMENTO DE LOCALIDADES DA SEÇÃO DE PREVISÃO DE AERÓDROMO","Localidades acompanhadas pela Seção de Previsão de Aeródromo do CMI.","Relator do GADHOC ATFM-MET","/11"],
+  ["09-06","DESENVOLVER FERRAMENTA PARA EMISSÃO DE BOLETIM METEOROLÓGICO INDICANDO O IMPACTO NO ESPAÇO AÉREO","Boletim com a possível restrição da permeabilidade dos setores, numa aba do sistema ATFM-MET.","ATD","/11"],
+  ["09-07","CRIAR UM ALERTA DE DESVIOS DE FLUXO POR PONTOS DE ALIMENTAÇÃO NA FERRAMENTA ATFM-MET","Acionado quando o percentual de aeronaves desviando passar de um limite definido.","Relator do GADHOC ATFM-MET","/12"],
+  ["09-08","CONFECCIONAR UM OFÍCIO PARA O SDOP SOLICITANDO CREDENCIAL DA API DO SISMET","Credencial para a ATD desenvolver as ferramentas do sistema ATFM-MET.","Relator do GADHOC ATFM-MET","/11"],
+  ["09-09","ESTUDAR A VIABILIDADE DE DESENVOLVER UM PRODUTO NOS MOLDES DO TFM CONVECTIVE FORECAST (TCF) PARA ÁREAS DE INTERESSE ESPECÍFICAS, COM FOCO NA TMA-SP","Previsão convectiva para 4, 6 e 8 horas com modelos numéricos, radar e satélite.","ATD/CIMAER","/11"],
+  ["09-10","CRIAR UMA VISUALIZAÇÃO DOS DADOS DE AERÓDROMOS BASEADA EM METAR","Camada que poderá ser ativada no mapa do sistema ATFM-MET.","ATD","/12"],
+  ["09-11","ENVIAR UM OFÍCIO INTERNO PARA A DCCO3 PARA VERIFICAÇÃO DO CONTRATO/REATIVAÇÃO DO BNDMET","Base climatológica para o planejamento estratégico, o pré-tático e a análise pós-operação.","Relator do GADHOC ATFM-MET","/12"],
+  ["09-12","COORDENAR COM O ICEA A DISPONIBILIDADE DO DASHBOARD DO PREDITOR DE MUDANÇA DE CABECEIRA PARA UTILIZAÇÃO NO SALÃO OPERACIONAL/APP-SP","Planejamento antecipado das mudanças de configuração de pista.","Relator do GADHOC ATFM-MET","/11"],
+  ["09-13","CONFECCIONAR OFÍCIO PARA CONVOCAR UM REPRESENTANTE DO CIMAER PARA PARTICIPAR DA REUNIÃO DE DESENVOLVIMENTO","Reunião de 30 de novembro a 4 de dezembro de 2026, em São José dos Campos.","Relator do GADHOC ATFM-MET","IMEDIATO"],
+  ["09-14","ENVIAR OFÍCIO ÀS EMPRESAS INFORMANDO SOBRE A VISITA AOS CENTROS DE CONTROLE OPERACIONAL (CCO)","Visita de 22 a 26 de fevereiro de 2027, em São Paulo, com data, objetivos e participantes.","Relator do GADHOC ATFM-MET","/11"]
+];
+const DONE = [
+  ["07-08","MARCAR REUNIÃO COM AS COMPANHIAS AÉREAS E ATD","Visita aos CCO inserida no PTA 2027 (22 a 26 FEV 2027).",0],
+  ["07-10","SOLICITAR AO ICEA UMA APRESENTAÇÃO DAS ATUALIZAÇÕES DOS ESTUDOS DESENVOLVIDOS DA DIVISÃO DE PESQUISA","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-01","APRESENTAR PRODUTOS DO SISMET PASSÍVEIS DE UTILIZAÇÃO NOS ESTUDOS DO ATFM-MET","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-02","SOLICITAR AO CIMAER UMA APRESENTAÇÃO COM OS PRODUTOS SISMET COM POTENCIAL DE SEREM AGREGADOS AO ATFM, ALÉM DE SUAS POTENCIAIS EVOLUÇÕES","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-03","SOLICITAR À DIVISÃO DE PESQUISA DO ICEA APRESENTAÇÃO SOBRE A EVOLUÇÃO DOS MODELOS WRF E USO DE DADOS DE NOWCASTING","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-04","SOLICITAR À PPD/ICEA APRESENTAÇÃO SOBRE A EVOLUÇÃO DA FERRAMENTA PREDITOR DE CABECEIRA PARA O AEROPORTO DE CONGONHAS","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-08","APRESENTAÇÃO SOBRE O GERENCIAMENTO DE FLUXO NA TMA-SP","Apresentação do CRCEA-SE realizada.",0],
+  ["08-09","APRESENTAÇÃO SOBRE IMPACTOS METEOROLÓGICOS NO FLUXO PARA SBGR","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-10","CONFECCIONAR OFÍCIO PARA ANAC SOLICITANDO UM PALESTRANTE SOBRE O SISTEMA INFOVOO","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-11","ELABORAR OFÍCIO À ATECH SOLICITANDO A PARTICIPAÇÃO DE REPRESENTANTE PARA APRESENTAÇÃO SOBRE O ACORDO FIRMADO COM A USP","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-12","ELABORAR OFÍCIO ÀS COMPANHIAS AÉREAS SOLICITANDO APRESENTAÇÃO SOBRE PLANEJAMENTO DE VOO E IMPACTOS OPERACIONAIS","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-13","SOLICITAR À SDOP A INDICAÇÃO DE REPRESENTANTE PARA APRESENTAÇÃO SOBRE A PFF015 E AS AÇÕES PARA O AUMENTO DA DISPONIBILIDADE DOS RADARES METEOROLÓGICOS","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-14","ELABORAR UMA APRESENTAÇÃO PARA O WORKSHOP ATFM-MET","Apresentação do CGNA (Tático) realizada no Workshop.",0],
+  ["08-15","SOLICITAR AO ICA A INDICAÇÃO DE REPRESENTANTE PARA APRESENTAÇÃO SOBRE O PROJETO DE REESTRUTURAÇÃO DA TMA-SP","Apresentação realizada no Workshop ATFM-MET.",0],
+  ["08-16","CONSULTAR A ASCOM SOBRE A POSSIBILIDADE DE CONFECÇÃO DE BANNERS E CRACHÁS PARA O WORKSHOP ATFM","Banners e crachás providenciados para o Workshop.",0],
+  ["07-12","SOLICITAR DADOS AO PÓS-OPERAÇÕES","Cancelada: o histórico não é necessário neste momento.",1],
+  ["07-13","APRESENTAR ESTUDO DE CASO PELOS REGIONAIS","Cancelada: o estudo de caso não é necessário neste momento.",1]
+];
+
+/* Repositório: informes e agendas (Google Drive) */
+const DOCS = [
+  {cat:"inf", n:9, t:"Informe da Reunião 09", d:"Informe oficial do GADHOC ATFM-MET/9 (CINDACTA I), com o planejamento de 2027.", dt:"2026-10-19", kb:3672, ext:"docx", file:"Informe_GEPEA_-_GADHOC_ATFM-MET 9.docx", id:"1sdi42AGEjv8JRnAihGw4TS3ki1z9KFnZ"},
+  {cat:"inf", n:8, t:"Informe da Reunião 08", d:"Informe oficial do GADHOC ATFM-MET/8 (CINDACTA II).", dt:"2026-06-29", kb:437, ext:"pdf", file:"Informe GEPEA - GADHOC ATFM-MET 8 VF.pdf", id:"1mAFOsjEaCICOnneZFQw61FpOuL2jprYV"},
+  {cat:"inf", n:7, t:"Informe da Reunião 07", d:"Informe oficial do GADHOC ATFM-MET/7 (CINDACTA III), com as empresas aéreas.", dt:"2026-03-16", kb:2653, ext:"docx", file:"Informe GEPEA - GADHOC ATFM-MET 7(1).docx", id:"14hmwQzK_ODZ8wQMEh5CFf4psUhqxkVnn"},
+  {cat:"inf", n:6, t:"Informe da Reunião 06", d:"Informe oficial do GADHOC ATFM-MET/6 (ICEA).", dt:"2025-08-04", kb:478, ext:"docx", file:"Informe GEPEA - GADHOC ATFM-MET 6 V2.docx", id:"1gR56Zax9nCJ3fDsW0ZmA04KuS7r_FQ1e"},
+  {cat:"inf", n:5, t:"Informe da Reunião 05", d:"Informe oficial do GADHOC ATFM-MET/5 (CINDACTA II).", dt:"2025-05-13", kb:417, ext:"docx", file:"Informe GEPEA - GADHOC ATFM-MET 5.docx", id:"1vS6DBI2XUvoveMQIZTGUd10vC6TXUL2a"},
+  {cat:"inf", n:4, t:"Informe da Reunião 04", d:"Informe oficial do GADHOC ATFM-MET/4 (CINDACTA III).", dt:"2025-03-11", kb:431, ext:"docx", file:"Informe GEPEA - GADHOC ATFM-MET 4.docx", id:"1HjrJ7mt8F2h6kuAR-v25ZHW7kG9yod2S"},
+  {cat:"inf", n:2, t:"Informe da Reunião 02", d:"Informe oficial do GADHOC ATFM-MET/2 (ICEA).", dt:"2024-07-29", kb:461, ext:"docx", file:"Informe GEPEA - GADHOC ATFM-MET 2.docx", id:"1J2Fl2dtUewSbU5dLVzHZ-gUCB35oRWSq"},
+  {cat:"inf", n:1, t:"Informe da Reunião 01", d:"Informe oficial do GADHOC ATFM-MET/1 (ICEA).", dt:"2024-05-20", kb:439, ext:"docx", file:"Informe GEPEA - GADHOC ATFM-MET 1.docx", id:"1qK15d7jxOcxKQo2ofm9huMvaKlMnWqzh"},
+  {cat:"prev", n:10, t:"Agenda prévia da Reunião 10", d:"Pauta aprovada para o GADHOC ATFM-MET/10 (CINDACTA III, Recife).", dt:"2027-03-29", kb:45, ext:"docx", file:"Agenda_ATFM-MET_10_previa.docx", id:"1-bFFwdR1OdbfHiUcepLlBJREPeTVtPhR"},
+  {cat:"ag", n:9, t:"Agenda da Reunião 09", d:"Cronograma de apresentações da reunião 9.", dt:"2026-10-19", kb:40, ext:"docx", file:"Agenda_ATFM-MET_9.docx", id:"1Ti_JUHFIVmb7xrO21pkcUmF9udfoZWxy"},
+  {cat:"ag", n:0, t:"Agenda oficial do Workshop ATFM-MET", d:"Programação dos três dias do Workshop (CRCEA-SE, São Paulo).", dt:"2026-09-15", kb:1770, ext:"docx", file:"Agenda Oficial - WORKSHOP ATFM-MET V4.docx", id:"1eUxNST1Y_03O9lcs3weRCuH767FD2gJC"},
+  {cat:"ag", n:8, t:"Agenda da Reunião 08", d:"Cronograma de apresentações da reunião 8.", dt:"2026-06-29", kb:374, ext:"pdf", file:"Agenda_ATFM-MET 8.pdf", id:"14chkOGmHx6MKhF6AA8QuV-ER-d8M9k4o"},
+  {cat:"ag", n:7, t:"Agenda da Reunião 07", d:"Cronograma de apresentações da reunião 7.", dt:"2026-03-16", kb:287, ext:"pdf", file:"Agenda_ATFM-MET 7_VF.pdf", id:"18dHme8VcJQLbuNb7jZ3Dzd230U7mv5T-"},
+  {cat:"ag", n:6, t:"Agenda da Reunião 06", d:"Cronograma de apresentações da reunião 6.", dt:"2025-08-04", kb:50, ext:"docx", file:"Agenda_ATFM-MET 6.docx", id:"1cGI-Jmq2jPRGX0mhIQlFI2H8jaZRGnit"},
+  {cat:"ag", n:5, t:"Agenda da Reunião 05", d:"Cronograma de apresentações da reunião 5.", dt:"2025-05-13", kb:41, ext:"docx", file:"Agenda ATFM-MET 5 - CINDACTA 2.docx", id:"1xqI59Pl2qap5j3Mg04cIft_jzVfAE7Bu"},
+  {cat:"ag", n:4, t:"Agenda da Reunião 04", d:"Cronograma de apresentações da reunião 4.", dt:"2025-03-11", kb:38, ext:"docx", file:"ATFM-MET 4 atualizada.docx", id:"1ByNDg8NAKV5JvMQNBUjT-88uI1v_8sb6"},
+  {cat:"ag", n:2, t:"Agenda da Reunião 02", d:"Cronograma de apresentações da reunião 2.", dt:"2024-07-29", kb:221, ext:"pdf", file:"Agenda_ATFM-MET - JULHO.pdf", id:"1_RClUO9VivOMocAilotiEbBeKAot9nH9"},
+  {cat:"ag", n:1, t:"Agenda da Reunião 01", d:"Cronograma de apresentações da reunião 1.", dt:"2024-05-20", kb:38, ext:"docx", file:"Agenda_ATFM-MET - MAIO.docx", id:"1o8k2pROzI7ghoT4-bGSrUPDcv7iP2YNP"}
+];
+const DOC_CATS = [
+  {id:"all", t:"Todas as categorias", d:"Informes e agendas de todas as reuniões.", icon:"folder-open"},
+  {id:"inf", t:"Informes", d:"Informes oficiais aprovados ao fim de cada reunião.", icon:"file-text"},
+  {id:"ag",  t:"Agendas", d:"Pautas e cronogramas de apresentações das reuniões e do Workshop.", icon:"calendar-days"},
+  {id:"prev",t:"Próxima reunião", d:"Agenda prévia aprovada para o GADHOC ATFM-MET/10.", icon:"sparkles"}
+];
+
+/* ============================================================
+   UTILITÁRIOS DE DATA
+   ============================================================ */
+const dd = d => String(d.getDate()).padStart(2, "0");
+function faixa(ini, fim) { const a = D(ini), b = D(fim);
+  return a.getMonth() === b.getMonth() ? `${dd(a)} a ${dd(b)} ${MES[b.getMonth()]} ${b.getFullYear()}` : `${dd(a)} ${MES[a.getMonth()]} a ${dd(b)} ${MES[b.getMonth()]} ${b.getFullYear()}`; }
+function faixaLonga(ini, fim) { const a = D(ini), b = D(fim);
+  return a.getMonth() === b.getMonth() ? `${a.getDate()} a ${b.getDate()} de ${MESX[b.getMonth()]} de ${b.getFullYear()}` : `${a.getDate()} de ${MESX[a.getMonth()]} a ${b.getDate()} de ${MESX[b.getMonth()]} de ${b.getFullYear()}`; }
+const passou = fim => D(fim).getTime() + 12 * 3600e3 < HOJE.getTime();
+const NEXT = MEETINGS.find(m => m.n && !passou(m.fim));
+const NEXTDEV = [...DEVS, ...MEETINGS.filter(m => m.n)].filter(e => !passou(e.fim)).sort((a, b) => D(a.ini) - D(b.ini))[0];
+
+/* ============================================================
+   ABAS / NAVEGAÇÃO
+   ============================================================ */
+const TABS = [
+  {id:"hub", icon:"layout-grid", t:"Hub Inicial", s:"Todos os Módulos", b:"Portal"},
+  {id:"produtos", icon:"layers", t:"Produtos & Ferramentas", s:"Ferramenta ATFM-MET · Pesquisas", b:PRODUCTS.length + " Produtos", bc:"bg-blue-500/10 text-blue-600 dark:bg-cyan-950/60 dark:text-[#3fe0d0] border border-blue-500/30 dark:border-cyan-400/40"},
+  {id:"acoes", icon:"square-check-big", t:"Painel de Ações", s:"Fórum & Deliberações", b:ACTIONS.length + " Ações", bc:"bg-indigo-500/10 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-500/30 dark:border-indigo-400/40"},
+  {id:"cronogramas", icon:"calendar-days", t:"Cronogramas", s:"Reuniões 2024 – 2027", b:MEETINGS.filter(m => m.n).length + " Reuniões", bc:"bg-amber-500/10 text-amber-600 dark:bg-amber-950/60 dark:text-[#ffb440] border border-amber-500/30 dark:border-amber-400/40"},
+  {id:"docs", icon:"folder-open", t:"Repositório de Docs", s:"Google Drive Integrado", b:DOCS.length + " Docs", bc:"bg-sky-500/10 text-sky-600 dark:bg-cyan-950/60 dark:text-[#3fe0d0] border border-sky-500/30 dark:border-cyan-400/40"},
+  {id:"presenca", icon:"badge-check", t:"Credenciamento", s:"Confirmar Presença", b:NEXT ? "ATFM-MET/" + NEXT.n : "Aberto", bc:"bg-emerald-500/10 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-500/30 dark:border-emerald-400/40", href:"presenca.html"}
+];
+const TAB_ON  = "flex items-center gap-2.5 px-3.5 py-2 rounded-sm text-left whitespace-nowrap transition-all duration-200 shrink-0 select-none bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold shadow-glow-cyan border border-cyan-200 chamfer-sm";
+const TAB_OFF = "group flex items-center gap-2.5 px-3.5 py-1.5 rounded-sm text-left whitespace-nowrap transition-all duration-200 shrink-0 select-none bg-white dark:bg-[rgba(7,22,35,0.85)] text-slate-700 dark:text-[#e2f5ff] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[rgba(12,38,58,0.95)] border border-slate-200 dark:border-[rgba(64,214,224,0.22)] dark:hover:border-cyan-400/60 shadow-xs";
+let VIEW = "hub";
+function renderTabs() {
+  $("#tabs").innerHTML = TABS.map((t, i) => {
+    const on = t.id === VIEW;
+    const badge = on ? `<span class="text-[9.5px] px-1.5 py-0.2 rounded font-mono font-bold uppercase tracking-wider bg-slate-950/20 text-slate-950">${t.b}</span>`
+                     : `<span class="text-[9.5px] font-mono font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${t.bc || "bg-blue-500/10 text-blue-600 dark:bg-cyan-950/60 dark:text-[#3fe0d0] border border-blue-500/30 dark:border-cyan-400/40"}">${t.b}</span>`;
+    const icon = on ? ic(t.icon, "w-4 h-4 shrink-0 text-slate-950") : ic(t.icon, "w-4 h-4 shrink-0 transition-transform group-hover:scale-110 text-cyan-600 dark:text-[#3fe0d0]");
+    const tag = t.href ? `a href="${t.href}"` : `button type="button" data-go="${t.id}"`;
+    const close = t.href ? "a" : "button";
+    const el = `<${tag} class="${on ? TAB_ON : TAB_OFF}" ${on ? 'aria-current="page"' : ""}>${icon}<div class="flex flex-col"><div class="flex items-center gap-2"><span class="text-xs font-display ${on ? "font-bold" : "font-semibold"} uppercase tracking-wider">${t.t}</span>${badge}</div><span class="text-[10px] leading-tight font-sans ${on ? "text-slate-900 font-medium" : "text-slate-500 dark:text-[#87a8bb]"}">${t.s}</span></div></${close}>`;
+    return i === 0 ? el + `<div class="h-7 w-px bg-slate-300 dark:bg-[rgba(64,214,224,0.22)] mx-1 shrink-0"></div>` : el;
+  }).join("");
+}
+function show(id, push) {
+  if (!document.getElementById("v-" + id)) id = "hub";
+  VIEW = id;
+  $$(".view").forEach(v => v.classList.toggle("hidden", v.id !== "v-" + id));
+  renderTabs();
+  if (push && location.hash !== "#" + id) history.pushState(null, "", "#" + id);
+  const cur = $("#tabs [aria-current]"); if (cur) cur.scrollIntoView({block:"nearest", inline:"nearest"});
+}
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]");
+  if (g) { e.preventDefault(); show(g.dataset.go, true); window.scrollTo({top:0, behavior:"smooth"}); return; }
+  const m = e.target.closest("[data-modal]");
+  if (m) { e.preventDefault(); openModal(m.dataset.modal); return; }
+  if (e.target.closest("[data-close]") || e.target.classList.contains("modal")) closeModals();
+});
+addEventListener("popstate", () => show(location.hash.slice(1) || "hub"));
+addEventListener("keydown", e => { if (e.key === "Escape") closeModals(); });
+
+/* ============================================================
+   HUB
+   ============================================================ */
+function hubCard(c) {
+  const t = TH[c.th];
+  const open = c.href ? `a href="${c.href}"` : c.modal ? `button type="button" data-modal="${c.modal}"` : `button type="button" data-go="${c.go}"`;
+  const close = c.href ? "a" : "button";
+  return `<${open} class="group relative rounded-xl bg-white dark:bg-gradient-to-br dark:from-[rgba(7,22,35,0.95)] dark:to-[rgba(2,10,20,0.98)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] hover:border-cyan-400 dark:hover:border-cyan-400 p-6 flex flex-col justify-between text-left shadow-sm hover:shadow-hud-hover transition-all duration-300 cursor-pointer overflow-hidden transform hover:-translate-y-1">
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${t.bar} opacity-80 group-hover:opacity-100 transition-opacity"></div>
+    <div class="space-y-4">
+      <div class="flex items-start justify-between gap-3 pt-1">
+        <div class="w-12 h-12 rounded-lg border flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform ${t.box}">${ic(c.icon, "w-6 h-6")}</div>
+        <span class="font-mono text-xs font-bold px-2.5 py-1 rounded border uppercase tracking-wider text-right ${t.badge}">${c.badge}</span>
+      </div>
+      <div>
+        <h3 class="text-lg font-display font-bold text-slate-900 dark:text-[#e2f5ff] transition-colors ${t.hov}">${c.h}</h3>
+        <p class="text-xs font-mono font-bold uppercase tracking-wider mt-0.5 ${t.sub}">${c.sub}</p>
+        <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-2.5 leading-relaxed font-sans">${c.p}</p>
+      </div>
+      <div class="pt-2 flex items-center gap-1.5 flex-wrap">${c.tags.map(x => `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 dark:bg-[rgba(8,26,40,0.8)] dark:text-[#e2f5ff] dark:border-[rgba(64,214,224,0.22)]">${esc(x)}</span>`).join("")}</div>
+    </div>
+    <div class="mt-6 pt-4 border-t border-slate-100 dark:border-[rgba(64,214,224,0.18)] flex items-center justify-between text-xs font-display font-bold uppercase tracking-wider group-hover:hud-glow-cyan ${t.ft}"><span>${c.cta}</span>${ic("arrow-right", "w-4 h-4 group-hover:translate-x-1.5 transition-transform")}</div>
+  </${close}>`;
+}
+function renderHub() {
+  const cnt = p => ACTIONS.filter(a => a[4] === p).length;
+  $("#hubOpen").textContent = ACTIONS.length;
+  if (NEXT) $("#hubNext").textContent = `ATFM-MET/${NEXT.n} · ${dd(D(NEXT.ini))} ${MES[D(NEXT.ini).getMonth()]} ${String(D(NEXT.ini).getFullYear()).slice(2)}`;
+  const cards = [
+    {go:"produtos", th:"blue", icon:"layers", badge:PRODUCTS.length + " Produtos", h:"Produtos & Ferramentas", sub:"Ferramenta ATFM-MET · Pesquisas aplicadas",
+     p:"CIOP:Tático, protótipo de chegadas por cadência, preditor de cabeceira, permeabilidade do espaço aéreo, nowcasting e integração com o SISMET.", tags:["CIOP:Tático","Cadência","Permeabilidade","Nowcasting","SISMET"], cta:"Ver produtos & ferramentas"},
+    {go:"acoes", th:"indigo", icon:"square-check-big", badge:ACTIONS.length + " Ações abertas", h:"Painel de Ações", sub:"Fórum de acompanhamento & deliberações",
+     p:"Ações em aberto após o GADHOC ATFM-MET/9, com responsável, prazo e reunião de origem, e o que foi concluído ou cancelado na última reunião.", tags:[cnt("/10") + " p/ ATFM-MET/10", cnt("/11") + " p/ /11", cnt("/12") + " p/ /12", "15 concluídas na /9"], cta:`Acessar painel de ações (${ACTIONS.length})`},
+    {go:"cronogramas", th:"amber", icon:"calendar-days", badge:MEETINGS.filter(m => m.n).length + " Reuniões (2024–2027)", h:"Cronogramas & Reuniões", sub:"Agenda de reuniões & desenvolvimento",
+     p:"Calendário das reuniões do grupo, do 1º encontro em maio de 2024 ao GADHOC 12 em setembro de 2027, com as reuniões de desenvolvimento junto à ATD e a visita aos CCO.", tags:["ATFM-MET/10 · Recife","/11 · Curitiba","/12 · Brasília","Workshop 2026"], cta:"Acessar cronogramas"},
+    {go:"docs", th:"sky", icon:"folder-open", badge:DOCS.length + " Arquivos", h:"Repositório de Docs", sub:"Informes & agendas no Google Drive",
+     p:"Informes e agendas oficiais de cada reunião, com pré-visualização e acesso direto ao Google Drive.", tags:["Informes","Agendas","Agenda prévia /10"], cta:"Acessar arquivos no Drive"},
+    {href:"presenca.html", th:"cyanem", icon:"badge-check", badge:"Inscrições abertas", h:NEXT ? `Credenciamento ATFM-MET/${NEXT.n}` : "Credenciamento", sub:NEXT ? `Confirmação de presença · ${NEXT.sede}` : "Confirmação de presença",
+     p:NEXT ? `Confirme sua presença na ${NEXT.n}ª reunião, de ${faixaLonga(NEXT.ini, NEXT.fim)}, no ${NEXT.sede}, em ${NEXT.cidade.split(" - ")[0]}. Leva cerca de 1 minuto.` : "Confirme sua presença na próxima reunião do grupo.", tags:NEXT ? [faixa(NEXT.ini, NEXT.fim), NEXT.cidade, "~1 min"] : ["~1 min"], cta:"Confirmar presença"},
+    {modal:"missao", th:"teal", icon:"compass", badge:"GEPEA · SG3", h:"Missão & Guia", sub:"Missão, guia de uso & governança",
+     p:"Por que o grupo existe, os desafios que ele enfrenta, como usar este portal e quais organizações participam dos trabalhos.", tags:["Missão","Guia de uso","Organizações"], cta:"Abrir missão & guia"}
+  ];
+  $("#hubCards").innerHTML = cards.map(hubCard).join("");
+}
+
+/* ============================================================
+   PRODUTOS
+   ============================================================ */
+const ST_BADGE = {
+  "Em validação":"bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-400/40",
+  "Protótipo":"bg-blue-50 text-blue-700 border-blue-200 dark:bg-cyan-950/70 dark:text-[#3fe0d0] dark:border-cyan-400/40",
+  "Em uso":"bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/70 dark:text-sky-300 dark:border-sky-400/40",
+  "Pesquisa":"bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-300 dark:border-indigo-400/40",
+  "Em andamento":"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/70 dark:text-[#ffb440] dark:border-amber-400/40",
+  "Em desenvolvimento":"bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/70 dark:text-blue-300 dark:border-blue-400/40"
+};
+const ST_DOT = {"Em validação":"bg-emerald-500","Protótipo":"bg-cyan-500","Em uso":"bg-sky-500","Pesquisa":"bg-indigo-500","Em andamento":"bg-amber-500","Em desenvolvimento":"bg-blue-500"};
+const CHIP_ON = "px-3 py-1.5 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap flex items-center gap-2 border bg-blue-600 border-blue-600 text-white shadow-sm";
+const CHIP_OFF = "px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 border bg-white border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-750";
+const CNT_ON = "px-1.5 py-0.2 rounded-full text-[10px] font-black bg-blue-500 text-white";
+const CNT_OFF = "px-1.5 py-0.2 rounded-full text-[10px] font-black bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300";
+let PROD_ST = "";
+function renderProducts() {
+  const sts = [...new Set(PRODUCTS.map(p => p.st))];
+  $("#kProd").textContent = PRODUCTS.length + " ATIVOS";
+  $("#kStudy").textContent = STUDIES.length + " EM ESTUDO";
+  $("#prodChips").innerHTML = [["", "Todos os produtos", PRODUCTS.length], ...sts.map(s => [s, s, PRODUCTS.filter(p => p.st === s).length])].map(([k, l, n]) => {
+    const on = PROD_ST === k;
+    return `<button type="button" data-pst="${esc(k)}" class="${on ? CHIP_ON : CHIP_OFF}">${k ? `<span class="size-2 rounded-full ${ST_DOT[k]}"></span>` : ""}<span>${l}</span><span class="${on ? CNT_ON : CNT_OFF}">${n}</span></button>`;
+  }).join("");
+  $("#prodHint").textContent = PROD_ST ? `Exibindo: ${PROD_ST}` : "Exibindo todos os produtos";
+  $("#prodGrid").innerHTML = PRODUCTS.filter(p => !PROD_ST || p.st === PROD_ST).map(p => {
+    const t = TH[p.th];
+    return `<article class="group relative rounded-xl bg-white dark:bg-gradient-to-br dark:from-[rgba(7,22,35,0.95)] dark:to-[rgba(2,10,20,0.98)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] hover:border-cyan-400 dark:hover:border-cyan-400 p-6 flex flex-col justify-between shadow-sm hover:shadow-hud-hover transition-all duration-300 overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${t.bar} opacity-80 group-hover:opacity-100 transition-opacity"></div>
+      <div class="space-y-4">
+        <div class="flex items-start justify-between gap-3 pt-1">
+          <div class="w-12 h-12 rounded-lg border flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform ${t.box}">${ic(p.icon, "w-6 h-6")}</div>
+          <span class="font-mono text-xs font-bold px-2.5 py-1 rounded border uppercase tracking-wider ${ST_BADGE[p.st]}">${p.st}</span>
+        </div>
+        <div>
+          <h3 class="text-lg font-display font-bold text-slate-900 dark:text-[#e2f5ff] transition-colors ${t.hov}">${esc(p.n)}</h3>
+          <p class="text-xs font-mono font-bold uppercase tracking-wider mt-0.5 ${t.sub}">${esc(p.o)}</p>
+          <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-2.5 leading-relaxed font-sans">${esc(p.d)}</p>
+          <ul class="mt-3 space-y-1.5">${p.li.map(x => `<li class="flex gap-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300"><span class="mt-1.5 size-1.5 rounded-full shrink-0 ${t.dot}"></span><span>${esc(x)}</span></li>`).join("")}</ul>
+        </div>
+        <div class="pt-1 flex items-center gap-1.5 flex-wrap">${p.f.map(([a, b]) => `<span class="text-[10px] font-mono px-2 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 dark:bg-[rgba(8,26,40,0.8)] dark:text-[#e2f5ff] dark:border-[rgba(64,214,224,0.22)]"><b class="font-display text-[13px] mr-1 ${t.ft}">${esc(a)}</b>${esc(b)}</span>`).join("")}</div>
+      </div>
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-[rgba(64,214,224,0.18)] flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider ${t.ft}">${ic("file-text", "w-3.5 h-3.5 shrink-0")}<span>Fonte · ${esc(p.src)}</span></div>
+    </article>`;
+  }).join("");
+  $("#studyGrid").innerHTML = STUDIES.map(([c, h, p, icon]) => `<div class="group relative rounded-xl border p-5 bg-white border-slate-200 shadow-sm hover:border-cyan-400 hover:shadow-hud-hover transition-all duration-300 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)] dark:hover:border-cyan-400">
+      <div class="flex items-center justify-between gap-2"><span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded border uppercase tracking-wider bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-300 dark:border-indigo-400/40">Ação ${c}</span><span class="text-indigo-500 dark:text-indigo-400">${ic(icon, "w-4 h-4")}</span></div>
+      <h4 class="font-display font-bold text-[15px] leading-snug mt-3 text-slate-900 dark:text-[#e2f5ff]">${esc(h)}</h4>
+      <p class="text-xs leading-relaxed mt-1.5 text-slate-600 dark:text-[#87a8bb]">${esc(p)}</p></div>`).join("");
+}
+$("#prodChips").addEventListener("click", e => { const b = e.target.closest("[data-pst]"); if (!b) return; PROD_ST = b.dataset.pst; renderProducts(); });
+
+/* ============================================================
+   PAINEL DE AÇÕES
+   ============================================================ */
+const PRAZOS = [
+  {k:"/10", l:"ATFM-MET/10", dot:"bg-amber-500", pill:"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/70 dark:text-amber-200 dark:border-amber-700"},
+  {k:"/11", l:"ATFM-MET/11", dot:"bg-sky-500", pill:"bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/70 dark:text-sky-200 dark:border-sky-700"},
+  {k:"/12", l:"ATFM-MET/12", dot:"bg-indigo-500", pill:"bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-200 dark:border-indigo-700"},
+  {k:"IMEDIATO", l:"Imediato", dot:"bg-rose-500", pill:"bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/70 dark:text-rose-200 dark:border-rose-700"},
+  {k:"VERIFICAR", l:"A verificar", dot:"bg-orange-500", pill:"bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/70 dark:text-orange-200 dark:border-orange-700"}
+];
+const RESP = [["","Todos"],["Relat","Relatoria"],["ATD","ATD"],["CIMAER","CIMAER"],["Regionais","Regionais"]];
+const QUICK = [["","Todos"],["OF","Ofícios"],["FERR","Ferramenta ATFM-MET"],["DADOS","Dados & SISMET"],["ANAC","ANAC"],["REUN","Reuniões"]];
+const quickTest = {
+  OF: a => /OFÍCIO/.test(a[1]),
+  FERR: a => /FERRAMENTA|INTERFACE|VISUALIZAÇÃO|ALERTA|DASHBOARD|TCF|BOLETIM/.test(a[1]),
+  DADOS: a => /EMS|API|SISMET|BNDMET|SIGMA|DADOS/.test(a[1]),
+  ANAC: a => /ANAC/.test(a[1] + a[2]),
+  REUN: a => /REUNIÃO|VISITA/.test(a[1])
+};
+const ACT = {q:"", p:"", r:"", o:"", qk:"", view:"tabela", mode:"open"};
+const SEG_ON = "flex-1 sm:flex-none justify-center whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-glow-cyan";
+const SEG_OFF = "flex-1 sm:flex-none justify-center whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer text-slate-600 dark:text-[#87a8bb] hover:text-slate-950 dark:hover:text-white";
+const VIEW_ON = "p-1.5 rounded-lg text-xs font-black flex items-center gap-1 transition-all bg-white text-slate-900 shadow-xs dark:bg-slate-800 dark:text-white";
+const VIEW_OFF = "p-1.5 rounded-lg text-xs font-black flex items-center gap-1 transition-all text-slate-500 hover:text-slate-800 dark:hover:text-slate-200";
+const Q_ON = "px-2 py-0.5 rounded-md font-bold transition-all whitespace-nowrap bg-blue-600 text-white dark:bg-slate-200 dark:text-slate-900";
+const Q_OFF = "px-2 py-0.5 rounded-md font-bold transition-all whitespace-nowrap text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800";
+const respKey = r => /Relat/.test(r) ? "Relatoria" : /CIMAER/.test(r) && /ATD/.test(r) ? "ATD / CIMAER" : /ATD/.test(r) ? "ATD" : /CIMAER/.test(r) ? "CIMAER" : r;
+const prazoOf = k => PRAZOS.find(p => p.k === k);
+const origem = c => "ATFM-MET/" + Number(c.split("-")[0]);
+
+function donut(el, data) {
+  const total = data.reduce((s, d) => s + d.v, 0); let acc = 0; const R = 15.9155;
+  const segs = data.map(d => { const len = d.v / total * 100; const s = `<circle r="${R}" cx="21" cy="21" fill="transparent" stroke="${d.c}" stroke-width="5" stroke-dasharray="${len} ${100 - len}" stroke-dashoffset="${25 - acc}"></circle>`; acc += len; return s; }).join("");
+  el.innerHTML = `<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+    <div class="relative w-36 h-36 shrink-0"><svg viewBox="0 0 42 42" class="w-full h-full -rotate-0"><circle r="${R}" cx="21" cy="21" fill="transparent" stroke="currentColor" class="text-slate-100 dark:text-slate-800" stroke-width="5"></circle>${segs}</svg>
+      <div class="absolute inset-0 flex flex-col items-center justify-center"><span class="text-2xl font-black text-slate-950 dark:text-white">${total}</span><span class="text-[9px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">ações</span></div></div>
+    <ul class="space-y-1.5 text-xs">${data.map(d => `<li class="flex items-center gap-2"><span class="size-2.5 rounded-sm shrink-0" style="background:${d.c}"></span><span class="font-semibold text-slate-700 dark:text-slate-300">${d.l}:</span><span class="font-black text-slate-950 dark:text-white">${d.v}</span></li>`).join("")}</ul></div>`;
+}
+
+function renderActStatic() {
+  const n = k => ACTIONS.filter(a => a[4] === k).length;
+  $("#kOpen").textContent = ACTIONS.length + " REGISTRADAS";
+  $("#actMode").innerHTML = [["open", "Painel operacional", "Em aberto", "table"], ["done", "Concluídas na /9", "Concluídas /9", "circle-check"]].map(([k, l, sl, i]) => `<button type="button" data-amode="${k}" class="${ACT.mode === k ? SEG_ON : SEG_OFF}">${ic(i, "w-3.5 h-3.5 shrink-0")}<span class="sm:hidden">${sl}</span><span class="hidden sm:inline">${l}</span></button>`).join("");
+  const nxt = MEETINGS.find(m => m.n === 10), n11 = MEETINGS.find(m => m.n === 11);
+  const kpi = (label, lc, icon, icc, val, vc, extra, desc, dc, wrap) => `<div class="p-4 rounded-2xl border transition-all ${wrap || "bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"}">
+    <div class="flex items-center justify-between mb-1"><span class="text-[10px] font-black uppercase tracking-wider ${lc}">${label}</span>${ic(icon, "w-4 h-4 " + icc)}</div>
+    <div class="flex items-baseline gap-2"><span class="text-2xl font-black ${vc}">${val}</span>${extra || ""}</div>
+    <p class="text-[10px] font-medium mt-0.5 ${dc || "text-slate-500 dark:text-slate-400"}">${desc}</p></div>`;
+  $("#actKpis").innerHTML = [
+    kpi("Total em aberto", "text-slate-600 dark:text-slate-400", "layers", "text-blue-600", ACTIONS.length, "text-slate-950 dark:text-white", "", "Após o GADHOC ATFM-MET/9"),
+    kpi("Prazo ATFM-MET/10", "text-amber-800 dark:text-amber-400", "clock", "text-amber-600", n("/10"), "text-amber-800 dark:text-amber-400", "", nxt ? faixa(nxt.ini, nxt.fim) + " · Recife" : ""),
+    kpi("Prazo ATFM-MET/11", "text-sky-800 dark:text-sky-400", "calendar", "text-sky-600", n("/11"), "text-sky-800 dark:text-sky-300", "", n11 ? faixa(n11.ini, n11.fim) + " · Curitiba" : ""),
+    kpi("Concluídas na /9", "text-emerald-800 dark:text-emerald-400", "circle-check", "text-emerald-600", 15, "text-emerald-800 dark:text-emerald-400", `<span class="text-xs font-black text-emerald-700 dark:text-emerald-300">+2 canceladas</span>`, "19 a 23 OUT 2026 · CINDACTA I"),
+    kpi("Alerta de prazo", "text-rose-800 dark:text-rose-400", "triangle-alert", "text-rose-600", n("IMEDIATO") + n("VERIFICAR"), "text-rose-700 dark:text-rose-400", `<span class="text-[10px] font-bold text-rose-700 dark:text-rose-400">ações</span>`, "1 imediata · 1 a verificar", "font-semibold text-rose-700/90 dark:text-rose-400", "col-span-2 sm:col-span-1 bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800")
+  ].join("");
+  $("#actResp").innerHTML = RESP.map(([k, l]) => `<option value="${k}">${k ? l : "Todos"}</option>`).join("");
+  const origs = [...new Set(ACTIONS.map(a => origem(a[0])))];
+  $("#actOrig").innerHTML = `<option value="">Todas</option>` + origs.map(o => `<option value="${o}">${o}</option>`).join("");
+  donut($("#chartPrazo"), [{l:"ATFM-MET/10", v:n("/10"), c:"#f59e0b"}, {l:"ATFM-MET/11", v:n("/11"), c:"#0ea5e9"}, {l:"ATFM-MET/12", v:n("/12"), c:"#6366f1"}, {l:"Imediato", v:n("IMEDIATO"), c:"#f43f5e"}, {l:"A verificar", v:n("VERIFICAR"), c:"#f97316"}]);
+  const rc = {}; ACTIONS.forEach(a => { const k = respKey(a[3]); rc[k] = (rc[k] || 0) + 1; });
+  const rcol = {"Relatoria":"#22d3ee", "ATD":"#3b82f6", "ATD / CIMAER":"#8b5cf6", "CIMAER":"#10b981", "Regionais":"#f59e0b"};
+  donut($("#chartResp"), Object.entries(rc).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({l:k, v, c:rcol[k] || "#94a3b8"})));
+  $("#doneRows").innerHTML = DONE.map(([c, t, r, canc]) => `<tr class="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+    <td class="px-2 py-2.5 text-center"><span class="px-2 py-0.5 rounded-md text-[11px] font-black font-mono bg-slate-100 text-slate-900 border border-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700">${c}</span></td>
+    <td class="px-3 py-2.5"><p class="font-bold text-slate-950 dark:text-white text-xs leading-snug">${esc(t)}</p><p class="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">${esc(r)}</p></td>
+    <td class="px-2 py-2.5 text-center"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black uppercase border ${canc ? "bg-slate-100 text-slate-600 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600" : "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-700"}">${ic(canc ? "circle-x" : "circle-check", "w-3 h-3")}${canc ? "Cancelada" : "Concluída"}</span></td></tr>`).join("");
+}
+function renderActs() {
+  $("#actOpenWrap").classList.toggle("hidden", ACT.mode !== "open");
+  $("#actDoneWrap").classList.toggle("hidden", ACT.mode !== "done");
+  $$("#actMode [data-amode]").forEach(b => b.className = b.dataset.amode === ACT.mode ? SEG_ON : SEG_OFF);
+  const all = ACTIONS.length;
+  $("#prazoChips").innerHTML = [{k:"", l:"Todos os prazos"}, ...PRAZOS].map(p => { const on = ACT.p === p.k; const n = p.k ? ACTIONS.filter(a => a[4] === p.k).length : all;
+    return `<button type="button" data-prz="${p.k}" class="${on ? CHIP_ON : CHIP_OFF}">${p.k ? `<span class="size-2 rounded-full ${p.dot}"></span>` : ""}<span>${p.l}</span><span class="${on ? CNT_ON : CNT_OFF}">${n}</span></button>`; }).join("");
+  $("#prazoHint").textContent = ACT.p ? "Exibindo: " + prazoOf(ACT.p).l : "Exibindo todos os prazos";
+  $("#actView").innerHTML = [["tabela", "Tabela", "table"], ["cards", "Cards", "layout-grid"]].map(([k, l, i]) => `<button type="button" data-aview="${k}" class="${ACT.view === k ? VIEW_ON : VIEW_OFF}">${ic(i, "w-3.5 h-3.5")}<span class="hidden sm:inline">${l}</span></button>`).join("");
+  $("#actQuick").innerHTML = `<span class="text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400 mr-1 whitespace-nowrap">Filtro rápido:</span>` + QUICK.map(([k, l]) => `<button type="button" data-qk="${k}" class="${ACT.qk === k ? Q_ON : Q_OFF}">${l}</button>`).join("");
+  const q = ACT.q.trim().toLowerCase();
+  const rows = ACTIONS.filter(a => (!ACT.p || a[4] === ACT.p) && (!ACT.r || a[3].includes(ACT.r)) && (!ACT.o || origem(a[0]) === ACT.o) && (!ACT.qk || quickTest[ACT.qk](a)) && (!q || a.join(" ").toLowerCase().includes(q)));
+  $("#actCount").textContent = rows.length + (rows.length === 1 ? " ação" : " ações");
+  const pill = k => { const p = prazoOf(k); return `<span class="inline-flex items-center justify-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-normal border max-w-full ${p.pill}"><span class="size-1.5 rounded-full shrink-0 ${p.dot}"></span><span class="truncate">${p.l}</span></span>`; };
+  const orig = c => `<span class="px-2 py-0.5 rounded-md text-[11px] font-black bg-slate-100 text-slate-900 border border-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700 whitespace-nowrap">${origem(c)}</span>`;
+  $("#actRows").innerHTML = rows.map(a => `<tr class="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
+      <td class="px-3 py-2.5 text-center align-top">${orig(a[0])}</td>
+      <td class="px-2 py-2.5 text-center align-top font-mono font-bold text-xs text-slate-800 dark:text-slate-200">${a[0]}</td>
+      <td class="px-3 py-2.5 align-top"><p class="font-bold text-slate-950 dark:text-white text-xs leading-snug">${esc(a[1])}</p><p class="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">${esc(a[2])}</p></td>
+      <td class="px-2 py-2.5 align-top text-slate-900 dark:text-slate-100 font-bold text-xs">${esc(a[3])}</td>
+      <td class="px-2 py-2.5 align-top text-center">${pill(a[4])}</td></tr>`).join("");
+  $("#actCards").innerHTML = rows.map(a => `<div class="rounded-xl border p-4 bg-white border-slate-200 hover:border-cyan-400 transition-all dark:bg-slate-950/60 dark:border-slate-800 dark:hover:border-cyan-400">
+      <div class="flex items-center justify-between gap-2">${orig(a[0])}${pill(a[4])}</div>
+      <div class="mt-2 font-mono text-[11px] font-bold text-blue-600 dark:text-[#3fe0d0]">AÇÃO GEPEA/SG3/GADHOC ATFM-MET/${a[0]}</div>
+      <p class="mt-1 font-bold text-slate-950 dark:text-white text-xs leading-snug">${esc(a[1])}</p>
+      <p class="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1 leading-snug">${esc(a[2])}</p>
+      <div class="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-300">${ic("users", "w-3.5 h-3.5 text-slate-400")}${esc(a[3])}</div></div>`).join("");
+  const empty = rows.length === 0;
+  $("#actEmpty").classList.toggle("hidden", !empty);
+  $("#actTableWrap").classList.toggle("hidden", empty || ACT.view !== "tabela");
+  $("#actCards").classList.toggle("hidden", empty || ACT.view !== "cards");
+}
+$("#v-acoes").addEventListener("click", e => {
+  const t = e.target.closest("[data-prz],[data-aview],[data-qk],[data-amode]"); if (!t) return;
+  if (t.dataset.prz !== undefined) ACT.p = t.dataset.prz;
+  if (t.dataset.aview) ACT.view = t.dataset.aview;
+  if (t.dataset.qk !== undefined) ACT.qk = t.dataset.qk;
+  if (t.dataset.amode) ACT.mode = t.dataset.amode;
+  renderActs();
+});
+$("#actQ").addEventListener("input", e => { ACT.q = e.target.value; renderActs(); });
+$("#actResp").addEventListener("change", e => { ACT.r = e.target.value; renderActs(); });
+$("#actOrig").addEventListener("change", e => { ACT.o = e.target.value; renderActs(); });
+$("#actClear").addEventListener("click", () => { Object.assign(ACT, {q:"", p:"", r:"", o:"", qk:""}); $("#actQ").value = ""; $("#actResp").value = ""; $("#actOrig").value = ""; renderActs(); });
+
+/* ============================================================
+   CRONOGRAMAS
+   ============================================================ */
+const CRON = {mode:"reunioes", y:"", s:"", q:""};
+const C_ON = "px-2 py-0.5 rounded-md font-mono font-bold uppercase transition-all whitespace-nowrap bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950";
+const C_OFF = "px-2 py-0.5 rounded-md font-mono font-bold uppercase transition-all whitespace-nowrap border bg-white border-slate-200 text-slate-600 hover:border-cyan-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-300";
+function docBtn(id, label) {
+  return `<a href="${DRIVE(id)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 hover:text-blue-700 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff] dark:hover:border-cyan-400">${ic("file-text", "w-3.5 h-3.5")}${label}</a>`;
+}
+function meetingCard(m) {
+  const done = passou(m.fim);
+  const nextOne = NEXT && m === NEXT;
+  const ed = m.ws ? "Workshop" : "Edição " + String(m.n).padStart(2, "0");
+  const code = m.ws ? "GEPEA/SG3/WORKSHOP ATFM-MET/2026" : "GEPEA/SG3/GADHOC ATFM-MET/" + m.n;
+  const st = done ? `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-400/40">${ic("circle-check", "w-3 h-3")}Realizada</span>`
+                  : `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-[#ffb440] dark:border-amber-400/40">${ic("clock", "w-3 h-3")}Agendada</span>`;
+  const docs = [m.inf ? docBtn(m.inf, "Informe") : "", m.ag ? docBtn(m.ag, m.agLabel || "Agenda") : "", m.mapa ? `<a href="${m.mapa}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 hover:text-blue-700 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff] dark:hover:border-cyan-400">${ic("map", "w-3.5 h-3.5")}Como chegar</a>` : "", nextOne ? `<a href="presenca.html" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm">${ic("badge-check", "w-3.5 h-3.5")}Confirmar presença</a>` : ""].join("");
+  return `<article class="group rounded-xl border p-5 flex flex-col transition-all duration-300 hover:-translate-y-0.5 ${nextOne ? "bg-white border-amber-300 shadow-sm dark:bg-[rgba(7,22,35,0.92)] dark:border-amber-400/60 dark:shadow-glow-amber" : "bg-white border-slate-200 shadow-sm hover:border-cyan-400 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.28)] dark:hover:border-cyan-400"}">
+    <div class="flex items-center justify-between gap-2 flex-wrap">
+      <span class="font-mono text-xs font-bold px-2 py-1 rounded border uppercase tracking-wider bg-cyan-50 text-cyan-700 border-cyan-300 dark:bg-cyan-950/40 dark:text-[#3fe0d0] dark:border-cyan-400/40">${ed}</span>
+      <div class="flex items-center gap-1.5"><span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-400/40">${ic("map-pin", "w-3 h-3")}Presencial</span>${st}</div>
+    </div>
+    <div class="mt-3 flex items-center gap-2 font-display font-bold text-slate-900 dark:text-[#e2f5ff]">${ic("calendar", "w-4 h-4 text-blue-600 dark:text-[#3fe0d0]")}${faixaLonga(m.ini, m.fim)}</div>
+    <div class="mt-3 px-3 py-2.5 rounded-md font-mono text-[11px] tracking-wider bg-slate-50 border border-slate-200 text-cyan-700 dark:bg-[rgba(2,7,14,0.85)] dark:border-[rgba(64,214,224,0.22)] dark:text-[#3fe0d0]">${code}</div>
+    <div class="mt-3 space-y-1.5">
+      <div class="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">${ic("map-pin", "w-4 h-4 text-indigo-500 dark:text-indigo-400")}${esc(m.cidade)}</div>
+      <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-[#87a8bb]">${ic("building-2", "w-4 h-4 text-amber-500 dark:text-[#ffb440]")}Sede anfitriã: <b class="text-amber-600 dark:text-[#ffb440]">${esc(m.sede)}</b></div>
+      ${m.end ? `<div class="flex items-start gap-2 text-[11px] text-slate-500 dark:text-[#87a8bb]">${ic("map", "w-4 h-4 shrink-0 text-cyan-600 dark:text-[#3fe0d0]")}<span>${esc(m.end)}</span></div>` : ""}
+    </div>
+    <p class="mt-3 text-xs leading-relaxed text-slate-600 dark:text-[#87a8bb] flex-1">${esc(m.resumo)}</p>
+    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-[rgba(64,214,224,0.15)] flex items-center justify-between gap-2 flex-wrap">
+      <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500">${esc(m.res)}</span>
+      <div class="flex items-center gap-1.5 flex-wrap">${docs}</div>
+    </div></article>`;
+}
+function devCard(e) {
+  const done = passou(e.fim);
+  return `<article class="rounded-xl border p-5 flex flex-col transition-all duration-300 hover:-translate-y-0.5 bg-white border-slate-200 shadow-sm hover:border-cyan-400 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.28)] dark:hover:border-cyan-400">
+    <div class="flex items-center justify-between gap-2 flex-wrap">
+      <span class="font-mono text-xs font-bold px-2 py-1 rounded border uppercase tracking-wider ${e.visita ? "bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-950/40 dark:text-[#ffb440] dark:border-amber-400/40" : "bg-teal-50 text-teal-700 border-teal-300 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-400/40"}">${e.visita ? "Visita técnica" : "Desenvolvimento"}</span>
+      ${done ? `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-400/40">${ic("circle-check", "w-3 h-3")}Realizada</span>` : `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-[#ffb440] dark:border-amber-400/40">${ic("clock", "w-3 h-3")}Agendada</span>`}
+    </div>
+    <h4 class="mt-3 font-display font-bold text-slate-900 dark:text-[#e2f5ff]">${esc(e.t)}</h4>
+    <div class="mt-1 flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200">${ic("calendar", "w-4 h-4 text-blue-600 dark:text-[#3fe0d0]")}${faixaLonga(e.ini, e.fim)}</div>
+    <div class="mt-3 px-3 py-2 rounded-md font-mono text-[11px] tracking-wider bg-slate-50 border border-slate-200 text-cyan-700 dark:bg-[rgba(2,7,14,0.85)] dark:border-[rgba(64,214,224,0.22)] dark:text-[#3fe0d0]">${esc(e.tag)}</div>
+    <div class="mt-3 flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">${ic("map-pin", "w-4 h-4 text-indigo-500 dark:text-indigo-400")}${esc(e.cidade)} · ${esc(e.sede)}</div>
+    <p class="mt-3 text-xs leading-relaxed text-slate-600 dark:text-[#87a8bb]">${esc(e.resumo)}</p></article>`;
+}
+function renderCronStatic() {
+  const gad = MEETINGS.filter(m => m.n);
+  const real = gad.filter(m => passou(m.fim)).length, agend = gad.length - real;
+  const devFut = DEVS.filter(e => !e.visita).length;
+  const kpi = (l, lc, icon, icc, v, vc, d, wrap) => `<div class="p-4 rounded-2xl border transition-all ${wrap || "bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"}"><div class="flex items-center justify-between mb-1"><span class="text-[10px] font-black uppercase tracking-wider ${lc}">${l}</span>${ic(icon, "w-4 h-4 " + icc)}</div><div class="text-2xl font-black ${vc}">${v}</div><p class="text-[10px] font-medium mt-0.5 text-slate-500 dark:text-slate-400">${d}</p></div>`;
+  const days = NEXT ? Math.max(0, Math.ceil((D(NEXT.ini) - HOJE) / 864e5)) : 0;
+  $("#cronKpis").innerHTML = [
+    kpi("Total reuniões", "text-slate-600 dark:text-slate-400", "calendar-days", "text-blue-600", gad.length, "text-slate-950 dark:text-white", "Ciclo 2024 a 2027"),
+    kpi("Realizadas", "text-emerald-800 dark:text-emerald-400", "circle-check", "text-emerald-600", real, "text-emerald-800 dark:text-emerald-400", "Informes e deliberações"),
+    kpi("Agendadas", "text-sky-800 dark:text-sky-400", "clock", "text-sky-600", agend, "text-sky-800 dark:text-sky-300", "Planejamento 2027"),
+    kpi("Workshop", "text-indigo-800 dark:text-indigo-400", "sparkles", "text-indigo-600", 1, "text-indigo-800 dark:text-indigo-300", "15 a 17 SET 2026 · CRCEA-SE"),
+    kpi("Desenvolvimento", "text-teal-800 dark:text-teal-400", "cpu", "text-teal-600", devFut, "text-teal-800 dark:text-teal-300", "Com a ATD, no ICEA"),
+    NEXT ? `<div class="col-span-2 sm:col-span-1 p-4 rounded-2xl border bg-amber-50 border-amber-300 shadow-sm dark:bg-amber-950/30 dark:border-amber-400/60 dark:shadow-glow-amber"><div class="flex items-center justify-between mb-1"><span class="text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-[#ffb440]">Próxima reunião</span>${ic("sparkles", "w-4 h-4 text-amber-500 dark:text-[#ffb440]")}</div><div class="font-display font-bold text-sm text-slate-900 dark:text-white">Edição ${NEXT.n} (${NEXT.cidade.split(" - ")[0]})</div><p class="text-[11px] font-medium mt-0.5 text-amber-700 dark:text-amber-300">${faixa(NEXT.ini, NEXT.fim)} · faltam ${days} dias</p></div>` : ""
+  ].join("");
+}
+function renderCron() {
+  $("#cronMode").innerHTML = [["reunioes", "Agenda de reuniões", "Reuniões", "calendar-days", MEETINGS.filter(m => m.n).length], ["dev", "Desenvolvimento & visitas", "Desenv. & visitas", "cpu", DEVS.length]].map(([k, l, sl, i, n]) => `<button type="button" data-cmode="${k}" class="${CRON.mode === k ? SEG_ON : SEG_OFF}">${ic(i, "w-3.5 h-3.5 shrink-0")}<span class="sm:hidden">${sl}</span><span class="hidden sm:inline">${l}</span><span class="hidden sm:inline px-1.5 rounded text-[10px] ${CRON.mode === k ? "bg-slate-950/20" : "bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-300"}">${n}</span></button>`).join("");
+  const list = CRON.mode === "reunioes" ? MEETINGS : DEVS;
+  const years = [...new Set(list.map(m => m.ini.slice(0, 4)))].sort().reverse();
+  $("#cronYears").innerHTML = `<span class="flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400 mr-1">${ic("calendar", "w-3.5 h-3.5")}Ano:</span>` + [["", `Todos (${list.length})`], ...years.map(y => [y, `${y} (${list.filter(m => m.ini.startsWith(y)).length})`])].map(([k, l]) => `<button type="button" data-cy="${k}" class="${CRON.y === k ? C_ON : C_OFF}">${l}</button>`).join("");
+  $("#cronStatus").innerHTML = `<span class="text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400 mr-1">Status:</span>` + [["", "Todos"], ["real", "Realizada"], ["agen", "Agendada"]].map(([k, l]) => `<button type="button" data-cs="${k}" class="${CRON.s === k ? C_ON : C_OFF}">${l}</button>`).join("");
+  const q = CRON.q.trim().toLowerCase();
+  const items = list.filter(m => (!CRON.y || m.ini.startsWith(CRON.y)) && (!CRON.s || (CRON.s === "real" ? passou(m.fim) : !passou(m.fim))) && (!q || JSON.stringify(m).toLowerCase().includes(q) || ("edição " + m.n).includes(q) || ("atfm-met/" + m.n).includes(q)));
+  const groups = [...new Set(items.map(m => m.ini.slice(0, 4)))].sort().reverse();
+  $("#cronList").innerHTML = groups.length ? groups.map(y => {
+    const g = items.filter(m => m.ini.startsWith(y)).sort((a, b) => D(a.ini) - D(b.ini));
+    const cnt = CRON.mode === "reunioes" ? g.length + (g.length === 1 ? " evento" : " eventos") : g.length + (g.length === 1 ? " evento" : " eventos");
+    return `<div><div class="flex items-center gap-3 mb-4"><span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-display font-bold text-sm shadow-glow-cyan">${ic("calendar", "w-4 h-4")}Ano ${y}</span><span class="flex-1 h-px bg-slate-200 dark:bg-[rgba(64,214,224,0.2)]"></span><span class="font-mono text-xs font-bold text-cyan-600 dark:text-[#3fe0d0] uppercase tracking-wider">${cnt}</span></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">${g.map(CRON.mode === "reunioes" ? meetingCard : devCard).join("")}</div></div>`;
+  }).join("") : `<div class="p-8 text-center text-xs font-semibold text-slate-500 dark:text-slate-400 rounded-2xl border bg-white border-slate-200 dark:bg-slate-900/90 dark:border-slate-800">Nenhum evento encontrado com esses filtros.</div>`;
+}
+$("#v-cronogramas").addEventListener("click", e => {
+  const t = e.target.closest("[data-cmode],[data-cy],[data-cs]"); if (!t) return;
+  if (t.dataset.cmode) { CRON.mode = t.dataset.cmode; CRON.y = ""; }
+  if (t.dataset.cy !== undefined) CRON.y = t.dataset.cy;
+  if (t.dataset.cs !== undefined) CRON.s = t.dataset.cs;
+  renderCron();
+});
+$("#cronQ").addEventListener("input", e => { CRON.q = e.target.value; renderCron(); });
+
+/* ============================================================
+   DOCUMENTOS
+   ============================================================ */
+const DOCST = {cat:"all", q:""};
+const DCAT_ON = "w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all border whitespace-nowrap bg-blue-600 border-blue-600 text-white shadow-sm";
+const DCAT_OFF = "w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all border whitespace-nowrap bg-white border-slate-200 text-slate-700 hover:bg-slate-50 dark:bg-[rgba(7,22,35,0.85)] dark:border-[rgba(64,214,224,0.18)] dark:text-[#e2f5ff] dark:hover:bg-[rgba(12,38,58,0.95)]";
+const fmtKB = kb => kb >= 1024 ? (kb / 1024).toFixed(1).replace(".", ",") + " MB" : kb + " KB";
+function renderDocs() {
+  const count = c => c === "all" ? DOCS.length : DOCS.filter(d => d.cat === c).length;
+  $("#kDocs").textContent = DOCS.length + " DOCS"; $("#docsTotal").textContent = DOCS.length + " docs";
+  $("#docCats").innerHTML = DOC_CATS.map(c => { const on = DOCST.cat === c.id;
+    return `<button type="button" data-dcat="${c.id}" class="${on ? DCAT_ON : DCAT_OFF}"><span class="flex items-center gap-2">${ic(c.icon, "w-4 h-4")}${c.t}</span><span class="font-mono text-[10px] px-1.5 py-0.5 rounded ${on ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"}">${count(c.id)}</span></button>`; }).join("");
+  const cat = DOC_CATS.find(c => c.id === DOCST.cat);
+  const q = DOCST.q.trim().toLowerCase();
+  const items = DOCS.filter(d => (DOCST.cat === "all" || d.cat === DOCST.cat) && (!q || (d.t + " " + d.d + " " + d.file).toLowerCase().includes(q)));
+  $("#docCatTitle").textContent = cat.t; $("#docCatDesc").textContent = cat.d;
+  $("#docCatCount").textContent = items.length + (items.length === 1 ? " arquivo" : " arquivos");
+  $("#docList").innerHTML = items.length ? items.map(d => {
+    const pdf = d.ext === "pdf";
+    const box = pdf ? "bg-rose-50 border-rose-200 text-rose-600 dark:bg-rose-950/40 dark:border-rose-500/40 dark:text-rose-400" : "bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/40 dark:border-blue-500/40 dark:text-blue-400";
+    const dt = D(d.dt);
+    return `<div class="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-xl border bg-white border-slate-200 shadow-sm hover:border-cyan-400 transition-all dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)] dark:hover:border-cyan-400">
+      <div class="flex items-start gap-4 flex-1 min-w-0">
+        <div class="w-11 h-11 shrink-0 rounded-lg border flex items-center justify-center ${box}">${ic("file-text", "w-5 h-5")}</div>
+        <div class="min-w-0">
+          <h4 class="font-display font-bold text-sm text-slate-900 dark:text-[#e2f5ff]">${esc(d.t)}</h4>
+          <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-0.5">${esc(d.d)}</p>
+          <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] text-slate-400 dark:text-slate-500">${ic("calendar", "w-3 h-3 text-blue-500 dark:text-[#3fe0d0]")}<span>${dd(dt)}/${String(dt.getMonth() + 1).padStart(2, "0")}/${dt.getFullYear()}</span><span>· ${fmtKB(d.kb)}</span><span>· ${d.ext.toUpperCase()}</span><span class="truncate">· ${esc(d.file)}</span></div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 shrink-0 sm:ml-auto">
+        <button type="button" data-preview="${d.id}" data-title="${esc(d.t)}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff] dark:hover:border-cyan-400">${ic("eye", "w-3.5 h-3.5 text-blue-600 dark:text-[#3fe0d0]")}Pré-visualizar</button>
+        <a href="${DRIVE(d.id)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm">Abrir Drive${ic("external-link", "w-3.5 h-3.5")}</a>
+      </div></div>`;
+  }).join("") : `<div class="p-8 text-center text-xs font-semibold text-slate-500 dark:text-slate-400 rounded-xl border bg-white border-slate-200 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)]">Nenhum documento encontrado.</div>`;
+}
+$("#v-docs").addEventListener("click", e => {
+  const c = e.target.closest("[data-dcat]"); if (c) { DOCST.cat = c.dataset.dcat; renderDocs(); return; }
+  const p = e.target.closest("[data-preview]"); if (p) { $("#pvTitle").textContent = p.dataset.title; $("#pvFrame").src = PREVIEW(p.dataset.preview); $("#pvOpen").href = DRIVE(p.dataset.preview); openModal("preview"); }
+});
+$("#docQ").addEventListener("input", e => { DOCST.q = e.target.value; renderDocs(); });
+
+/* ============================================================
+   MODAIS
+   ============================================================ */
+let lastFocus = null;
+function openModal(id) {
+  lastFocus = document.activeElement;
+  const m = $("#m-" + id); if (!m) return;
+  m.classList.remove("hidden"); m.classList.add("flex");
+  document.body.style.overflow = "hidden";
+  const f = m.querySelector("[data-close]"); if (f) f.focus();
+}
+function closeModals() {
+  $$(".modal").forEach(m => { m.classList.add("hidden"); m.classList.remove("flex"); });
+  $("#pvFrame").src = "about:blank";
+  document.body.style.overflow = "";
+  if (lastFocus) lastFocus.focus();
+}
+/* QR */
+let QRMODE = "presenca";
+function renderQR() {
+  const d = QR[QRMODE];
+  $("#qrMode").innerHTML = [["presenca", "Credenciamento", "badge-check"], ["portal", "Portal", "layout-grid"]].map(([k, l, i]) => `<button type="button" data-qrm="${k}" class="flex-1 justify-center ${QRMODE === k ? SEG_ON : SEG_OFF}">${ic(i, "w-3.5 h-3.5")}<span>${l}</span></button>`).join("");
+  $("#qrBox").innerHTML = d.svg; $("#qrUrl").textContent = d.url; $("#qrDl").href = d.png; $("#qrDl").download = d.file;
+  $("#qrHint").textContent = QRMODE === "presenca" ? "Aponte a câmera do celular para abrir o credenciamento." : "Aponte a câmera do celular para abrir o portal do GADHOC ATFM-MET.";
+}
+$("#qrMode").addEventListener("click", e => { const b = e.target.closest("[data-qrm]"); if (!b) return; QRMODE = b.dataset.qrm; renderQR(); });
+$("#qrCopy").addEventListener("click", async () => {
+  const s = $("#qrCopy span");
+  try { await navigator.clipboard.writeText(QR[QRMODE].url); s.textContent = "Copiado"; }
+  catch (e) { const r = document.createRange(); r.selectNodeContents($("#qrUrl")); getSelection().removeAllRanges(); getSelection().addRange(r); s.textContent = "Selecionado"; }
+  setTimeout(() => s.textContent = "Copiar", 1600);
+});
+/* Missão & guia */
+const MIS_TABS = [["1. Missão & frentes", "target"], ["2. Guia de utilização (7 opções)", "list-checks"], ["3. Organizações & governança", "users"]];
+let MIS = 0;
+const MIS_ON = "flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md text-xs font-bold bg-blue-600 text-white shadow-sm";
+const MIS_OFF = "flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 rounded-md text-xs font-bold text-slate-600 hover:text-slate-900 dark:text-[#87a8bb] dark:hover:text-white";
+function renderMissao() {
+  $("#misTabs").innerHTML = MIS_TABS.map(([l, i], k) => `<button type="button" data-mis-tab="${k}" class="${MIS === k ? MIS_ON : MIS_OFF}">${ic(i, "w-3.5 h-3.5")}<span>${l}</span></button>`).join("");
+  $$("[data-mis]").forEach(p => p.classList.toggle("hidden", Number(p.dataset.mis) !== MIS));
+}
+$("#misTabs").addEventListener("click", e => { const b = e.target.closest("[data-mis-tab]"); if (!b) return; MIS = Number(b.dataset.misTab); renderMissao(); });
+const PROBLEMS = [
+  ["a","Capacidade tratada como número fixo","Em tempo severo, a capacidade de um setor cai, mas a norma a trata como valor fixo. Daí a proposta de capacidade dinâmica."],
+  ["b","Do dado MET à medida ATFM","Faltam protocolos que traduzam o impacto meteorológico em MIT, GDP, GS ou rerroteamento; hoje as medidas são aplicadas de forma empírica."],
+  ["c","Demanda pouco fiel no SIGMA","Voos que não serão realizados seguem ativos até 45 minutos após o EOBT, distorcendo a previsão de demanda."],
+  ["d","Dados meteorológicos dispersos","Só a EMS de SBSP está disponível em tempo real; SBGR e SBKP são prioridade para os modelos do ICEA."],
+  ["e","Coordenação sem visão comum","Medidas negociadas por telefone entre os órgãos, sem uma tela compartilhada do cenário."],
+  ["f","Aferir a eficácia das medidas","Indicadores como esperas, tempo na área terminal e alternados exigem uma metodologia multicritério."]
+];
+const GUIDE = [
+  ["layout-grid","Hub inicial","Atalhos para todos os módulos, a próxima reunião e o credenciamento."],
+  ["layers","Produtos & ferramentas","Filtre por situação (validação, protótipo, pesquisa…) e veja as novas frentes de estudo."],
+  ["square-check-big","Painel de ações","Busque por código ou assunto, filtre por prazo, responsável e origem, e alterne entre tabela e cards."],
+  ["calendar-days","Cronogramas","Agenda de reuniões por ano, com informe e agenda de cada edição, e as reuniões de desenvolvimento."],
+  ["folder-open","Repositório de docs","Pré-visualize informes e agendas sem sair do portal ou abra direto no Google Drive."],
+  ["badge-check","Credenciamento","Confirme presença na próxima reunião; leva cerca de 1 minuto."],
+  ["qr-code","QR Code & tema","Projete o QR Code nas reuniões e alterne entre os temas claro e escuro."]
+];
+const ORGS = ["CGNA","CINDACTA I","CINDACTA II","CINDACTA III","CRCEA-SE","DTCEA-GL","CIMAER","ICEA","ATD/DECEA","SDOP","CISCEA","ICA","ANAC (convidada)","Azul","GOL","LATAM","ABEAR","IATA"];
+function renderMissaoStatic() {
+  $("#misProblems").innerHTML = PROBLEMS.map(([k, h, p]) => `<div class="flex gap-3 p-4 rounded-xl border bg-white border-slate-200 dark:bg-[rgba(2,7,14,0.6)] dark:border-[rgba(64,214,224,0.22)]"><span class="w-7 h-7 shrink-0 rounded-md border flex items-center justify-center font-mono text-xs font-bold bg-blue-50 text-blue-700 border-blue-200 dark:bg-cyan-950/60 dark:text-[#3fe0d0] dark:border-cyan-400/40">${k}</span><div><div class="font-display font-bold text-sm text-slate-900 dark:text-[#e2f5ff]">${h}</div><p class="text-xs leading-relaxed mt-0.5 text-slate-600 dark:text-[#87a8bb]">${p}</p></div></div>`).join("");
+  $("#misGuide").innerHTML = GUIDE.map(([i, h, p], k) => `<div class="flex gap-3 p-4 rounded-xl border bg-white border-slate-200 dark:bg-[rgba(2,7,14,0.6)] dark:border-[rgba(64,214,224,0.22)]"><span class="w-9 h-9 shrink-0 rounded-lg border flex items-center justify-center bg-blue-50 text-blue-600 border-blue-200 dark:bg-cyan-500/10 dark:text-[#3fe0d0] dark:border-cyan-400/40">${ic(i, "w-4 h-4")}</span><div><div class="font-display font-bold text-sm text-slate-900 dark:text-[#e2f5ff]"><span class="font-mono text-[11px] text-blue-600 dark:text-[#3fe0d0] mr-1">${String(k + 1).padStart(2, "0")}</span>${h}</div><p class="text-xs leading-relaxed mt-0.5 text-slate-600 dark:text-[#87a8bb]">${p}</p></div></div>`).join("");
+  $("#misOrgs").innerHTML = ORGS.map(o => `<span class="text-[11px] font-mono px-2 py-1 rounded border bg-slate-100 border-slate-200 text-slate-700 dark:bg-[rgba(8,26,40,0.8)] dark:border-[rgba(64,214,224,0.22)] dark:text-[#e2f5ff]">${o}</span>`).join("");
+}
+
+/* ============================================================
+   RELÓGIO E TEMA
+   ============================================================ */
+function clock() {
+  const d = new Date(), p = n => String(n).padStart(2, "0");
+  $("#clkUtc").textContent = `${p(d.getUTCHours())}:${p(d.getUTCMinutes())}:${p(d.getUTCSeconds())}Z`;
+  const b = new Date(d.getTime() - 3 * 3600e3);
+  $("#clkBsb").textContent = `${p(b.getUTCHours())}:${p(b.getUTCMinutes())}:${p(b.getUTCSeconds())} BRT`;
+}
+clock(); setInterval(clock, 1000);
+$("#themeBtn").addEventListener("click", () => {
+  const dark = document.documentElement.classList.toggle("dark");
+  try { localStorage.setItem("atfm_theme", dark ? "dark" : "light"); } catch (e) {}
+});
+
+/* ============================================================
+   INÍCIO
+   ============================================================ */
+$$("img[data-logo]").forEach(i => i.src = document.getElementById(i.dataset.logo).src);
+renderHub(); renderProducts(); renderActStatic(); renderActs(); renderCronStatic(); renderCron(); renderDocs(); renderQR(); renderMissao(); renderMissaoStatic();
+show(location.hash.slice(1) || "hub");
+</script>
+</body>
+</html>
