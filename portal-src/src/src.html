@@ -24,17 +24,17 @@
   <div class="sticky top-0 z-40 shadow-xs">
     <header class="border-b border-slate-200 dark:border-[rgba(64,214,224,0.22)] bg-white/95 dark:bg-[rgba(7,22,35,0.92)] backdrop-blur-md transition-colors shadow-md dark:shadow-[0_4px_20px_rgba(0,0,0,0.55)]">
       <div class="hidden md:flex items-center justify-between px-4 lg:px-8 py-1.5 bg-slate-100/90 dark:bg-[#02070e] border-b border-slate-200/80 dark:border-[rgba(64,214,224,0.18)] text-[11.5px] font-mono text-slate-600 dark:text-[#87a8bb]">
-        <div class="flex items-center gap-3 min-w-0">
-          <span class="flex items-center gap-2 text-cyan-600 dark:text-[#3fe0d0] font-semibold tracking-wider whitespace-nowrap">
+        <div class="flex items-center gap-3 min-w-0 flex-1 overflow-hidden">
+          <span class="flex items-center gap-2 text-cyan-600 dark:text-[#3fe0d0] font-semibold tracking-wider whitespace-nowrap shrink-0">
             <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span></span>
             GEPEA / SG3
           </span>
-          <span class="text-slate-300 dark:text-cyan-900">|</span>
-          <span class="text-slate-600 dark:text-slate-300 tracking-wide font-medium whitespace-nowrap">Grupo de Estudos sobre Planejamento do Espaço Aéreo</span>
-          <span class="hidden lg:inline text-slate-300 dark:text-cyan-900">|</span>
-          <span class="hidden lg:inline text-slate-500 dark:text-[#87a8bb] font-hud tracking-wider whitespace-nowrap">SBGR / SBSP / SBKP / TMA-SP / FIR-BS / FIR-CW / FIR-RE</span>
+          <span class="text-slate-300 dark:text-cyan-900 shrink-0">|</span>
+          <span class="text-slate-600 dark:text-slate-300 tracking-wide font-medium truncate min-w-0 xl:shrink-0">Grupo de Estudos sobre Planejamento do Espaço Aéreo</span>
+          <span class="hidden xl:inline text-slate-300 dark:text-cyan-900 shrink-0">|</span>
+          <span class="hidden xl:block text-slate-500 dark:text-[#87a8bb] font-hud tracking-wider truncate min-w-0">SBGR / SBSP / SBKP / TMA-SP</span>
         </div>
-        <div class="flex items-center gap-4 whitespace-nowrap">
+        <div class="flex items-center gap-4 whitespace-nowrap shrink-0 pl-4">
           <div class="flex items-center gap-2.5">
             {{ic:clock:"w-3.5 h-3.5 text-cyan-600 dark:text-[#3fe0d0]"}}
             <span>UTC: <strong id="clkUtc" class="text-cyan-700 dark:text-[#3fe0d0] font-bold dark:hud-glow-cyan">--:--:--Z</strong></span>
@@ -72,7 +72,7 @@
             {{ic:qr-code:"w-4 h-4 text-cyan-600 dark:text-[#3fe0d0]"}}<span class="hidden lg:inline uppercase tracking-wider text-[11px]">QR Code Reunião</span>
           </button>
           <button type="button" data-modal="missao" class="hidden sm:flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-display font-semibold rounded text-slate-700 dark:text-[#e2f5ff] bg-slate-100 dark:bg-[rgba(8,26,40,0.85)] hover:bg-slate-200 dark:hover:bg-[rgba(63,224,208,0.15)] border border-slate-200 dark:border-[rgba(64,214,224,0.35)] dark:hover:border-cyan-400 transition-all shadow-sm hover:shadow-glow-sm" aria-label="Missão e ajuda">
-            {{ic:info:"w-4 h-4 text-amber-500 dark:text-[#ffb440]"}}<span class="hidden lg:inline uppercase tracking-wider text-[11px]">Missão · Ajuda</span>
+            {{ic:info:"w-4 h-4 text-amber-500 dark:text-[#ffb440]"}}<span class="hidden lg:inline uppercase tracking-wider text-[11px]">Missão &amp; Ajuda</span>
           </button>
           <button type="button" id="themeBtn" class="p-1.5 sm:p-2 rounded text-slate-600 dark:text-[#e2f5ff] bg-slate-100 dark:bg-[rgba(8,26,40,0.85)] hover:bg-slate-200 dark:hover:bg-[rgba(63,224,208,0.15)] border border-slate-200 dark:border-[rgba(64,214,224,0.35)] dark:hover:border-cyan-400 transition-colors shadow-sm" aria-label="Alternar tema claro/escuro">
             {{ic:moon:"w-4 h-4 text-slate-700 dark:hidden"}}{{ic:sun:"w-4 h-4 hidden dark:block text-[#ffb440]"}}
@@ -130,33 +130,32 @@
           </div>
         </div>
       </div>
-      <div class="p-4 rounded-2xl border transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
-        <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-1.5">{{ic:sliders-horizontal:"w-4 h-4 text-blue-600 dark:text-blue-400"}}<span class="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">Situação dos produtos</span></div>
-          <span id="prodHint" class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Exibindo todos os produtos</span>
+      <div class="p-4 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] mr-1 flex items-center gap-1">{{ic:sliders-horizontal:"w-3.5 h-3.5"}}Situação:</span>
+          <div id="prodChips" class="flex items-center gap-1.5 flex-wrap"></div>
         </div>
-        <div id="prodChips" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1"></div>
       </div>
       <div id="prodGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
 
       <div class="flex items-center gap-3 pt-2">
-        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-display font-bold text-sm shadow-glow-cyan chamfer-sm">{{ic:sparkles:"w-4 h-4"}}Novas frentes de estudo</span>
-        <span class="flex-1 h-px bg-slate-200 dark:bg-[rgba(64,214,224,0.2)]"></span>
-        <span class="font-mono text-xs font-bold text-cyan-600 dark:text-[#3fe0d0] uppercase tracking-wider">Abertas na ATFM-MET/9</span>
+        <div class="flex items-center gap-2 px-3 py-1 rounded bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-display font-bold text-sm shadow-glow-cyan uppercase tracking-wider">{{ic:sparkles:"w-4 h-4 stroke-[2.5]"}}<span>Novas frentes de estudo</span></div>
+        <div class="h-px flex-1 bg-slate-300 dark:bg-[rgba(64,214,224,0.25)]"></div>
+        <span class="text-xs font-mono font-bold text-slate-500 dark:text-[#3fe0d0] uppercase tracking-wider">Abertas na ATFM-MET/9</span>
       </div>
       <div id="studyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
       <div class="flex items-center gap-3 pt-2">
-        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-display font-bold text-sm chamfer-sm">{{ic:history:"w-4 h-4"}}Histórico</span>
-        <span class="flex-1 h-px bg-slate-200 dark:bg-[rgba(64,214,224,0.2)]"></span>
-        <span class="font-mono text-xs font-bold text-amber-600 dark:text-[#ffb440] uppercase tracking-wider">De onde o grupo partiu</span>
+        <div class="flex items-center gap-2 px-3 py-1 rounded bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-display font-bold text-sm shadow-glow-amber uppercase tracking-wider">{{ic:history:"w-4 h-4 stroke-[2.5]"}}<span>Histórico</span></div>
+        <div class="h-px flex-1 bg-slate-300 dark:bg-[rgba(64,214,224,0.25)]"></div>
+        <span class="text-xs font-mono font-bold text-slate-500 dark:text-[#ffb440] uppercase tracking-wider">De onde o grupo partiu</span>
       </div>
-      <div class="relative overflow-hidden rounded-xl border p-5 sm:p-6 bg-white border-slate-200 shadow-sm dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)]">
+      <div class="p-5 sm:p-6 rounded-xl bg-white dark:bg-gradient-to-br dark:from-[rgba(7,22,35,0.95)] dark:to-[rgba(2,10,20,0.98)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel">
         <div class="flex flex-col sm:flex-row gap-4">
-          <div class="w-12 h-12 shrink-0 rounded-lg border flex items-center justify-center bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-800/60 dark:border-slate-700 dark:text-slate-400">{{ic:ban:"w-6 h-6"}}</div>
+          <div class="w-12 h-12 shrink-0 rounded-lg border flex items-center justify-center bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-500/10 dark:border-slate-400/30 dark:text-slate-300 shadow-xs dark:shadow-glow-sm">{{ic:ban:"w-6 h-6"}}</div>
           <div>
-            <div class="flex items-center gap-2 flex-wrap"><h3 class="text-lg font-display font-bold text-slate-900 dark:text-[#e2f5ff]">SWAP – Plano de Desvios em Condições Meteorológicas Severas</h3><span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded border uppercase tracking-wider bg-slate-100 text-slate-600 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600">Encerrado</span></div>
-            <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-2 leading-relaxed">Em vigor desde 15/12/2019, o SWAP nunca chegou a ser efetivamente utilizado: as formações na TMA-SP são mais dinâmicas do que o processo admitia e o rerroteamento podia acrescentar até 100 NM aos voos. No GADHOC ATFM-MET/3 (outubro de 2024) o grupo elaborou o relatório de justificativa para o cancelamento e passou a trabalhar com capacidade dinâmica e permeabilidade do espaço aéreo.</p>
+            <div class="flex items-center gap-2 flex-wrap"><h3 class="text-lg font-display font-bold text-slate-900 dark:text-[#e2f5ff]">SWAP – Plano de Desvios em Condições Meteorológicas Severas</h3><span class="font-mono text-xs font-bold px-2.5 py-1 rounded border uppercase tracking-wider bg-slate-100 text-slate-600 border-slate-300 dark:bg-[rgba(11,34,54,0.9)] dark:text-[#87a8bb] dark:border-[rgba(64,214,224,0.3)]">Encerrado</span></div>
+            <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-2 leading-relaxed font-sans">Em vigor desde 15/12/2019, o SWAP nunca chegou a ser efetivamente utilizado: as formações na TMA-SP são mais dinâmicas do que o processo admitia e o rerroteamento podia acrescentar até 100 NM aos voos. No GADHOC ATFM-MET/3 (outubro de 2024) o grupo elaborou o relatório de justificativa para o cancelamento e passou a trabalhar com capacidade dinâmica e permeabilidade do espaço aéreo.</p>
           </div>
         </div>
       </div>
@@ -181,77 +180,76 @@
       <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3">
         <div id="actMode" class="flex items-center w-full sm:w-auto rounded-xl p-1 border bg-white border-slate-200 dark:bg-[rgba(2,7,14,0.95)] dark:border-[rgba(64,214,224,0.25)]"></div>
         <div class="flex items-center gap-2 justify-end">
-          <a href="#docs" data-go="docs" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs shadow-md shadow-blue-500/20 active:scale-95 transition-all">{{ic:file-text:"w-4 h-4"}}Informe da ATFM-MET/9</a>
+          <a href="#docs" data-go="docs" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-display font-bold text-xs uppercase tracking-wider shadow-md shadow-blue-500/20 active:scale-95 transition-all">{{ic:file-text:"w-4 h-4"}}Informe da ATFM-MET/9</a>
         </div>
       </div>
 
       <div id="actKpis" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
 
       <div id="actOpenWrap" class="space-y-5">
-        <div class="p-4 rounded-2xl border transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
-          <div class="flex items-center justify-between mb-2">
-            <div class="flex items-center gap-1.5">{{ic:sliders-horizontal:"w-4 h-4 text-blue-600 dark:text-blue-400"}}<span class="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">Prazos das ações</span></div>
-            <span id="prazoHint" class="text-[11px] font-medium text-slate-500 dark:text-slate-400">Exibindo todos os prazos</span>
-          </div>
-          <div id="prazoChips" class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1"></div>
-        </div>
-
-        <div class="p-4 rounded-2xl border transition-colors space-y-3 bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
-          <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
+        <div class="p-4 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel space-y-4">
+          <div class="flex flex-col lg:flex-row lg:items-center gap-3">
             <div class="relative flex-1">
-              {{ic:search:"w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"}}
-              <input id="actQ" type="search" placeholder="Buscar por código, ação, detalhamento ou responsável…" aria-label="Buscar ações" class="w-full pl-9 pr-8 py-2 rounded-xl text-xs font-semibold border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white dark:placeholder-slate-500">
+              {{ic:search:"w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"}}
+              <input id="actQ" type="search" placeholder="Buscar por código, ação, detalhamento ou responsável…" aria-label="Buscar ações" class="w-full pl-10 pr-4 py-2 text-xs rounded bg-slate-50 dark:bg-[rgba(8,26,40,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] text-slate-900 dark:text-[#e2f5ff] placeholder-slate-400 dark:placeholder-[#87a8bb]/60 focus:border-cyan-400 outline-none transition-all font-sans">
             </div>
             <div class="flex items-center gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5"><span class="text-[10px] font-black uppercase text-slate-600 dark:text-slate-400">Responsável:</span>
-                <select id="actResp" class="text-xs font-bold rounded-xl px-2.5 py-1.5 border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-700 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-200"></select></div>
-              <div class="flex items-center gap-1.5"><span class="text-[10px] font-black uppercase text-slate-600 dark:text-slate-400">Origem:</span>
-                <select id="actOrig" class="text-xs font-bold rounded-xl px-2.5 py-1.5 border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-700 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-200"></select></div>
-              <button id="actClear" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700 dark:hover:bg-slate-750">{{ic:rotate-ccw:"w-3.5 h-3.5 shrink-0"}}<span>Limpar Filtros</span></button>
-              <div id="actView" class="flex items-center rounded-xl p-0.5 border bg-slate-100 border-slate-200 dark:bg-slate-950 dark:border-slate-800"></div>
+              <div class="flex items-center gap-1.5"><label for="actResp" class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] flex items-center gap-1">{{ic:users:"w-3.5 h-3.5"}}Responsável:</label>
+              <select id="actResp" class="text-xs font-mono rounded px-2.5 py-1.5 bg-slate-50 dark:bg-[rgba(8,26,40,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] text-slate-900 dark:text-[#e2f5ff] focus:border-cyan-400 outline-none transition-all cursor-pointer"></select></div>
+              <div class="flex items-center gap-1.5 sm:ml-1"><label for="actOrig" class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] flex items-center gap-1">{{ic:history:"w-3.5 h-3.5"}}Origem:</label>
+              <select id="actOrig" class="text-xs font-mono rounded px-2.5 py-1.5 bg-slate-50 dark:bg-[rgba(8,26,40,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] text-slate-900 dark:text-[#e2f5ff] focus:border-cyan-400 outline-none transition-all cursor-pointer"></select></div>
+              <button id="actClear" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer bg-slate-100 dark:bg-[rgba(11,34,54,0.85)] text-slate-700 dark:text-[#e2f5ff] border border-slate-200 dark:border-[rgba(64,214,224,0.22)] hover:border-cyan-400 sm:ml-1">{{ic:rotate-ccw:"w-3.5 h-3.5 shrink-0"}}<span>Limpar</span></button>
+              <div id="actView" class="flex items-center rounded p-0.5 border bg-slate-100 border-slate-200 dark:bg-[rgba(2,7,14,0.85)] dark:border-[rgba(64,214,224,0.25)]" role="group" aria-label="Modo de exibição"></div>
             </div>
           </div>
-          <div id="actQuick" class="flex items-center gap-1 overflow-x-auto no-scrollbar pt-2 border-t border-slate-200 dark:border-slate-800 text-[11px]"></div>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] mr-1 flex items-center gap-1">{{ic:clock:"w-3.5 h-3.5"}}Prazo:</span>
+            <div id="prazoChips" class="flex items-center gap-1.5 flex-wrap"></div>
+          </div>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] mr-1 flex items-center gap-1">{{ic:sliders-horizontal:"w-3.5 h-3.5"}}Filtro rápido:</span>
+            <div id="actQuick" class="flex items-center gap-1.5 flex-wrap"></div>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="p-4 rounded-2xl border bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"><h4 class="text-center text-[11px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200 mb-3">Distribuição por prazo</h4><div id="chartPrazo"></div></div>
-          <div class="p-4 rounded-2xl border bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"><h4 class="text-center text-[11px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200 mb-3">Distribuição por responsável</h4><div id="chartResp"></div></div>
+          <div class="p-4 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel"><h4 class="text-center text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] mb-3">Distribuição por prazo</h4><div id="chartPrazo"></div></div>
+          <div class="p-4 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel"><h4 class="text-center text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] mb-3">Distribuição por responsável</h4><div id="chartResp"></div></div>
         </div>
 
-        <div class="border rounded-2xl overflow-hidden transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
-          <div class="px-4 sm:px-6 py-3.5 border-b flex justify-between items-center gap-3 border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/60">
-            <div class="flex items-center gap-2.5"><h3 class="font-black text-sm text-slate-950 dark:text-white">Ações em Aberto</h3><span id="actCount" class="px-2 py-0.5 rounded-full text-[10px] font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 border border-blue-200 dark:border-blue-900">24 ações</span></div>
-            <span class="hidden sm:inline text-[11px] font-medium text-slate-500 dark:text-slate-400">Conforme o informe do GADHOC ATFM-MET/9</span>
+        <div class="rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel overflow-hidden">
+          <div class="px-4 sm:px-5 py-3 border-b border-slate-200 dark:border-[rgba(64,214,224,0.18)] flex justify-between items-center gap-3">
+            <div class="flex items-center gap-2.5"><h3 class="font-display font-bold text-sm uppercase tracking-wider text-slate-900 dark:text-[#e2f5ff]">Ações em aberto</h3><span id="actCount" class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-50 text-cyan-700 border border-cyan-200 dark:bg-[rgba(11,34,54,0.9)] dark:text-[#3fe0d0] dark:border-[rgba(64,214,224,0.3)]">24 ações</span></div>
+            <span class="hidden sm:inline text-[11px] font-mono text-slate-400 dark:text-[#87a8bb]">Conforme o informe do GADHOC ATFM-MET/9</span>
           </div>
           <div id="actTableWrap" class="overflow-x-auto">
             <table class="w-full text-xs text-left">
-              <thead><tr class="font-black uppercase tracking-wider border-b select-none text-[10px] bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-950 dark:text-slate-300 dark:border-slate-800">
-                <th class="w-[110px] px-3 py-2.5 text-center">Origem</th>
+              <thead><tr class="text-[10px] font-mono font-bold uppercase tracking-wider select-none bg-slate-50 text-slate-500 border-b border-slate-200 dark:bg-[rgba(2,7,14,0.85)] dark:text-[#87a8bb] dark:border-[rgba(64,214,224,0.18)]">
+                <th class="w-[120px] px-3 py-2.5 text-center">Origem</th>
                 <th class="w-[70px] px-2 py-2.5 text-center">Ação</th>
                 <th class="px-3 py-2.5">Ação / Detalhamento</th>
-                <th class="w-[150px] px-2 py-2.5">Responsável</th>
-                <th class="w-[120px] px-2 py-2.5 text-center">Prazo</th>
+                <th class="w-[160px] px-2 py-2.5">Responsável</th>
+                <th class="w-[130px] px-2 py-2.5 text-center">Prazo</th>
               </tr></thead>
-              <tbody id="actRows" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+              <tbody id="actRows" class="divide-y divide-slate-100 dark:divide-[rgba(64,214,224,0.1)]"></tbody>
             </table>
           </div>
           <div id="actCards" class="hidden p-4 grid grid-cols-1 md:grid-cols-2 gap-3"></div>
-          <div id="actEmpty" class="hidden p-8 text-center text-xs font-semibold text-slate-500 dark:text-slate-400">Nenhuma ação encontrada com esses filtros.</div>
+          <div id="actEmpty" class="hidden p-8 text-center text-xs font-mono text-slate-500 dark:text-[#87a8bb]">Nenhuma ação encontrada com esses filtros.</div>
         </div>
       </div>
 
-      <div id="actDoneWrap" class="hidden border rounded-2xl overflow-hidden transition-colors bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
-        <div class="px-4 sm:px-6 py-3.5 border-b flex justify-between items-center gap-3 border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-900/60">
-          <div class="flex items-center gap-2.5"><h3 class="font-black text-sm text-slate-950 dark:text-white">Concluídas e Canceladas na ATFM-MET/9</h3><span class="px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-900">17 ações</span></div>
-          <span class="hidden sm:inline text-[11px] font-medium text-slate-500 dark:text-slate-400">19 a 23 de outubro de 2026 · CINDACTA I</span>
+      <div id="actDoneWrap" class="hidden rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel overflow-hidden">
+        <div class="px-4 sm:px-5 py-3 border-b border-slate-200 dark:border-[rgba(64,214,224,0.18)] flex justify-between items-center gap-3">
+          <div class="flex items-center gap-2.5"><h3 class="font-display font-bold text-sm uppercase tracking-wider text-slate-900 dark:text-[#e2f5ff]">Concluídas e canceladas na ATFM-MET/9</h3><span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border-emerald-500/40">17 ações</span></div>
+          <span class="hidden sm:inline text-[11px] font-mono text-slate-400 dark:text-[#87a8bb]">19 a 23 OUT 2026 · CINDACTA I</span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-xs text-left">
-            <thead><tr class="font-black uppercase tracking-wider border-b select-none text-[10px] bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-950 dark:text-slate-300 dark:border-slate-800">
-              <th class="w-[70px] px-2 py-2.5 text-center">Ação</th><th class="px-3 py-2.5">Ação / Resultado</th><th class="w-[130px] px-2 py-2.5 text-center">Status</th>
+            <thead><tr class="text-[10px] font-mono font-bold uppercase tracking-wider select-none bg-slate-50 text-slate-500 border-b border-slate-200 dark:bg-[rgba(2,7,14,0.85)] dark:text-[#87a8bb] dark:border-[rgba(64,214,224,0.18)]">
+              <th class="w-[70px] px-2 py-2.5 text-center">Ação</th><th class="px-3 py-2.5">Ação / Resultado</th><th class="w-[140px] px-2 py-2.5 text-center">Status</th>
             </tr></thead>
-            <tbody id="doneRows" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+            <tbody id="doneRows" class="divide-y divide-slate-100 dark:divide-[rgba(64,214,224,0.1)]"></tbody>
           </table>
         </div>
       </div>
@@ -270,14 +268,14 @@
         </div>
       </div>
       <div id="cronKpis" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
-      <div class="p-4 rounded-2xl border transition-colors space-y-3 bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800">
+      <div class="p-4 rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel space-y-4">
         <div class="relative">
-          {{ic:search:"w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"}}
-          <input id="cronQ" type="search" placeholder="Pesquisar por edição, código, cidade, sede anfitriã ou assunto…" aria-label="Pesquisar reuniões" class="w-full pl-9 pr-8 py-2 rounded-xl text-xs font-semibold border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white dark:placeholder-slate-500">
+          {{ic:search:"w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"}}
+          <input id="cronQ" type="search" placeholder="Pesquisar por edição, código, cidade, sede anfitriã ou assunto…" aria-label="Pesquisar reuniões" class="w-full pl-10 pr-4 py-2 text-xs rounded bg-slate-50 dark:bg-[rgba(8,26,40,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] text-slate-900 dark:text-[#e2f5ff] placeholder-slate-400 dark:placeholder-[#87a8bb]/60 focus:border-cyan-400 outline-none transition-all font-sans">
         </div>
-        <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px]">
-          <div id="cronYears" class="flex items-center gap-1 flex-wrap"></div>
-          <div id="cronStatus" class="flex items-center gap-1 flex-wrap"></div>
+        <div class="flex flex-wrap items-center gap-x-5 gap-y-2">
+          <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] mr-1 flex items-center gap-1">{{ic:calendar:"w-3.5 h-3.5"}}Ano:</span><div id="cronYears" class="flex items-center gap-1.5 flex-wrap"></div></div>
+          <div class="flex items-center gap-1.5 flex-wrap"><span class="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-[#87a8bb] mr-1 flex items-center gap-1">{{ic:circle-check:"w-3.5 h-3.5"}}Status:</span><div id="cronStatus" class="flex items-center gap-1.5 flex-wrap"></div></div>
         </div>
       </div>
       <div id="cronList" class="space-y-8"></div>
@@ -297,16 +295,19 @@
           </div>
         </div>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
         <aside class="lg:col-span-1 space-y-2">
-          <div class="flex items-center justify-between px-1 mb-1"><span class="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400">{{ic:folder:"w-3.5 h-3.5"}}Pastas</span><span id="docsTotal" class="font-mono text-[10px] text-slate-500 dark:text-slate-400">18 docs</span></div>
-          <div id="docCats" class="flex lg:flex-col gap-2 overflow-x-auto no-scrollbar"></div>
+          <div class="flex items-center justify-between pb-1 px-1"><span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 flex items-center gap-1.5">{{ic:folder:"w-3.5 h-3.5"}} Pastas</span><span id="docsTotal" class="text-xs font-mono text-slate-400">18 docs</span></div>
+          <div id="docCats" class="space-y-1"></div>
           <p class="hidden lg:block text-[11px] leading-relaxed text-slate-500 dark:text-slate-400 pt-3 px-1">Listas de presença, ofícios e apresentações não são publicados aqui porque trazem dados pessoais e de contato dos participantes. Para solicitá-los, fale com a relatoria do grupo.</p>
         </aside>
-        <div class="lg:col-span-3 space-y-3">
-          <div class="p-4 rounded-xl border flex flex-wrap items-center justify-between gap-3 bg-white border-slate-200 shadow-sm dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.28)]">
-            <div><div class="flex items-center gap-2"><h3 id="docCatTitle" class="font-display font-bold text-slate-900 dark:text-[#e2f5ff]">Todas as categorias</h3><span id="docCatCount" class="px-2 py-0.5 rounded-full text-[10px] font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 border border-blue-200 dark:border-blue-900">18 arquivos</span></div><p id="docCatDesc" class="text-xs text-slate-500 dark:text-[#87a8bb] mt-0.5">Informes e agendas de todas as reuniões.</p></div>
-            <div class="relative w-full sm:w-64">{{ic:search:"w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"}}<input id="docQ" type="search" placeholder="Filtrar documentos…" aria-label="Filtrar documentos" class="w-full pl-9 pr-3 py-2 rounded-xl text-xs font-semibold border focus:outline-none transition-all bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-blue-500 dark:bg-slate-950 dark:border-slate-700 dark:text-white dark:placeholder-slate-500"></div>
+        <div class="lg:col-span-3 space-y-4">
+          <div class="p-4 rounded-xl bg-white dark:bg-aero-900 border border-slate-200 dark:border-aero-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2.5"><h3 id="docCatTitle" class="text-base font-bold text-slate-900 dark:text-slate-100">Todas as categorias</h3><span id="docCatCount" class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">18 arquivos</span></div>
+              <p id="docCatDesc" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Informes e agendas de todas as reuniões.</p>
+            </div>
+            <div class="relative w-full sm:w-64 shrink-0">{{ic:search:"w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"}}<input id="docQ" type="search" placeholder="Filtrar documentos…" aria-label="Filtrar documentos" class="w-full pl-10 pr-4 py-2 text-xs rounded bg-slate-50 dark:bg-[rgba(8,26,40,0.85)] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] text-slate-900 dark:text-[#e2f5ff] placeholder-slate-400 dark:placeholder-[#87a8bb]/60 focus:border-cyan-400 outline-none transition-all font-sans"></div>
           </div>
           <div id="docList" class="space-y-3"></div>
         </div>
@@ -468,13 +469,13 @@ const HOJE = new Date();
 
 /* Temas de cor (mesmos tons do portal GADHOC Aeroportos) */
 const TH = {
-  blue:   {bar:"from-cyan-400 to-blue-500", box:"bg-blue-50 border-blue-200 text-blue-600 dark:bg-cyan-500/10 dark:border-cyan-400/40 dark:text-[#3fe0d0] dark:shadow-glow-sm", badge:"bg-blue-50 text-blue-700 border-blue-200 dark:bg-cyan-950/70 dark:text-[#3fe0d0] dark:border-cyan-400/40", sub:"text-blue-700 dark:text-cyan-400", hov:"group-hover:text-blue-600 dark:group-hover:text-[#3fe0d0]", ft:"text-blue-600 dark:text-[#3fe0d0]", dot:"bg-blue-500 dark:bg-[#3fe0d0]"},
-  indigo: {bar:"from-indigo-500 to-purple-500", box:"bg-indigo-50 border-indigo-200 text-indigo-600 dark:bg-indigo-500/10 dark:border-indigo-400/40 dark:text-indigo-400", badge:"bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-300 dark:border-indigo-400/40", sub:"text-indigo-700 dark:text-indigo-400", hov:"group-hover:text-indigo-600 dark:group-hover:text-indigo-300", ft:"text-indigo-600 dark:text-indigo-400", dot:"bg-indigo-500 dark:bg-indigo-400"},
-  emerald:{bar:"from-emerald-400 to-teal-500", box:"bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-400/40 dark:text-emerald-400", badge:"bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-400/40", sub:"text-emerald-700 dark:text-emerald-400", hov:"group-hover:text-emerald-600 dark:group-hover:text-emerald-300", ft:"text-emerald-600 dark:text-emerald-400", dot:"bg-emerald-500 dark:bg-emerald-400"},
-  amber:  {bar:"from-amber-400 to-orange-500", box:"bg-amber-50 border-amber-200 text-amber-600 dark:bg-amber-500/10 dark:border-amber-400/40 dark:text-[#ffb440]", badge:"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/70 dark:text-[#ffb440] dark:border-amber-400/40", sub:"text-amber-700 dark:text-[#ffb440]", hov:"group-hover:text-amber-600 dark:group-hover:text-[#ffb440]", ft:"text-amber-600 dark:text-[#ffb440]", dot:"bg-amber-500 dark:bg-[#ffb440]"},
-  sky:    {bar:"from-sky-400 to-cyan-500", box:"bg-sky-50 border-sky-200 text-sky-600 dark:bg-sky-500/10 dark:border-sky-400/40 dark:text-sky-400", badge:"bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/70 dark:text-[#3fe0d0] dark:border-sky-400/40", sub:"text-sky-700 dark:text-cyan-400", hov:"group-hover:text-sky-600 dark:group-hover:text-[#3fe0d0]", ft:"text-sky-600 dark:text-[#3fe0d0]", dot:"bg-sky-500 dark:bg-sky-400"},
-  teal:   {bar:"from-teal-400 via-cyan-400 to-amber-400", box:"bg-teal-50 border-teal-200 text-teal-600 dark:bg-teal-500/10 dark:border-teal-400/40 dark:text-teal-400", badge:"bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/70 dark:text-teal-300 dark:border-teal-400/40", sub:"text-teal-700 dark:text-teal-400", hov:"group-hover:text-teal-600 dark:group-hover:text-teal-300", ft:"text-teal-600 dark:text-teal-300", dot:"bg-teal-500 dark:bg-teal-400"},
-  cyanem: {bar:"from-emerald-400 via-cyan-400 to-blue-500", box:"bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-400/40 dark:text-emerald-400", badge:"bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-400/40", sub:"text-emerald-700 dark:text-emerald-400", hov:"group-hover:text-emerald-600 dark:group-hover:text-emerald-300", ft:"text-emerald-600 dark:text-emerald-400", dot:"bg-emerald-500 dark:bg-emerald-400"}
+  blue:   {bar:"from-cyan-400 to-blue-500", box:"bg-blue-50 border-blue-200 text-blue-600 dark:bg-cyan-500/10 dark:border-cyan-400/40 dark:text-[#3fe0d0] dark:shadow-glow-sm shadow-xs", badge:"bg-blue-50 text-blue-700 border-blue-200 dark:bg-cyan-950/70 dark:text-[#3fe0d0] dark:border-cyan-400/40", sub:"text-blue-700 dark:text-cyan-400", hov:"group-hover:text-blue-600 dark:group-hover:text-[#3fe0d0]", ft:"text-blue-600 dark:text-[#3fe0d0]", dot:"bg-blue-500 dark:bg-[#3fe0d0]"},
+  indigo: {bar:"from-indigo-500 to-purple-500", box:"bg-indigo-50 border-indigo-200 text-indigo-600 dark:bg-indigo-500/10 dark:border-indigo-400/40 dark:text-indigo-400 dark:shadow-glow-sm shadow-xs", badge:"bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-300 dark:border-indigo-400/40", sub:"text-indigo-700 dark:text-indigo-400", hov:"group-hover:text-indigo-600 dark:group-hover:text-indigo-300", ft:"text-indigo-600 dark:text-indigo-400", dot:"bg-indigo-500 dark:bg-indigo-400"},
+  emerald:{bar:"from-emerald-400 to-teal-500", box:"bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-400/40 dark:text-emerald-400 dark:shadow-glow-sm shadow-xs", badge:"bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-400/40", sub:"text-emerald-700 dark:text-emerald-400", hov:"group-hover:text-emerald-600 dark:group-hover:text-emerald-300", ft:"text-emerald-600 dark:text-emerald-400", dot:"bg-emerald-500 dark:bg-emerald-400"},
+  amber:  {bar:"from-amber-400 to-orange-500", box:"bg-amber-50 border-amber-200 text-amber-600 dark:bg-amber-500/10 dark:border-amber-400/40 dark:text-[#ffb440] dark:shadow-glow-sm shadow-xs", badge:"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/70 dark:text-[#ffb440] dark:border-amber-400/40", sub:"text-amber-700 dark:text-[#ffb440]", hov:"group-hover:text-amber-600 dark:group-hover:text-[#ffb440]", ft:"text-amber-600 dark:text-[#ffb440]", dot:"bg-amber-500 dark:bg-[#ffb440]"},
+  sky:    {bar:"from-sky-400 to-cyan-500", box:"bg-sky-50 border-sky-200 text-sky-600 dark:bg-sky-500/10 dark:border-sky-400/40 dark:text-sky-400 dark:shadow-glow-sm shadow-xs", badge:"bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/70 dark:text-[#3fe0d0] dark:border-sky-400/40", sub:"text-sky-700 dark:text-cyan-400", hov:"group-hover:text-sky-600 dark:group-hover:text-[#3fe0d0]", ft:"text-sky-600 dark:text-[#3fe0d0]", dot:"bg-sky-500 dark:bg-sky-400"},
+  teal:   {bar:"from-teal-400 via-cyan-400 to-amber-400", box:"bg-teal-50 border-teal-200 text-teal-600 dark:bg-teal-500/10 dark:border-teal-400/40 dark:text-teal-400 dark:shadow-glow-sm shadow-xs", badge:"bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-950/70 dark:text-teal-300 dark:border-teal-400/40", sub:"text-teal-700 dark:text-teal-400", hov:"group-hover:text-teal-600 dark:group-hover:text-teal-300", ft:"text-teal-600 dark:text-teal-300", dot:"bg-teal-500 dark:bg-teal-400"},
+  cyanem: {bar:"from-emerald-400 via-cyan-400 to-blue-500", box:"bg-emerald-50 border-emerald-200 text-emerald-600 dark:bg-emerald-500/10 dark:border-emerald-400/40 dark:text-emerald-400 dark:shadow-glow-sm shadow-xs", badge:"bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-400/40", sub:"text-emerald-700 dark:text-emerald-400", hov:"group-hover:text-emerald-600 dark:group-hover:text-emerald-300", ft:"text-emerald-600 dark:text-emerald-400", dot:"bg-emerald-500 dark:bg-emerald-400"}
 };
 
 /* Reuniões do GADHOC ATFM-MET (informes oficiais + planejamento 2027 aprovado na /9) */
@@ -677,6 +678,29 @@ document.addEventListener("click", e => {
 addEventListener("popstate", () => show(location.hash.slice(1) || "hub"));
 addEventListener("keydown", e => { if (e.key === "Escape") closeModals(); });
 
+/* Abas: a roda do mouse rola a barra para o lado, com a barra de rolagem invisível
+   (mesmo comportamento do portal GADHOC Aeroportos). No celular o toque já rola. */
+(function wheelToHorizontal(el, speed) {
+  if (!el) return;
+  let target = el.scrollLeft, busy = false;
+  const step = () => {
+    const cur = el.scrollLeft, diff = target - cur;
+    if (Math.abs(diff) > .8) { el.scrollLeft = cur + diff * .35; requestAnimationFrame(step); }
+    else { el.scrollLeft = target; busy = false; }
+  };
+  el.addEventListener("wheel", ev => {
+    if (el.scrollWidth > el.clientWidth && Math.abs(ev.deltaY) > Math.abs(ev.deltaX)) {
+      ev.preventDefault();
+      let d = ev.deltaY;
+      if (ev.deltaMode === 1) d *= 36; else if (ev.deltaMode === 2) d *= 120;
+      if (!busy) target = el.scrollLeft;
+      target = Math.min(Math.max(0, target + d * speed), el.scrollWidth - el.clientWidth);
+      if (!busy) { busy = true; requestAnimationFrame(step); }
+    }
+  }, {passive: false});
+  el.addEventListener("scroll", () => { if (!busy) target = el.scrollLeft; }, {passive: true});
+})(document.getElementById("tabs"), 2.2);
+
 /* ============================================================
    HUB
    ============================================================ */
@@ -723,6 +747,41 @@ function renderHub() {
 }
 
 /* ============================================================
+   PADRÕES VISUAIS (mesmos componentes do portal GADHOC Aeroportos)
+   ============================================================ */
+const PANEL = "rounded-xl bg-white dark:bg-[rgba(7,22,35,0.92)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] shadow-sm dark:shadow-hud-panel";
+const CHIP_ON = "inline-flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-glow-cyan";
+const CHIP_OFF = "inline-flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1 rounded text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer bg-slate-100 dark:bg-[rgba(11,34,54,0.85)] text-slate-700 dark:text-[#e2f5ff] border border-slate-200 dark:border-[rgba(64,214,224,0.22)] hover:border-cyan-400";
+const SCHIP_ON = "whitespace-nowrap px-2 py-0.5 rounded text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer bg-slate-800 text-white dark:bg-cyan-400 dark:text-slate-950 shadow-xs";
+const SCHIP_OFF = "whitespace-nowrap px-2 py-0.5 rounded text-xs font-mono font-bold uppercase tracking-wider transition-colors cursor-pointer bg-slate-100 dark:bg-[rgba(11,34,54,0.85)] text-slate-700 dark:text-[#e2f5ff] border border-slate-200 dark:border-[rgba(64,214,224,0.22)] hover:border-cyan-400";
+const SEG_ON = "flex-1 sm:flex-none justify-center whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-glow-cyan";
+const SEG_OFF = "flex-1 sm:flex-none justify-center whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer text-slate-600 dark:text-[#87a8bb] hover:text-slate-950 dark:hover:text-white";
+const VIEW_ON = "p-1.5 rounded text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950";
+const VIEW_OFF = "p-1.5 rounded text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer text-slate-500 dark:text-[#87a8bb] hover:text-cyan-600 dark:hover:text-[#3fe0d0]";
+const KPI_TONE = {
+  neutral: {lab:"text-slate-500 dark:text-[#87a8bb]", num:"text-slate-900 dark:text-[#e2f5ff]", icon:"text-cyan-500"},
+  emerald: {lab:"text-emerald-600 dark:text-emerald-400 font-semibold", num:"text-emerald-600 dark:text-emerald-400", icon:"text-emerald-500"},
+  cyan:    {lab:"text-cyan-600 dark:text-[#3fe0d0] font-semibold", num:"text-cyan-600 dark:text-[#3fe0d0]", icon:"text-cyan-500"},
+  amber:   {lab:"text-amber-700 dark:text-[#ffb440] font-semibold", num:"text-amber-600 dark:text-[#ffb440]", icon:"text-[#ffb440]"},
+  rose:    {lab:"text-rose-600 dark:text-rose-400 font-semibold", num:"text-rose-600 dark:text-rose-400", icon:"text-rose-500"},
+  indigo:  {lab:"text-indigo-600 dark:text-indigo-300 font-semibold", num:"text-indigo-600 dark:text-indigo-300", icon:"text-indigo-400"}
+};
+function kpiCard(o) {
+  const t = KPI_TONE[o.tone || "neutral"];
+  return `<div class="p-3.5 ${PANEL} ${o.cls || ""}">
+    <div class="flex items-center justify-between gap-2 ${t.lab} text-xs font-mono uppercase tracking-wider"><span>${o.label}</span>${ic(o.icon, "w-4 h-4 shrink-0 " + t.icon)}</div>
+    <div class="flex items-baseline gap-2 mt-1"><span class="text-2xl font-bold font-mono ${t.num}">${o.value}</span>${o.extra || ""}</div>
+    <span class="text-[10px] text-slate-400 dark:text-[#87a8bb] font-sans">${o.sub}</span></div>`;
+}
+function nextKpi(title, sub, cls) {
+  return `<div class="p-3.5 rounded-xl bg-amber-50 dark:bg-[rgba(255,180,64,0.1)] border border-amber-300 dark:border-[rgba(255,180,64,0.35)] shadow-sm dark:shadow-glow-amber ${cls || ""}">
+    <div class="flex items-center justify-between text-amber-700 dark:text-[#ffb440] text-xs font-mono uppercase tracking-wider font-semibold"><span>Próxima reunião</span>${ic("sparkles", "w-4 h-4 text-[#ffb440]")}</div>
+    <div class="mt-1"><div class="text-xs font-display font-bold text-slate-900 dark:text-[#e2f5ff] truncate">${title}</div><div class="text-[10px] text-amber-700 dark:text-[#ffb440] font-mono mt-0.5">${sub}</div></div></div>`;
+}
+const yearRow = (label, right, grad, icon) => `<div class="flex items-center gap-3 mb-4"><div class="flex items-center gap-2 px-3 py-1 rounded bg-gradient-to-r ${grad || "from-cyan-400 to-blue-500 shadow-glow-cyan"} text-slate-950 font-display font-bold text-sm uppercase tracking-wider">${ic(icon || "calendar", "w-4 h-4 stroke-[2.5]")}<span>${label}</span></div><div class="h-px flex-1 bg-slate-300 dark:bg-[rgba(64,214,224,0.25)]"></div><span class="text-xs font-mono font-bold text-slate-500 dark:text-[#3fe0d0] uppercase tracking-wider">${right}</span></div>`;
+const emptyBox = msg => `<div class="p-8 text-center text-xs font-mono text-slate-500 dark:text-[#87a8bb] ${PANEL}">${msg}</div>`;
+
+/* ============================================================
    PRODUTOS
    ============================================================ */
 const ST_BADGE = {
@@ -733,45 +792,43 @@ const ST_BADGE = {
   "Em andamento":"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/70 dark:text-[#ffb440] dark:border-amber-400/40",
   "Em desenvolvimento":"bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/70 dark:text-blue-300 dark:border-blue-400/40"
 };
-const ST_DOT = {"Em validação":"bg-emerald-500","Protótipo":"bg-cyan-500","Em uso":"bg-sky-500","Pesquisa":"bg-indigo-500","Em andamento":"bg-amber-500","Em desenvolvimento":"bg-blue-500"};
-const CHIP_ON = "px-3 py-1.5 rounded-xl text-xs font-extrabold transition-all whitespace-nowrap flex items-center gap-2 border bg-blue-600 border-blue-600 text-white shadow-sm";
-const CHIP_OFF = "px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap flex items-center gap-2 border bg-white border-slate-200 text-slate-700 hover:bg-slate-100 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-750";
-const CNT_ON = "px-1.5 py-0.2 rounded-full text-[10px] font-black bg-blue-500 text-white";
-const CNT_OFF = "px-1.5 py-0.2 rounded-full text-[10px] font-black bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300";
+const ST_DOT = {"Em validação":"bg-emerald-400","Protótipo":"bg-cyan-400","Em uso":"bg-sky-400","Pesquisa":"bg-indigo-400","Em andamento":"bg-amber-400","Em desenvolvimento":"bg-blue-400"};
 let PROD_ST = "";
 function renderProducts() {
   const sts = [...new Set(PRODUCTS.map(p => p.st))];
   $("#kProd").textContent = PRODUCTS.length + " ATIVOS";
   $("#kStudy").textContent = STUDIES.length + " EM ESTUDO";
-  $("#prodChips").innerHTML = [["", "Todos os produtos", PRODUCTS.length], ...sts.map(s => [s, s, PRODUCTS.filter(p => p.st === s).length])].map(([k, l, n]) => {
+  $("#prodChips").innerHTML = [["", "Todos", PRODUCTS.length], ...sts.map(s => [s, s, PRODUCTS.filter(p => p.st === s).length])].map(([k, l, n]) => {
     const on = PROD_ST === k;
-    return `<button type="button" data-pst="${esc(k)}" class="${on ? CHIP_ON : CHIP_OFF}">${k ? `<span class="size-2 rounded-full ${ST_DOT[k]}"></span>` : ""}<span>${l}</span><span class="${on ? CNT_ON : CNT_OFF}">${n}</span></button>`;
+    return `<button type="button" data-pst="${esc(k)}" class="${on ? CHIP_ON : CHIP_OFF}" aria-pressed="${on}">${k ? `<span class="size-2 rounded-full ${ST_DOT[k]}"></span>` : ""}<span>${l} (${n})</span></button>`;
   }).join("");
-  $("#prodHint").textContent = PROD_ST ? `Exibindo: ${PROD_ST}` : "Exibindo todos os produtos";
   $("#prodGrid").innerHTML = PRODUCTS.filter(p => !PROD_ST || p.st === PROD_ST).map(p => {
     const t = TH[p.th];
     return `<article class="group relative rounded-xl bg-white dark:bg-gradient-to-br dark:from-[rgba(7,22,35,0.95)] dark:to-[rgba(2,10,20,0.98)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] hover:border-cyan-400 dark:hover:border-cyan-400 p-6 flex flex-col justify-between shadow-sm hover:shadow-hud-hover transition-all duration-300 overflow-hidden">
       <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${t.bar} opacity-80 group-hover:opacity-100 transition-opacity"></div>
       <div class="space-y-4">
         <div class="flex items-start justify-between gap-3 pt-1">
-          <div class="w-12 h-12 rounded-lg border flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform ${t.box}">${ic(p.icon, "w-6 h-6")}</div>
+          <div class="w-12 h-12 rounded-lg border flex items-center justify-center group-hover:scale-105 transition-transform ${t.box}">${ic(p.icon, "w-6 h-6")}</div>
           <span class="font-mono text-xs font-bold px-2.5 py-1 rounded border uppercase tracking-wider ${ST_BADGE[p.st]}">${p.st}</span>
         </div>
         <div>
           <h3 class="text-lg font-display font-bold text-slate-900 dark:text-[#e2f5ff] transition-colors ${t.hov}">${esc(p.n)}</h3>
           <p class="text-xs font-mono font-bold uppercase tracking-wider mt-0.5 ${t.sub}">${esc(p.o)}</p>
           <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-2.5 leading-relaxed font-sans">${esc(p.d)}</p>
-          <ul class="mt-3 space-y-1.5">${p.li.map(x => `<li class="flex gap-2 text-xs leading-relaxed text-slate-700 dark:text-slate-300"><span class="mt-1.5 size-1.5 rounded-full shrink-0 ${t.dot}"></span><span>${esc(x)}</span></li>`).join("")}</ul>
+          <ul class="mt-3 space-y-1.5">${p.li.map(x => `<li class="flex gap-2 text-xs leading-relaxed text-slate-700 dark:text-[#e2f5ff]/90 font-sans"><span class="mt-1.5 size-1.5 rounded-full shrink-0 ${t.dot}"></span><span>${esc(x)}</span></li>`).join("")}</ul>
         </div>
-        <div class="pt-1 flex items-center gap-1.5 flex-wrap">${p.f.map(([a, b]) => `<span class="text-[10px] font-mono px-2 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 dark:bg-[rgba(8,26,40,0.8)] dark:text-[#e2f5ff] dark:border-[rgba(64,214,224,0.22)]"><b class="font-display text-[13px] mr-1 ${t.ft}">${esc(a)}</b>${esc(b)}</span>`).join("")}</div>
+        <div class="pt-1 flex items-center gap-1.5 flex-wrap">${p.f.map(([a, b]) => `<span class="text-[10px] font-mono px-2 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 dark:bg-[rgba(8,26,40,0.8)] dark:text-[#e2f5ff] dark:border-[rgba(64,214,224,0.22)]"><b class="font-mono text-[13px] mr-1 ${t.ft}">${esc(a)}</b>${esc(b)}</span>`).join("")}</div>
       </div>
       <div class="mt-6 pt-4 border-t border-slate-100 dark:border-[rgba(64,214,224,0.18)] flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider ${t.ft}">${ic("file-text", "w-3.5 h-3.5 shrink-0")}<span>Fonte · ${esc(p.src)}</span></div>
     </article>`;
   }).join("");
-  $("#studyGrid").innerHTML = STUDIES.map(([c, h, p, icon]) => `<div class="group relative rounded-xl border p-5 bg-white border-slate-200 shadow-sm hover:border-cyan-400 hover:shadow-hud-hover transition-all duration-300 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)] dark:hover:border-cyan-400">
-      <div class="flex items-center justify-between gap-2"><span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded border uppercase tracking-wider bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-300 dark:border-indigo-400/40">Ação ${c}</span><span class="text-indigo-500 dark:text-indigo-400">${ic(icon, "w-4 h-4")}</span></div>
-      <h4 class="font-display font-bold text-[15px] leading-snug mt-3 text-slate-900 dark:text-[#e2f5ff]">${esc(h)}</h4>
-      <p class="text-xs leading-relaxed mt-1.5 text-slate-600 dark:text-[#87a8bb]">${esc(p)}</p></div>`).join("");
+  $("#studyGrid").innerHTML = STUDIES.map(([c, h, p, icon]) => `<div class="group relative rounded-xl p-5 bg-white dark:bg-gradient-to-br dark:from-[rgba(7,22,35,0.95)] dark:to-[rgba(2,10,20,0.98)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] hover:border-cyan-400 dark:hover:border-cyan-400 shadow-sm hover:shadow-hud-hover transition-all duration-300">
+      <div class="flex items-center justify-between gap-2">
+        <span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded border uppercase tracking-wider bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-400/40">Ação ${c}</span>
+        <div class="w-9 h-9 rounded-lg border flex items-center justify-center bg-indigo-50 border-indigo-200 text-indigo-600 dark:bg-indigo-500/10 dark:border-indigo-400/40 dark:text-indigo-400 shadow-xs dark:shadow-glow-sm">${ic(icon, "w-4 h-4")}</div>
+      </div>
+      <h4 class="font-display font-bold text-[15px] leading-snug mt-3 text-slate-900 dark:text-[#e2f5ff] group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">${esc(h)}</h4>
+      <p class="text-xs leading-relaxed mt-1.5 text-slate-600 dark:text-[#87a8bb] font-sans">${esc(p)}</p></div>`).join("");
 }
 $("#prodChips").addEventListener("click", e => { const b = e.target.closest("[data-pst]"); if (!b) return; PROD_ST = b.dataset.pst; renderProducts(); });
 
@@ -779,11 +836,11 @@ $("#prodChips").addEventListener("click", e => { const b = e.target.closest("[da
    PAINEL DE AÇÕES
    ============================================================ */
 const PRAZOS = [
-  {k:"/10", l:"ATFM-MET/10", dot:"bg-amber-500", pill:"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/70 dark:text-amber-200 dark:border-amber-700"},
-  {k:"/11", l:"ATFM-MET/11", dot:"bg-sky-500", pill:"bg-sky-50 text-sky-700 border-sky-200 dark:bg-sky-950/70 dark:text-sky-200 dark:border-sky-700"},
-  {k:"/12", l:"ATFM-MET/12", dot:"bg-indigo-500", pill:"bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/70 dark:text-indigo-200 dark:border-indigo-700"},
-  {k:"IMEDIATO", l:"Imediato", dot:"bg-rose-500", pill:"bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/70 dark:text-rose-200 dark:border-rose-700"},
-  {k:"VERIFICAR", l:"A verificar", dot:"bg-orange-500", pill:"bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/70 dark:text-orange-200 dark:border-orange-700"}
+  {k:"/10", l:"ATFM-MET/10", dot:"bg-[#ffb440]", c:"#ffb440", pill:"bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/80 dark:text-[#ffb440] dark:border-amber-500/40"},
+  {k:"/11", l:"ATFM-MET/11", dot:"bg-[#3fe0d0]", c:"#3fe0d0", pill:"bg-cyan-50 text-cyan-700 border-cyan-200 dark:bg-cyan-950/60 dark:text-[#3fe0d0] dark:border-cyan-400/40"},
+  {k:"/12", l:"ATFM-MET/12", dot:"bg-indigo-400", c:"#818cf8", pill:"bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/80 dark:text-indigo-300 dark:border-indigo-400/40"},
+  {k:"IMEDIATO", l:"Imediato", dot:"bg-rose-400", c:"#fb7185", pill:"bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/60 dark:text-rose-300 dark:border-rose-500/40"},
+  {k:"VERIFICAR", l:"A verificar", dot:"bg-orange-400", c:"#fb923c", pill:"bg-orange-50 text-orange-700 border-orange-200 dark:bg-orange-950/60 dark:text-orange-300 dark:border-orange-500/40"}
 ];
 const RESP = [["","Todos"],["Relat","Relatoria"],["ATD","ATD"],["CIMAER","CIMAER"],["Regionais","Regionais"]];
 const QUICK = [["","Todos"],["OF","Ofícios"],["FERR","Ferramenta ATFM-MET"],["DADOS","Dados & SISMET"],["ANAC","ANAC"],["REUN","Reuniões"]];
@@ -795,80 +852,68 @@ const quickTest = {
   REUN: a => /REUNIÃO|VISITA/.test(a[1])
 };
 const ACT = {q:"", p:"", r:"", o:"", qk:"", view:"tabela", mode:"open"};
-const SEG_ON = "flex-1 sm:flex-none justify-center whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-glow-cyan";
-const SEG_OFF = "flex-1 sm:flex-none justify-center whitespace-nowrap px-3 sm:px-3.5 py-1.5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer text-slate-600 dark:text-[#87a8bb] hover:text-slate-950 dark:hover:text-white";
-const VIEW_ON = "p-1.5 rounded-lg text-xs font-black flex items-center gap-1 transition-all bg-white text-slate-900 shadow-xs dark:bg-slate-800 dark:text-white";
-const VIEW_OFF = "p-1.5 rounded-lg text-xs font-black flex items-center gap-1 transition-all text-slate-500 hover:text-slate-800 dark:hover:text-slate-200";
-const Q_ON = "px-2 py-0.5 rounded-md font-bold transition-all whitespace-nowrap bg-blue-600 text-white dark:bg-slate-200 dark:text-slate-900";
-const Q_OFF = "px-2 py-0.5 rounded-md font-bold transition-all whitespace-nowrap text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800";
 const respKey = r => /Relat/.test(r) ? "Relatoria" : /CIMAER/.test(r) && /ATD/.test(r) ? "ATD / CIMAER" : /ATD/.test(r) ? "ATD" : /CIMAER/.test(r) ? "CIMAER" : r;
 const prazoOf = k => PRAZOS.find(p => p.k === k);
 const origem = c => "ATFM-MET/" + Number(c.split("-")[0]);
+const codeChip = txt => `<span class="font-mono text-[11px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-[rgba(11,34,54,0.9)] text-slate-800 dark:text-[#3fe0d0] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] uppercase tracking-wider whitespace-nowrap">${txt}</span>`;
+const prazoPill = k => { const p = prazoOf(k); return `<span class="inline-flex items-center justify-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase tracking-wider border whitespace-nowrap ${p.pill}"><span class="size-1.5 rounded-full shrink-0 ${p.dot}"></span>${p.l}</span>`; };
 
 function donut(el, data) {
   const total = data.reduce((s, d) => s + d.v, 0); let acc = 0; const R = 15.9155;
   const segs = data.map(d => { const len = d.v / total * 100; const s = `<circle r="${R}" cx="21" cy="21" fill="transparent" stroke="${d.c}" stroke-width="5" stroke-dasharray="${len} ${100 - len}" stroke-dashoffset="${25 - acc}"></circle>`; acc += len; return s; }).join("");
   el.innerHTML = `<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-    <div class="relative w-36 h-36 shrink-0"><svg viewBox="0 0 42 42" class="w-full h-full -rotate-0"><circle r="${R}" cx="21" cy="21" fill="transparent" stroke="currentColor" class="text-slate-100 dark:text-slate-800" stroke-width="5"></circle>${segs}</svg>
-      <div class="absolute inset-0 flex flex-col items-center justify-center"><span class="text-2xl font-black text-slate-950 dark:text-white">${total}</span><span class="text-[9px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400">ações</span></div></div>
-    <ul class="space-y-1.5 text-xs">${data.map(d => `<li class="flex items-center gap-2"><span class="size-2.5 rounded-sm shrink-0" style="background:${d.c}"></span><span class="font-semibold text-slate-700 dark:text-slate-300">${d.l}:</span><span class="font-black text-slate-950 dark:text-white">${d.v}</span></li>`).join("")}</ul></div>`;
+    <div class="relative w-36 h-36 shrink-0"><svg viewBox="0 0 42 42" class="w-full h-full drop-shadow-[0_0_10px_rgba(63,224,208,0.15)]"><circle r="${R}" cx="21" cy="21" fill="transparent" stroke="currentColor" class="text-slate-100 dark:text-[rgba(64,214,224,0.1)]" stroke-width="5"></circle>${segs}</svg>
+      <div class="absolute inset-0 flex flex-col items-center justify-center"><span class="text-2xl font-bold font-mono text-slate-900 dark:text-[#e2f5ff]">${total}</span><span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-[#87a8bb]">ações</span></div></div>
+    <ul class="space-y-1.5 text-xs">${data.map(d => `<li class="flex items-center gap-2"><span class="size-2.5 rounded-sm shrink-0" style="background:${d.c}"></span><span class="font-sans text-slate-600 dark:text-[#87a8bb]">${d.l}:</span><span class="font-mono font-bold text-slate-900 dark:text-[#e2f5ff]">${d.v}</span></li>`).join("")}</ul></div>`;
 }
 
 function renderActStatic() {
   const n = k => ACTIONS.filter(a => a[4] === k).length;
   $("#kOpen").textContent = ACTIONS.length + " REGISTRADAS";
   $("#actMode").innerHTML = [["open", "Painel operacional", "Em aberto", "table"], ["done", "Concluídas na /9", "Concluídas /9", "circle-check"]].map(([k, l, sl, i]) => `<button type="button" data-amode="${k}" class="${ACT.mode === k ? SEG_ON : SEG_OFF}">${ic(i, "w-3.5 h-3.5 shrink-0")}<span class="sm:hidden">${sl}</span><span class="hidden sm:inline">${l}</span></button>`).join("");
-  const nxt = MEETINGS.find(m => m.n === 10), n11 = MEETINGS.find(m => m.n === 11);
-  const kpi = (label, lc, icon, icc, val, vc, extra, desc, dc, wrap) => `<div class="p-4 rounded-2xl border transition-all ${wrap || "bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"}">
-    <div class="flex items-center justify-between mb-1"><span class="text-[10px] font-black uppercase tracking-wider ${lc}">${label}</span>${ic(icon, "w-4 h-4 " + icc)}</div>
-    <div class="flex items-baseline gap-2"><span class="text-2xl font-black ${vc}">${val}</span>${extra || ""}</div>
-    <p class="text-[10px] font-medium mt-0.5 ${dc || "text-slate-500 dark:text-slate-400"}">${desc}</p></div>`;
+  const m10 = MEETINGS.find(m => m.n === 10), m11 = MEETINGS.find(m => m.n === 11);
   $("#actKpis").innerHTML = [
-    kpi("Total em aberto", "text-slate-600 dark:text-slate-400", "layers", "text-blue-600", ACTIONS.length, "text-slate-950 dark:text-white", "", "Após o GADHOC ATFM-MET/9"),
-    kpi("Prazo ATFM-MET/10", "text-amber-800 dark:text-amber-400", "clock", "text-amber-600", n("/10"), "text-amber-800 dark:text-amber-400", "", nxt ? faixa(nxt.ini, nxt.fim) + " · Recife" : ""),
-    kpi("Prazo ATFM-MET/11", "text-sky-800 dark:text-sky-400", "calendar", "text-sky-600", n("/11"), "text-sky-800 dark:text-sky-300", "", n11 ? faixa(n11.ini, n11.fim) + " · Curitiba" : ""),
-    kpi("Concluídas na /9", "text-emerald-800 dark:text-emerald-400", "circle-check", "text-emerald-600", 15, "text-emerald-800 dark:text-emerald-400", `<span class="text-xs font-black text-emerald-700 dark:text-emerald-300">+2 canceladas</span>`, "19 a 23 OUT 2026 · CINDACTA I"),
-    kpi("Alerta de prazo", "text-rose-800 dark:text-rose-400", "triangle-alert", "text-rose-600", n("IMEDIATO") + n("VERIFICAR"), "text-rose-700 dark:text-rose-400", `<span class="text-[10px] font-bold text-rose-700 dark:text-rose-400">ações</span>`, "1 imediata · 1 a verificar", "font-semibold text-rose-700/90 dark:text-rose-400", "col-span-2 sm:col-span-1 bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800")
+    kpiCard({label:"Total em aberto", icon:"layers", value:ACTIONS.length, sub:"Após o GADHOC ATFM-MET/9"}),
+    kpiCard({tone:"amber", label:`<span class="sm:hidden">Prazo /10</span><span class="hidden sm:inline">Prazo ATFM-MET/10</span>`, icon:"clock", value:n("/10"), sub:m10 ? faixa(m10.ini, m10.fim) + " · Recife" : ""}),
+    kpiCard({tone:"cyan", label:`<span class="sm:hidden">Prazo /11</span><span class="hidden sm:inline">Prazo ATFM-MET/11</span>`, icon:"calendar", value:n("/11"), sub:m11 ? faixa(m11.ini, m11.fim) + " · Curitiba" : ""}),
+    kpiCard({tone:"emerald", label:`<span class="sm:hidden">Concluídas /9</span><span class="hidden sm:inline">Concluídas na /9</span>`, icon:"circle-check", value:15, extra:`<span class="text-xs font-mono font-bold text-emerald-700 dark:text-emerald-300">+2 canc.</span>`, sub:"19 a 23 OUT 2026 · CINDACTA I"}),
+    kpiCard({tone:"rose", label:"Alerta de prazo", icon:"triangle-alert", value:n("IMEDIATO") + n("VERIFICAR"), extra:`<span class="text-[11px] font-mono font-bold text-rose-600 dark:text-rose-400">ações</span>`, sub:"1 imediata · 1 a verificar", cls:"col-span-2 sm:col-span-1"})
   ].join("");
-  $("#actResp").innerHTML = RESP.map(([k, l]) => `<option value="${k}">${k ? l : "Todos"}</option>`).join("");
+  $("#actResp").innerHTML = RESP.map(([k, l]) => `<option value="${k}">${l}</option>`).join("");
   const origs = [...new Set(ACTIONS.map(a => origem(a[0])))];
   $("#actOrig").innerHTML = `<option value="">Todas</option>` + origs.map(o => `<option value="${o}">${o}</option>`).join("");
-  donut($("#chartPrazo"), [{l:"ATFM-MET/10", v:n("/10"), c:"#f59e0b"}, {l:"ATFM-MET/11", v:n("/11"), c:"#0ea5e9"}, {l:"ATFM-MET/12", v:n("/12"), c:"#6366f1"}, {l:"Imediato", v:n("IMEDIATO"), c:"#f43f5e"}, {l:"A verificar", v:n("VERIFICAR"), c:"#f97316"}]);
+  donut($("#chartPrazo"), PRAZOS.map(p => ({l:p.l, v:n(p.k), c:p.c})));
   const rc = {}; ACTIONS.forEach(a => { const k = respKey(a[3]); rc[k] = (rc[k] || 0) + 1; });
-  const rcol = {"Relatoria":"#22d3ee", "ATD":"#3b82f6", "ATD / CIMAER":"#8b5cf6", "CIMAER":"#10b981", "Regionais":"#f59e0b"};
+  const rcol = {"Relatoria":"#3fe0d0", "ATD":"#43a9ff", "ATD / CIMAER":"#a78bfa", "CIMAER":"#34d399", "Regionais":"#ffb440"};
   donut($("#chartResp"), Object.entries(rc).sort((a, b) => b[1] - a[1]).map(([k, v]) => ({l:k, v, c:rcol[k] || "#94a3b8"})));
-  $("#doneRows").innerHTML = DONE.map(([c, t, r, canc]) => `<tr class="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
-    <td class="px-2 py-2.5 text-center"><span class="px-2 py-0.5 rounded-md text-[11px] font-black font-mono bg-slate-100 text-slate-900 border border-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700">${c}</span></td>
-    <td class="px-3 py-2.5"><p class="font-bold text-slate-950 dark:text-white text-xs leading-snug">${esc(t)}</p><p class="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5">${esc(r)}</p></td>
-    <td class="px-2 py-2.5 text-center"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black uppercase border ${canc ? "bg-slate-100 text-slate-600 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600" : "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/70 dark:text-emerald-300 dark:border-emerald-700"}">${ic(canc ? "circle-x" : "circle-check", "w-3 h-3")}${canc ? "Cancelada" : "Concluída"}</span></td></tr>`).join("");
+  $("#doneRows").innerHTML = DONE.map(([c, t, r, canc]) => `<tr class="transition-colors hover:bg-slate-50 dark:hover:bg-[rgba(63,224,208,0.05)]">
+    <td class="px-2 py-2.5 text-center align-top">${codeChip(c)}</td>
+    <td class="px-3 py-2.5 align-top"><p class="font-display font-semibold text-[12.5px] text-slate-900 dark:text-[#e2f5ff] leading-snug">${esc(t)}</p><p class="text-[11px] font-sans text-slate-500 dark:text-[#87a8bb] mt-0.5">${esc(r)}</p></td>
+    <td class="px-2 py-2.5 text-center align-top"><span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase tracking-wider border ${canc ? "bg-slate-100 text-slate-600 border-slate-300 dark:bg-[rgba(11,34,54,0.9)] dark:text-[#87a8bb] dark:border-[rgba(64,214,224,0.3)]" : "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border-emerald-500/40"}">${ic(canc ? "circle-x" : "circle-check", "w-3 h-3")}${canc ? "Cancelada" : "Concluída"}</span></td></tr>`).join("");
 }
 function renderActs() {
   $("#actOpenWrap").classList.toggle("hidden", ACT.mode !== "open");
   $("#actDoneWrap").classList.toggle("hidden", ACT.mode !== "done");
   $$("#actMode [data-amode]").forEach(b => b.className = b.dataset.amode === ACT.mode ? SEG_ON : SEG_OFF);
-  const all = ACTIONS.length;
-  $("#prazoChips").innerHTML = [{k:"", l:"Todos os prazos"}, ...PRAZOS].map(p => { const on = ACT.p === p.k; const n = p.k ? ACTIONS.filter(a => a[4] === p.k).length : all;
-    return `<button type="button" data-prz="${p.k}" class="${on ? CHIP_ON : CHIP_OFF}">${p.k ? `<span class="size-2 rounded-full ${p.dot}"></span>` : ""}<span>${p.l}</span><span class="${on ? CNT_ON : CNT_OFF}">${n}</span></button>`; }).join("");
-  $("#prazoHint").textContent = ACT.p ? "Exibindo: " + prazoOf(ACT.p).l : "Exibindo todos os prazos";
-  $("#actView").innerHTML = [["tabela", "Tabela", "table"], ["cards", "Cards", "layout-grid"]].map(([k, l, i]) => `<button type="button" data-aview="${k}" class="${ACT.view === k ? VIEW_ON : VIEW_OFF}">${ic(i, "w-3.5 h-3.5")}<span class="hidden sm:inline">${l}</span></button>`).join("");
-  $("#actQuick").innerHTML = `<span class="text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400 mr-1 whitespace-nowrap">Filtro rápido:</span>` + QUICK.map(([k, l]) => `<button type="button" data-qk="${k}" class="${ACT.qk === k ? Q_ON : Q_OFF}">${l}</button>`).join("");
+  $("#prazoChips").innerHTML = [{k:"", l:"Todos"}, ...PRAZOS].map(p => { const on = ACT.p === p.k; const n = p.k ? ACTIONS.filter(a => a[4] === p.k).length : ACTIONS.length;
+    return `<button type="button" data-prz="${p.k}" class="${on ? CHIP_ON : CHIP_OFF}" aria-pressed="${on}">${p.k ? `<span class="size-2 rounded-full ${on ? "bg-slate-950/60" : p.dot}"></span>` : ""}<span>${p.l} (${n})</span></button>`; }).join("");
+  $("#actView").innerHTML = [["tabela", "Tabela", "table"], ["cards", "Cards", "layout-grid"]].map(([k, l, i]) => `<button type="button" data-aview="${k}" class="${ACT.view === k ? VIEW_ON : VIEW_OFF}" aria-pressed="${ACT.view === k}" title="${l}">${ic(i, "w-3.5 h-3.5")}<span class="hidden sm:inline pr-0.5">${l}</span></button>`).join("");
+  $("#actQuick").innerHTML = QUICK.map(([k, l]) => `<button type="button" data-qk="${k}" class="${ACT.qk === k ? SCHIP_ON : SCHIP_OFF}" aria-pressed="${ACT.qk === k}">${l}</button>`).join("");
   const q = ACT.q.trim().toLowerCase();
   const rows = ACTIONS.filter(a => (!ACT.p || a[4] === ACT.p) && (!ACT.r || a[3].includes(ACT.r)) && (!ACT.o || origem(a[0]) === ACT.o) && (!ACT.qk || quickTest[ACT.qk](a)) && (!q || a.join(" ").toLowerCase().includes(q)));
   $("#actCount").textContent = rows.length + (rows.length === 1 ? " ação" : " ações");
-  const pill = k => { const p = prazoOf(k); return `<span class="inline-flex items-center justify-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-normal border max-w-full ${p.pill}"><span class="size-1.5 rounded-full shrink-0 ${p.dot}"></span><span class="truncate">${p.l}</span></span>`; };
-  const orig = c => `<span class="px-2 py-0.5 rounded-md text-[11px] font-black bg-slate-100 text-slate-900 border border-slate-300 dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700 whitespace-nowrap">${origem(c)}</span>`;
-  $("#actRows").innerHTML = rows.map(a => `<tr class="transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/60">
-      <td class="px-3 py-2.5 text-center align-top">${orig(a[0])}</td>
-      <td class="px-2 py-2.5 text-center align-top font-mono font-bold text-xs text-slate-800 dark:text-slate-200">${a[0]}</td>
-      <td class="px-3 py-2.5 align-top"><p class="font-bold text-slate-950 dark:text-white text-xs leading-snug">${esc(a[1])}</p><p class="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">${esc(a[2])}</p></td>
-      <td class="px-2 py-2.5 align-top text-slate-900 dark:text-slate-100 font-bold text-xs">${esc(a[3])}</td>
-      <td class="px-2 py-2.5 align-top text-center">${pill(a[4])}</td></tr>`).join("");
-  $("#actCards").innerHTML = rows.map(a => `<div class="rounded-xl border p-4 bg-white border-slate-200 hover:border-cyan-400 transition-all dark:bg-slate-950/60 dark:border-slate-800 dark:hover:border-cyan-400">
-      <div class="flex items-center justify-between gap-2">${orig(a[0])}${pill(a[4])}</div>
-      <div class="mt-2 font-mono text-[11px] font-bold text-blue-600 dark:text-[#3fe0d0]">AÇÃO GEPEA/SG3/GADHOC ATFM-MET/${a[0]}</div>
-      <p class="mt-1 font-bold text-slate-950 dark:text-white text-xs leading-snug">${esc(a[1])}</p>
-      <p class="text-[11px] font-medium text-slate-500 dark:text-slate-400 mt-1 leading-snug">${esc(a[2])}</p>
-      <div class="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center gap-1.5 text-[11px] font-bold text-slate-700 dark:text-slate-300">${ic("users", "w-3.5 h-3.5 text-slate-400")}${esc(a[3])}</div></div>`).join("");
+  $("#actRows").innerHTML = rows.map(a => `<tr class="transition-colors hover:bg-slate-50 dark:hover:bg-[rgba(63,224,208,0.05)]">
+      <td class="px-3 py-3 text-center align-top">${codeChip(origem(a[0]))}</td>
+      <td class="px-2 py-3 text-center align-top font-mono font-bold text-xs text-slate-800 dark:text-[#e2f5ff]">${a[0]}</td>
+      <td class="px-3 py-3 align-top"><p class="font-display font-semibold text-[12.5px] text-slate-900 dark:text-[#e2f5ff] leading-snug">${esc(a[1])}</p><p class="text-[11px] font-sans text-slate-500 dark:text-[#87a8bb] mt-1 leading-snug">${esc(a[2])}</p></td>
+      <td class="px-2 py-3 align-top text-xs font-sans font-medium text-slate-700 dark:text-[#e2f5ff]">${esc(a[3])}</td>
+      <td class="px-2 py-3 align-top text-center">${prazoPill(a[4])}</td></tr>`).join("");
+  $("#actCards").innerHTML = rows.map(a => `<div class="group rounded-xl p-4 bg-white dark:bg-gradient-to-br dark:from-[rgba(7,22,35,0.95)] dark:to-[rgba(2,10,20,0.98)] border border-slate-200 dark:border-[rgba(64,214,224,0.25)] hover:border-cyan-400 dark:hover:border-cyan-400 shadow-sm dark:shadow-hud-panel transition-all duration-200">
+      <div class="flex items-center justify-between gap-2 flex-wrap">${codeChip(origem(a[0]))}${prazoPill(a[4])}</div>
+      <div class="mt-3 p-2 rounded bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-100 dark:border-[rgba(64,214,224,0.22)] text-[11px] font-mono text-slate-600 dark:text-[#3fe0d0] tracking-wider break-all">AÇÃO GEPEA/SG3/GADHOC ATFM-MET/${a[0]}</div>
+      <p class="mt-2.5 font-display font-semibold text-[12.5px] text-slate-900 dark:text-[#e2f5ff] leading-snug">${esc(a[1])}</p>
+      <p class="text-[11px] font-sans text-slate-500 dark:text-[#87a8bb] mt-1 leading-snug">${esc(a[2])}</p>
+      <div class="mt-3 pt-2.5 border-t border-slate-100 dark:border-[rgba(64,214,224,0.18)] flex items-center gap-1.5 text-[11px] font-sans font-medium text-slate-700 dark:text-[#e2f5ff]">${ic("users", "w-3.5 h-3.5 text-indigo-400")}${esc(a[3])}</div></div>`).join("");
   const empty = rows.length === 0;
   $("#actEmpty").classList.toggle("hidden", !empty);
   $("#actTableWrap").classList.toggle("hidden", empty || ACT.view !== "tabela");
@@ -891,80 +936,84 @@ $("#actClear").addEventListener("click", () => { Object.assign(ACT, {q:"", p:"",
    CRONOGRAMAS
    ============================================================ */
 const CRON = {mode:"reunioes", y:"", s:"", q:""};
-const C_ON = "px-2 py-0.5 rounded-md font-mono font-bold uppercase transition-all whitespace-nowrap bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950";
-const C_OFF = "px-2 py-0.5 rounded-md font-mono font-bold uppercase transition-all whitespace-nowrap border bg-white border-slate-200 text-slate-600 hover:border-cyan-400 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-300";
-function docBtn(id, label) {
-  return `<a href="${DRIVE(id)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 hover:text-blue-700 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff] dark:hover:border-cyan-400">${ic("file-text", "w-3.5 h-3.5")}${label}</a>`;
-}
+const dias = e => Math.round((D(e.fim) - D(e.ini)) / 864e5) + 1;
+const smallBtn = (href, icon, label, external) => `<a href="${href}"${external ? ' target="_blank" rel="noopener"' : ""} class="inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono font-bold uppercase tracking-wider transition-colors bg-slate-100 dark:bg-[rgba(11,34,54,0.85)] text-slate-700 dark:text-[#e2f5ff] border border-slate-200 dark:border-[rgba(64,214,224,0.22)] hover:border-cyan-400 hover:text-cyan-700 dark:hover:text-[#3fe0d0]">${ic(icon, "w-3.5 h-3.5")}${label}</a>`;
+const statusChip = done => done
+  ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/40 uppercase tracking-wider">${ic("circle-check", "w-3 h-3 text-emerald-500")}<span>Realizada</span></span>`
+  : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-amber-50 text-amber-700 dark:bg-amber-950/80 dark:text-[#ffb440] border border-amber-200 dark:border-amber-500/40 uppercase tracking-wider">${ic("clock", "w-3 h-3 text-[#ffb440]")}<span>Agendada</span></span>`;
+const presChip = `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-400/40 uppercase tracking-wider">${ic("map-pin", "w-3 h-3 text-indigo-400")}<span>Presencial</span></span>`;
+const cardShell = (inner, highlight) => `<article class="group relative rounded-xl bg-white dark:bg-gradient-to-br dark:from-[rgba(7,22,35,0.95)] dark:to-[rgba(2,10,20,0.98)] border p-5 flex flex-col justify-between shadow-sm dark:shadow-hud-panel transition-all duration-200 hover:border-cyan-400 ${highlight ? "border-amber-300 dark:border-[rgba(255,180,64,0.55)] dark:shadow-glow-amber" : "border-slate-200 dark:border-[rgba(64,214,224,0.25)]"}">${inner}</article>`;
 function meetingCard(m) {
   const done = passou(m.fim);
   const nextOne = NEXT && m === NEXT;
   const ed = m.ws ? "Workshop" : "Edição " + String(m.n).padStart(2, "0");
   const code = m.ws ? "GEPEA/SG3/WORKSHOP ATFM-MET/2026" : "GEPEA/SG3/GADHOC ATFM-MET/" + m.n;
-  const st = done ? `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-400/40">${ic("circle-check", "w-3 h-3")}Realizada</span>`
-                  : `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-[#ffb440] dark:border-amber-400/40">${ic("clock", "w-3 h-3")}Agendada</span>`;
-  const docs = [m.inf ? docBtn(m.inf, "Informe") : "", m.ag ? docBtn(m.ag, m.agLabel || "Agenda") : "", m.mapa ? `<a href="${m.mapa}" target="_blank" rel="noopener" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 hover:text-blue-700 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff] dark:hover:border-cyan-400">${ic("map", "w-3.5 h-3.5")}Como chegar</a>` : "", nextOne ? `<a href="presenca.html" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm">${ic("badge-check", "w-3.5 h-3.5")}Confirmar presença</a>` : ""].join("");
-  return `<article class="group rounded-xl border p-5 flex flex-col transition-all duration-300 hover:-translate-y-0.5 ${nextOne ? "bg-white border-amber-300 shadow-sm dark:bg-[rgba(7,22,35,0.92)] dark:border-amber-400/60 dark:shadow-glow-amber" : "bg-white border-slate-200 shadow-sm hover:border-cyan-400 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.28)] dark:hover:border-cyan-400"}">
-    <div class="flex items-center justify-between gap-2 flex-wrap">
-      <span class="font-mono text-xs font-bold px-2 py-1 rounded border uppercase tracking-wider bg-cyan-50 text-cyan-700 border-cyan-300 dark:bg-cyan-950/40 dark:text-[#3fe0d0] dark:border-cyan-400/40">${ed}</span>
-      <div class="flex items-center gap-1.5"><span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/60 dark:text-indigo-300 dark:border-indigo-400/40">${ic("map-pin", "w-3 h-3")}Presencial</span>${st}</div>
+  const links = [m.inf ? smallBtn(DRIVE(m.inf), "file-text", "Informe", true) : "", m.ag ? smallBtn(DRIVE(m.ag), "file-text", m.agLabel || "Agenda", true) : "", m.mapa ? smallBtn(m.mapa, "map", "Como chegar", true) : "",
+    nextOne ? `<a href="presenca.html" class="inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono font-bold uppercase tracking-wider bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 shadow-glow-cyan">${ic("badge-check", "w-3.5 h-3.5")}Confirmar presença</a>` : ""].join("");
+  return cardShell(`<div class="space-y-3.5">
+      <div class="flex items-center justify-between gap-2 flex-wrap">
+        <span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-[rgba(11,34,54,0.9)] text-slate-800 dark:text-[#3fe0d0] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] uppercase tracking-wider">${ed}</span>
+        <div class="flex items-center gap-1.5">${presChip}${statusChip(done)}</div>
+      </div>
+      <div><h4 class="text-sm font-display font-bold text-slate-900 dark:text-[#e2f5ff] flex items-center gap-1.5">${ic("calendar", "w-4 h-4 text-cyan-500 shrink-0")}<span>${faixaLonga(m.ini, m.fim)}</span></h4>
+        <p class="text-[11px] text-slate-500 dark:text-[#87a8bb] font-mono mt-0.5 flex items-center gap-1.5">${ic("clock", "w-3 h-3 text-slate-400")}<span>${dias(m)} dias${m.ws ? " de programação" : " de trabalho"}</span></p></div>
+      <div class="p-2.5 rounded bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-100 dark:border-[rgba(64,214,224,0.22)] text-[11px] font-mono text-slate-600 dark:text-[#3fe0d0] break-all select-all tracking-wider">${code}</div>
+      <div class="text-xs space-y-1 text-slate-700 dark:text-[#e2f5ff]">
+        <div class="flex items-center gap-1.5 font-medium">${ic("map-pin", "w-3.5 h-3.5 text-indigo-400 shrink-0")}<span>${esc(m.cidade)}</span></div>
+        <div class="flex items-center gap-1.5 text-slate-500 dark:text-[#87a8bb] text-[11px]">${ic("building-2", "w-3.5 h-3.5 text-amber-500 shrink-0")}<span>Sede anfitriã: <strong class="text-slate-800 dark:text-[#ffb440] font-sans">${esc(m.sede)}</strong></span></div>
+        ${m.end ? `<div class="flex items-start gap-1.5 text-slate-500 dark:text-[#87a8bb] text-[11px]">${ic("map", "w-3.5 h-3.5 text-cyan-500 shrink-0 mt-px")}<span>${esc(m.end)}</span></div>` : ""}
+      </div>
+      <p class="text-xs leading-relaxed text-slate-600 dark:text-[#87a8bb] font-sans">${esc(m.resumo)}</p>
     </div>
-    <div class="mt-3 flex items-center gap-2 font-display font-bold text-slate-900 dark:text-[#e2f5ff]">${ic("calendar", "w-4 h-4 text-blue-600 dark:text-[#3fe0d0]")}${faixaLonga(m.ini, m.fim)}</div>
-    <div class="mt-3 px-3 py-2.5 rounded-md font-mono text-[11px] tracking-wider bg-slate-50 border border-slate-200 text-cyan-700 dark:bg-[rgba(2,7,14,0.85)] dark:border-[rgba(64,214,224,0.22)] dark:text-[#3fe0d0]">${code}</div>
-    <div class="mt-3 space-y-1.5">
-      <div class="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">${ic("map-pin", "w-4 h-4 text-indigo-500 dark:text-indigo-400")}${esc(m.cidade)}</div>
-      <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-[#87a8bb]">${ic("building-2", "w-4 h-4 text-amber-500 dark:text-[#ffb440]")}Sede anfitriã: <b class="text-amber-600 dark:text-[#ffb440]">${esc(m.sede)}</b></div>
-      ${m.end ? `<div class="flex items-start gap-2 text-[11px] text-slate-500 dark:text-[#87a8bb]">${ic("map", "w-4 h-4 shrink-0 text-cyan-600 dark:text-[#3fe0d0]")}<span>${esc(m.end)}</span></div>` : ""}
-    </div>
-    <p class="mt-3 text-xs leading-relaxed text-slate-600 dark:text-[#87a8bb] flex-1">${esc(m.resumo)}</p>
-    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-[rgba(64,214,224,0.15)] flex items-center justify-between gap-2 flex-wrap">
-      <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500">${esc(m.res)}</span>
-      <div class="flex items-center gap-1.5 flex-wrap">${docs}</div>
-    </div></article>`;
+    <div class="mt-4 pt-3 border-t border-slate-100 dark:border-[rgba(64,214,224,0.18)] flex items-center justify-between gap-2 flex-wrap text-xs">
+      <span class="text-[10px] text-slate-400 dark:text-[#87a8bb] font-mono">${esc(m.res)}</span>
+      <div class="flex items-center gap-1.5 flex-wrap">${links}</div>
+    </div>`, nextOne);
 }
 function devCard(e) {
   const done = passou(e.fim);
-  return `<article class="rounded-xl border p-5 flex flex-col transition-all duration-300 hover:-translate-y-0.5 bg-white border-slate-200 shadow-sm hover:border-cyan-400 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.28)] dark:hover:border-cyan-400">
-    <div class="flex items-center justify-between gap-2 flex-wrap">
-      <span class="font-mono text-xs font-bold px-2 py-1 rounded border uppercase tracking-wider ${e.visita ? "bg-amber-50 text-amber-700 border-amber-300 dark:bg-amber-950/40 dark:text-[#ffb440] dark:border-amber-400/40" : "bg-teal-50 text-teal-700 border-teal-300 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-400/40"}">${e.visita ? "Visita técnica" : "Desenvolvimento"}</span>
-      ${done ? `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-300 dark:border-emerald-400/40">${ic("circle-check", "w-3 h-3")}Realizada</span>` : `<span class="inline-flex items-center gap-1 font-mono text-[10px] font-bold px-2 py-1 rounded border uppercase bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/60 dark:text-[#ffb440] dark:border-amber-400/40">${ic("clock", "w-3 h-3")}Agendada</span>`}
-    </div>
-    <h4 class="mt-3 font-display font-bold text-slate-900 dark:text-[#e2f5ff]">${esc(e.t)}</h4>
-    <div class="mt-1 flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-200">${ic("calendar", "w-4 h-4 text-blue-600 dark:text-[#3fe0d0]")}${faixaLonga(e.ini, e.fim)}</div>
-    <div class="mt-3 px-3 py-2 rounded-md font-mono text-[11px] tracking-wider bg-slate-50 border border-slate-200 text-cyan-700 dark:bg-[rgba(2,7,14,0.85)] dark:border-[rgba(64,214,224,0.22)] dark:text-[#3fe0d0]">${esc(e.tag)}</div>
-    <div class="mt-3 flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">${ic("map-pin", "w-4 h-4 text-indigo-500 dark:text-indigo-400")}${esc(e.cidade)} · ${esc(e.sede)}</div>
-    <p class="mt-3 text-xs leading-relaxed text-slate-600 dark:text-[#87a8bb]">${esc(e.resumo)}</p></article>`;
+  const tipo = e.visita ? `<span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-[#ffb440] border border-amber-200 dark:border-amber-500/40 uppercase tracking-wider">Visita técnica</span>`
+                        : `<span class="font-mono text-xs font-bold px-2.5 py-1 rounded bg-slate-100 dark:bg-[rgba(11,34,54,0.9)] text-slate-800 dark:text-[#3fe0d0] border border-slate-200 dark:border-[rgba(64,214,224,0.3)] uppercase tracking-wider">Desenvolvimento</span>`;
+  return cardShell(`<div class="space-y-3.5">
+      <div class="flex items-center justify-between gap-2 flex-wrap">${tipo}${statusChip(done)}</div>
+      <div><h4 class="text-sm font-display font-bold text-slate-900 dark:text-[#e2f5ff]">${esc(e.t)}</h4>
+        <p class="text-[11px] text-slate-500 dark:text-[#87a8bb] font-mono mt-1 flex items-center gap-1.5">${ic("calendar", "w-3.5 h-3.5 text-cyan-500 shrink-0")}<span>${faixaLonga(e.ini, e.fim)}</span></p></div>
+      <div class="p-2.5 rounded bg-slate-50 dark:bg-[rgba(2,7,14,0.85)] border border-slate-100 dark:border-[rgba(64,214,224,0.22)] text-[11px] font-mono text-slate-600 dark:text-[#3fe0d0] tracking-wider">${esc(e.tag)}</div>
+      <div class="text-xs space-y-1 text-slate-700 dark:text-[#e2f5ff]">
+        <div class="flex items-center gap-1.5 font-medium">${ic("map-pin", "w-3.5 h-3.5 text-indigo-400 shrink-0")}<span>${esc(e.cidade)}</span></div>
+        <div class="flex items-center gap-1.5 text-slate-500 dark:text-[#87a8bb] text-[11px]">${ic("building-2", "w-3.5 h-3.5 text-amber-500 shrink-0")}<span>Local: <strong class="text-slate-800 dark:text-[#ffb440] font-sans">${esc(e.sede)}</strong></span></div>
+      </div>
+      <p class="text-xs leading-relaxed text-slate-600 dark:text-[#87a8bb] font-sans">${esc(e.resumo)}</p>
+    </div>`, false);
 }
 function renderCronStatic() {
   const gad = MEETINGS.filter(m => m.n);
   const real = gad.filter(m => passou(m.fim)).length, agend = gad.length - real;
   const devFut = DEVS.filter(e => !e.visita).length;
-  const kpi = (l, lc, icon, icc, v, vc, d, wrap) => `<div class="p-4 rounded-2xl border transition-all ${wrap || "bg-white border-slate-200 shadow-sm dark:bg-slate-900/90 dark:border-slate-800"}"><div class="flex items-center justify-between mb-1"><span class="text-[10px] font-black uppercase tracking-wider ${lc}">${l}</span>${ic(icon, "w-4 h-4 " + icc)}</div><div class="text-2xl font-black ${vc}">${v}</div><p class="text-[10px] font-medium mt-0.5 text-slate-500 dark:text-slate-400">${d}</p></div>`;
   const days = NEXT ? Math.max(0, Math.ceil((D(NEXT.ini) - HOJE) / 864e5)) : 0;
   $("#cronKpis").innerHTML = [
-    kpi("Total reuniões", "text-slate-600 dark:text-slate-400", "calendar-days", "text-blue-600", gad.length, "text-slate-950 dark:text-white", "Ciclo 2024 a 2027"),
-    kpi("Realizadas", "text-emerald-800 dark:text-emerald-400", "circle-check", "text-emerald-600", real, "text-emerald-800 dark:text-emerald-400", "Informes e deliberações"),
-    kpi("Agendadas", "text-sky-800 dark:text-sky-400", "clock", "text-sky-600", agend, "text-sky-800 dark:text-sky-300", "Planejamento 2027"),
-    kpi("Workshop", "text-indigo-800 dark:text-indigo-400", "sparkles", "text-indigo-600", 1, "text-indigo-800 dark:text-indigo-300", "15 a 17 SET 2026 · CRCEA-SE"),
-    kpi("Desenvolvimento", "text-teal-800 dark:text-teal-400", "cpu", "text-teal-600", devFut, "text-teal-800 dark:text-teal-300", "Com a ATD, no ICEA"),
-    NEXT ? `<div class="col-span-2 sm:col-span-1 p-4 rounded-2xl border bg-amber-50 border-amber-300 shadow-sm dark:bg-amber-950/30 dark:border-amber-400/60 dark:shadow-glow-amber"><div class="flex items-center justify-between mb-1"><span class="text-[10px] font-black uppercase tracking-wider text-amber-700 dark:text-[#ffb440]">Próxima reunião</span>${ic("sparkles", "w-4 h-4 text-amber-500 dark:text-[#ffb440]")}</div><div class="font-display font-bold text-sm text-slate-900 dark:text-white">Edição ${NEXT.n} (${NEXT.cidade.split(" - ")[0]})</div><p class="text-[11px] font-medium mt-0.5 text-amber-700 dark:text-amber-300">${faixa(NEXT.ini, NEXT.fim)} · faltam ${days} dias</p></div>` : ""
+    kpiCard({label:"Total reuniões", icon:"calendar-days", value:gad.length, sub:"Ciclo 2024 a 2027"}),
+    kpiCard({tone:"emerald", label:"Realizadas", icon:"circle-check", value:real, sub:"Informes e deliberações"}),
+    kpiCard({tone:"cyan", label:"Agendadas", icon:"clock", value:agend, sub:"Planejamento 2027"}),
+    kpiCard({tone:"indigo", label:"Workshop", icon:"sparkles", value:1, sub:"15 a 17 SET 2026 · CRCEA-SE"}),
+    kpiCard({label:"Desenvolvimento", icon:"cpu", value:devFut, sub:"Com a ATD, no ICEA"}),
+    NEXT ? nextKpi(`Edição ${NEXT.n} (${NEXT.cidade.split(" - ")[0]})`, `${faixa(NEXT.ini, NEXT.fim)} · faltam ${days} dias`, "col-span-2 sm:col-span-1") : ""
   ].join("");
 }
 function renderCron() {
-  $("#cronMode").innerHTML = [["reunioes", "Agenda de reuniões", "Reuniões", "calendar-days", MEETINGS.filter(m => m.n).length], ["dev", "Desenvolvimento & visitas", "Desenv. & visitas", "cpu", DEVS.length]].map(([k, l, sl, i, n]) => `<button type="button" data-cmode="${k}" class="${CRON.mode === k ? SEG_ON : SEG_OFF}">${ic(i, "w-3.5 h-3.5 shrink-0")}<span class="sm:hidden">${sl}</span><span class="hidden sm:inline">${l}</span><span class="hidden sm:inline px-1.5 rounded text-[10px] ${CRON.mode === k ? "bg-slate-950/20" : "bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-300"}">${n}</span></button>`).join("");
+  $("#cronMode").innerHTML = [["reunioes", "Agenda de reuniões", "Reuniões", "calendar-days", MEETINGS.filter(m => m.n).length], ["dev", "Desenvolvimento & visitas", "Desenv. & visitas", "cpu", DEVS.length]].map(([k, l, sl, i, n]) => `<button type="button" data-cmode="${k}" class="${CRON.mode === k ? SEG_ON : SEG_OFF}">${ic(i, "w-3.5 h-3.5 shrink-0")}<span class="sm:hidden">${sl}</span><span class="hidden sm:inline">${l}</span><span class="hidden sm:inline px-1.5 rounded text-[10px] ${CRON.mode === k ? "bg-slate-950/20" : "bg-slate-200 text-slate-600 dark:bg-[rgba(11,34,54,0.9)] dark:text-[#87a8bb]"}">${n}</span></button>`).join("");
   const list = CRON.mode === "reunioes" ? MEETINGS : DEVS;
   const years = [...new Set(list.map(m => m.ini.slice(0, 4)))].sort().reverse();
-  $("#cronYears").innerHTML = `<span class="flex items-center gap-1 text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400 mr-1">${ic("calendar", "w-3.5 h-3.5")}Ano:</span>` + [["", `Todos (${list.length})`], ...years.map(y => [y, `${y} (${list.filter(m => m.ini.startsWith(y)).length})`])].map(([k, l]) => `<button type="button" data-cy="${k}" class="${CRON.y === k ? C_ON : C_OFF}">${l}</button>`).join("");
-  $("#cronStatus").innerHTML = `<span class="text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-400 mr-1">Status:</span>` + [["", "Todos"], ["real", "Realizada"], ["agen", "Agendada"]].map(([k, l]) => `<button type="button" data-cs="${k}" class="${CRON.s === k ? C_ON : C_OFF}">${l}</button>`).join("");
+  $("#cronYears").innerHTML = [["", `Todos (${list.length})`], ...years.map(y => [y, `${y} (${list.filter(m => m.ini.startsWith(y)).length})`])].map(([k, l]) => `<button type="button" data-cy="${k}" class="${CRON.y === k ? CHIP_ON : CHIP_OFF}" aria-pressed="${CRON.y === k}">${l}</button>`).join("");
+  $("#cronStatus").innerHTML = [["", "Todos"], ["real", "Realizada"], ["agen", "Agendada"]].map(([k, l]) => `<button type="button" data-cs="${k}" class="${CRON.s === k ? SCHIP_ON : SCHIP_OFF}" aria-pressed="${CRON.s === k}">${l}</button>`).join("");
   const q = CRON.q.trim().toLowerCase();
   const items = list.filter(m => (!CRON.y || m.ini.startsWith(CRON.y)) && (!CRON.s || (CRON.s === "real" ? passou(m.fim) : !passou(m.fim))) && (!q || JSON.stringify(m).toLowerCase().includes(q) || ("edição " + m.n).includes(q) || ("atfm-met/" + m.n).includes(q)));
   const groups = [...new Set(items.map(m => m.ini.slice(0, 4)))].sort().reverse();
   $("#cronList").innerHTML = groups.length ? groups.map(y => {
     const g = items.filter(m => m.ini.startsWith(y)).sort((a, b) => D(a.ini) - D(b.ini));
-    const cnt = CRON.mode === "reunioes" ? g.length + (g.length === 1 ? " evento" : " eventos") : g.length + (g.length === 1 ? " evento" : " eventos");
-    return `<div><div class="flex items-center gap-3 mb-4"><span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-display font-bold text-sm shadow-glow-cyan">${ic("calendar", "w-4 h-4")}Ano ${y}</span><span class="flex-1 h-px bg-slate-200 dark:bg-[rgba(64,214,224,0.2)]"></span><span class="font-mono text-xs font-bold text-cyan-600 dark:text-[#3fe0d0] uppercase tracking-wider">${cnt}</span></div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">${g.map(CRON.mode === "reunioes" ? meetingCard : devCard).join("")}</div></div>`;
-  }).join("") : `<div class="p-8 text-center text-xs font-semibold text-slate-500 dark:text-slate-400 rounded-2xl border bg-white border-slate-200 dark:bg-slate-900/90 dark:border-slate-800">Nenhum evento encontrado com esses filtros.</div>`;
+    const cnt = CRON.mode === "reunioes" ? g.length + (g.length === 1 ? " evento" : " eventos") : g.length + (g.length === 1 ? " atividade" : " atividades");
+    return `<div>${yearRow("Ano " + y, cnt)}<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">${g.map(CRON.mode === "reunioes" ? meetingCard : devCard).join("")}</div></div>`;
+  }).join("") : emptyBox("Nenhum evento encontrado com esses filtros.");
 }
 $("#v-cronogramas").addEventListener("click", e => {
   const t = e.target.closest("[data-cmode],[data-cy],[data-cs]"); if (!t) return;
@@ -976,17 +1025,17 @@ $("#v-cronogramas").addEventListener("click", e => {
 $("#cronQ").addEventListener("input", e => { CRON.q = e.target.value; renderCron(); });
 
 /* ============================================================
-   DOCUMENTOS
+   DOCUMENTOS (mesmo layout do repositório do GADHOC Aeroportos)
    ============================================================ */
 const DOCST = {cat:"all", q:""};
-const DCAT_ON = "w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all border whitespace-nowrap bg-blue-600 border-blue-600 text-white shadow-sm";
-const DCAT_OFF = "w-full flex items-center justify-between gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold transition-all border whitespace-nowrap bg-white border-slate-200 text-slate-700 hover:bg-slate-50 dark:bg-[rgba(7,22,35,0.85)] dark:border-[rgba(64,214,224,0.18)] dark:text-[#e2f5ff] dark:hover:bg-[rgba(12,38,58,0.95)]";
+const DCAT_ON = "w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-all text-left cursor-pointer bg-blue-600 text-white font-bold shadow-xs";
+const DCAT_OFF = "w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-all text-left cursor-pointer bg-white dark:bg-aero-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-aero-800 hover:border-slate-300 dark:hover:border-aero-700";
 const fmtKB = kb => kb >= 1024 ? (kb / 1024).toFixed(1).replace(".", ",") + " MB" : kb + " KB";
 function renderDocs() {
   const count = c => c === "all" ? DOCS.length : DOCS.filter(d => d.cat === c).length;
   $("#kDocs").textContent = DOCS.length + " DOCS"; $("#docsTotal").textContent = DOCS.length + " docs";
   $("#docCats").innerHTML = DOC_CATS.map(c => { const on = DOCST.cat === c.id;
-    return `<button type="button" data-dcat="${c.id}" class="${on ? DCAT_ON : DCAT_OFF}"><span class="flex items-center gap-2">${ic(c.icon, "w-4 h-4")}${c.t}</span><span class="font-mono text-[10px] px-1.5 py-0.5 rounded ${on ? "bg-white/20 text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"}">${count(c.id)}</span></button>`; }).join("");
+    return `<button type="button" data-dcat="${c.id}" class="${on ? DCAT_ON : DCAT_OFF}" aria-pressed="${on}"><div class="flex items-center gap-2 min-w-0">${ic(c.icon, "w-4 h-4 shrink-0" + (on ? " opacity-80" : ""))}<span class="truncate">${c.t}</span></div><span class="text-[10px] font-mono px-1.5 py-0.2 rounded shrink-0 ${on ? "bg-white/20" : "bg-slate-100 dark:bg-aero-800"}">${count(c.id)}</span></button>`; }).join("");
   const cat = DOC_CATS.find(c => c.id === DOCST.cat);
   const q = DOCST.q.trim().toLowerCase();
   const items = DOCS.filter(d => (DOCST.cat === "all" || d.cat === DOCST.cat) && (!q || (d.t + " " + d.d + " " + d.file).toLowerCase().includes(q)));
@@ -994,22 +1043,22 @@ function renderDocs() {
   $("#docCatCount").textContent = items.length + (items.length === 1 ? " arquivo" : " arquivos");
   $("#docList").innerHTML = items.length ? items.map(d => {
     const pdf = d.ext === "pdf";
-    const box = pdf ? "bg-rose-50 border-rose-200 text-rose-600 dark:bg-rose-950/40 dark:border-rose-500/40 dark:text-rose-400" : "bg-blue-50 border-blue-200 text-blue-600 dark:bg-blue-950/40 dark:border-blue-500/40 dark:text-blue-400";
+    const box = pdf ? "bg-red-500/10 text-red-600 dark:bg-red-500/15 dark:text-red-400 border-red-500/20" : "bg-blue-500/10 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400 border-blue-500/20";
     const dt = D(d.dt);
-    return `<div class="flex flex-col sm:flex-row sm:items-center gap-4 p-4 rounded-xl border bg-white border-slate-200 shadow-sm hover:border-cyan-400 transition-all dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)] dark:hover:border-cyan-400">
-      <div class="flex items-start gap-4 flex-1 min-w-0">
-        <div class="w-11 h-11 shrink-0 rounded-lg border flex items-center justify-center ${box}">${ic("file-text", "w-5 h-5")}</div>
+    return `<div class="p-4 rounded-2xl bg-white dark:bg-aero-900 border border-slate-200 dark:border-aero-800 hover:border-blue-400 dark:hover:border-blue-500 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs group">
+      <div class="flex items-start gap-3.5 min-w-0">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 border ${box}">${ic("file-text", "w-5 h-5")}</div>
         <div class="min-w-0">
-          <h4 class="font-display font-bold text-sm text-slate-900 dark:text-[#e2f5ff]">${esc(d.t)}</h4>
-          <p class="text-xs text-slate-600 dark:text-[#87a8bb] mt-0.5">${esc(d.d)}</p>
-          <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] text-slate-400 dark:text-slate-500">${ic("calendar", "w-3 h-3 text-blue-500 dark:text-[#3fe0d0]")}<span>${dd(dt)}/${String(dt.getMonth() + 1).padStart(2, "0")}/${dt.getFullYear()}</span><span>· ${fmtKB(d.kb)}</span><span>· ${d.ext.toUpperCase()}</span><span class="truncate">· ${esc(d.file)}</span></div>
+          <div class="flex items-center gap-2 flex-wrap"><h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">${esc(d.t)}</h4></div>
+          <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2">${esc(d.d)}</p>
+          <div class="flex items-center gap-2.5 text-[11px] font-mono text-slate-400 dark:text-slate-500 mt-2 flex-wrap"><span class="flex items-center gap-1 text-slate-500 dark:text-slate-400">${ic("calendar", "w-3.5 h-3.5 text-blue-500")}${dd(dt)}/${String(dt.getMonth() + 1).padStart(2, "0")}/${dt.getFullYear()}</span><span>• ${fmtKB(d.kb)}</span><span class="text-slate-400 dark:text-slate-500 max-w-[260px] truncate" title="${esc(d.file)}">• ${esc(d.file)}</span></div>
         </div>
       </div>
-      <div class="flex items-center gap-2 shrink-0 sm:ml-auto">
-        <button type="button" data-preview="${d.id}" data-title="${esc(d.t)}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border bg-white border-slate-200 text-slate-700 hover:border-blue-400 dark:bg-[rgba(8,26,40,0.85)] dark:border-[rgba(64,214,224,0.3)] dark:text-[#e2f5ff] dark:hover:border-cyan-400">${ic("eye", "w-3.5 h-3.5 text-blue-600 dark:text-[#3fe0d0]")}Pré-visualizar</button>
-        <a href="${DRIVE(d.id)}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm">Abrir Drive${ic("external-link", "w-3.5 h-3.5")}</a>
+      <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+        <button type="button" data-preview="${d.id}" data-title="${esc(d.t)}" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-aero-800 hover:bg-slate-100 dark:hover:bg-aero-750 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-aero-700 text-xs font-medium transition-all shadow-xs cursor-pointer" title="Pré-visualizar documento">${ic("eye", "w-3.5 h-3.5 text-blue-500")}<span>Pré-visualizar</span></button>
+        <a href="${DRIVE(d.id)}" target="_blank" rel="noopener" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer" title="Abrir no Google Drive"><span>Abrir Drive</span>${ic("external-link", "w-3 h-3")}</a>
       </div></div>`;
-  }).join("") : `<div class="p-8 text-center text-xs font-semibold text-slate-500 dark:text-slate-400 rounded-xl border bg-white border-slate-200 dark:bg-[rgba(7,22,35,0.92)] dark:border-[rgba(64,214,224,0.22)]">Nenhum documento encontrado.</div>`;
+  }).join("") : `<div class="p-8 text-center text-xs text-slate-500 dark:text-slate-400 rounded-2xl bg-white dark:bg-aero-900 border border-slate-200 dark:border-aero-800">Nenhum documento encontrado.</div>`;
 }
 $("#v-docs").addEventListener("click", e => {
   const c = e.target.closest("[data-dcat]"); if (c) { DOCST.cat = c.dataset.dcat; renderDocs(); return; }
@@ -1038,7 +1087,7 @@ function closeModals() {
 let QRMODE = "presenca";
 function renderQR() {
   const d = QR[QRMODE];
-  $("#qrMode").innerHTML = [["presenca", "Credenciamento", "badge-check"], ["portal", "Portal", "layout-grid"]].map(([k, l, i]) => `<button type="button" data-qrm="${k}" class="flex-1 justify-center ${QRMODE === k ? SEG_ON : SEG_OFF}">${ic(i, "w-3.5 h-3.5")}<span>${l}</span></button>`).join("");
+  $("#qrMode").innerHTML = [["presenca", "Credenciamento", "badge-check"], ["portal", "Portal", "layout-grid"]].map(([k, l, i]) => `<button type="button" data-qrm="${k}" class="${(QRMODE === k ? SEG_ON : SEG_OFF).replace("sm:flex-none", "flex-1")}">${ic(i, "w-3.5 h-3.5")}<span>${l}</span></button>`).join("");
   $("#qrBox").innerHTML = d.svg; $("#qrUrl").textContent = d.url; $("#qrDl").href = d.png; $("#qrDl").download = d.file;
   $("#qrHint").textContent = QRMODE === "presenca" ? "Aponte a câmera do celular para abrir o credenciamento." : "Aponte a câmera do celular para abrir o portal do GADHOC ATFM-MET.";
 }
